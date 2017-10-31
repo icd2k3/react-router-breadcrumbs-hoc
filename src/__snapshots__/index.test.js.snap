@@ -1,0 +1,679 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`react-router-breadcrumbs-hoc withBreadcrumbs Should NOT wrap breadcrumbs in <NavLink> components if passed \`false\` for navLinkProps 1`] = `
+<withRouter()>
+  <Route
+    render={[Function]}
+  >
+    <Component
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/1/2/3",
+            "search": "",
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+      location={
+        Object {
+          "hash": "",
+          "pathname": "/1/2/3",
+          "search": "",
+        }
+      }
+      match={
+        Object {
+          "isExact": false,
+          "params": Object {},
+          "path": "/",
+          "url": "/",
+        }
+      }
+      staticContext={Object {}}
+    >
+      <Component
+        breadcrumbs={
+          Array [
+            Object {
+              "breadcrumb": "1",
+              "match": Object {
+                "isExact": true,
+                "params": Object {},
+                "path": "/1",
+                "url": "/1",
+              },
+              "path": "/1",
+            },
+            Object {
+              "breadcrumb": <span>
+                TWO
+              </span>,
+              "match": Object {
+                "isExact": true,
+                "params": Object {},
+                "path": "/1/2",
+                "url": "/1/2",
+              },
+              "path": "/1/2",
+            },
+            Object {
+              "breadcrumb": <span>
+                3
+              </span>,
+              "match": Object {
+                "isExact": true,
+                "params": Object {
+                  "number": "3",
+                },
+                "path": "/1/2/:number",
+                "url": "/1/2/3",
+              },
+              "path": "/1/2/:number",
+            },
+          ]
+        }
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/1/2/3",
+              "search": "",
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/1/2/3",
+            "search": "",
+          }
+        }
+        match={
+          Object {
+            "isExact": false,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
+          }
+        }
+        staticContext={Object {}}
+      >
+        <div
+          className="breadcrumbs-container"
+        >
+          <span
+            key="/1"
+          >
+            1
+          </span>
+          <span
+            key="/1/2"
+          >
+            <span>
+              TWO
+            </span>
+          </span>
+          <span
+            key="/1/2/:number"
+          >
+            <span>
+              3
+            </span>
+          </span>
+        </div>
+      </Component>
+    </Component>
+  </Route>
+</withRouter()>
+`;
+
+exports[`react-router-breadcrumbs-hoc withBreadcrumbs Should accept navLinkProps to apply to the <NavLink> component 1`] = `
+<withRouter()>
+  <Route
+    render={[Function]}
+  >
+    <Component
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/1/2/3",
+            "search": "",
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+      location={
+        Object {
+          "hash": "",
+          "pathname": "/1/2/3",
+          "search": "",
+        }
+      }
+      match={
+        Object {
+          "isExact": false,
+          "params": Object {},
+          "path": "/",
+          "url": "/",
+        }
+      }
+      staticContext={Object {}}
+    >
+      <Component
+        breadcrumbs={
+          Array [
+            Object {
+              "breadcrumb": <NavLink
+                activeClassName="mock-active-navlink-class"
+                ariaCurrent="true"
+                className="mock-navlink-class"
+                exact={true}
+                strict={true}
+                to="/1"
+              >
+                1
+              </NavLink>,
+              "match": Object {
+                "isExact": true,
+                "params": Object {},
+                "path": "/1",
+                "url": "/1",
+              },
+              "path": "/1",
+            },
+            Object {
+              "breadcrumb": <NavLink
+                activeClassName="mock-active-navlink-class"
+                ariaCurrent="true"
+                className="mock-navlink-class"
+                exact={true}
+                strict={true}
+                to="/1/2"
+              >
+                <span>
+                  TWO
+                </span>
+              </NavLink>,
+              "match": Object {
+                "isExact": true,
+                "params": Object {},
+                "path": "/1/2",
+                "url": "/1/2",
+              },
+              "path": "/1/2",
+            },
+            Object {
+              "breadcrumb": <NavLink
+                activeClassName="mock-active-navlink-class"
+                ariaCurrent="true"
+                className="mock-navlink-class"
+                exact={true}
+                strict={true}
+                to="/1/2/3"
+              >
+                <span>
+                  3
+                </span>
+              </NavLink>,
+              "match": Object {
+                "isExact": true,
+                "params": Object {
+                  "number": "3",
+                },
+                "path": "/1/2/:number",
+                "url": "/1/2/3",
+              },
+              "path": "/1/2/:number",
+            },
+          ]
+        }
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/1/2/3",
+              "search": "",
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/1/2/3",
+            "search": "",
+          }
+        }
+        match={
+          Object {
+            "isExact": false,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
+          }
+        }
+        staticContext={Object {}}
+      >
+        <div
+          className="breadcrumbs-container"
+        >
+          <span
+            key="/1"
+          >
+            <NavLink
+              activeClassName="mock-active-navlink-class"
+              ariaCurrent="true"
+              className="mock-navlink-class"
+              exact={true}
+              strict={true}
+              to="/1"
+            >
+              <Route
+                exact={true}
+                location={undefined}
+                path="/1"
+                strict={true}
+              >
+                <Link
+                  aria-current={false}
+                  className="mock-navlink-class"
+                  replace={false}
+                  style={undefined}
+                  to="/1"
+                >
+                  <a
+                    aria-current={false}
+                    className="mock-navlink-class"
+                    href="/1"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    1
+                  </a>
+                </Link>
+              </Route>
+            </NavLink>
+          </span>
+          <span
+            key="/1/2"
+          >
+            <NavLink
+              activeClassName="mock-active-navlink-class"
+              ariaCurrent="true"
+              className="mock-navlink-class"
+              exact={true}
+              strict={true}
+              to="/1/2"
+            >
+              <Route
+                exact={true}
+                location={undefined}
+                path="/1/2"
+                strict={true}
+              >
+                <Link
+                  aria-current={false}
+                  className="mock-navlink-class"
+                  replace={false}
+                  style={undefined}
+                  to="/1/2"
+                >
+                  <a
+                    aria-current={false}
+                    className="mock-navlink-class"
+                    href="/1/2"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    <span>
+                      TWO
+                    </span>
+                  </a>
+                </Link>
+              </Route>
+            </NavLink>
+          </span>
+          <span
+            key="/1/2/:number"
+          >
+            <NavLink
+              activeClassName="mock-active-navlink-class"
+              ariaCurrent="true"
+              className="mock-navlink-class"
+              exact={true}
+              strict={true}
+              to="/1/2/3"
+            >
+              <Route
+                exact={true}
+                location={undefined}
+                path="/1/2/3"
+                strict={true}
+              >
+                <Link
+                  aria-current="true"
+                  className="mock-navlink-class mock-active-navlink-class"
+                  replace={false}
+                  style={Object {}}
+                  to="/1/2/3"
+                >
+                  <a
+                    aria-current="true"
+                    className="mock-navlink-class mock-active-navlink-class"
+                    href="/1/2/3"
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    <span>
+                      3
+                    </span>
+                  </a>
+                </Link>
+              </Route>
+            </NavLink>
+          </span>
+        </div>
+      </Component>
+    </Component>
+  </Route>
+</withRouter()>
+`;
+
+exports[`react-router-breadcrumbs-hoc withBreadcrumbs Should render strings & functions into breadcrumb NavLink components 1`] = `
+<withRouter()>
+  <Route
+    render={[Function]}
+  >
+    <Component
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/1/2/3",
+            "search": "",
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+      location={
+        Object {
+          "hash": "",
+          "pathname": "/1/2/3",
+          "search": "",
+        }
+      }
+      match={
+        Object {
+          "isExact": false,
+          "params": Object {},
+          "path": "/",
+          "url": "/",
+        }
+      }
+      staticContext={Object {}}
+    >
+      <Component
+        breadcrumbs={
+          Array [
+            Object {
+              "breadcrumb": <NavLink
+                activeClassName="active"
+                ariaCurrent="true"
+                exact={true}
+                strict={true}
+                to="/1"
+              >
+                1
+              </NavLink>,
+              "match": Object {
+                "isExact": true,
+                "params": Object {},
+                "path": "/1",
+                "url": "/1",
+              },
+              "path": "/1",
+            },
+            Object {
+              "breadcrumb": <NavLink
+                activeClassName="active"
+                ariaCurrent="true"
+                exact={true}
+                strict={true}
+                to="/1/2"
+              >
+                <span>
+                  TWO
+                </span>
+              </NavLink>,
+              "match": Object {
+                "isExact": true,
+                "params": Object {},
+                "path": "/1/2",
+                "url": "/1/2",
+              },
+              "path": "/1/2",
+            },
+            Object {
+              "breadcrumb": <NavLink
+                activeClassName="active"
+                ariaCurrent="true"
+                exact={true}
+                strict={true}
+                to="/1/2/3"
+              >
+                <span>
+                  3
+                </span>
+              </NavLink>,
+              "match": Object {
+                "isExact": true,
+                "params": Object {
+                  "number": "3",
+                },
+                "path": "/1/2/:number",
+                "url": "/1/2/3",
+              },
+              "path": "/1/2/:number",
+            },
+          ]
+        }
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/1/2/3",
+              "search": "",
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/1/2/3",
+            "search": "",
+          }
+        }
+        match={
+          Object {
+            "isExact": false,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
+          }
+        }
+        staticContext={Object {}}
+      >
+        <div
+          className="breadcrumbs-container"
+        >
+          <span
+            key="/1"
+          >
+            <NavLink
+              activeClassName="active"
+              ariaCurrent="true"
+              exact={true}
+              strict={true}
+              to="/1"
+            >
+              <Route
+                exact={true}
+                location={undefined}
+                path="/1"
+                strict={true}
+              >
+                <Link
+                  aria-current={false}
+                  className={undefined}
+                  replace={false}
+                  style={undefined}
+                  to="/1"
+                >
+                  <a
+                    aria-current={false}
+                    className={undefined}
+                    href="/1"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    1
+                  </a>
+                </Link>
+              </Route>
+            </NavLink>
+          </span>
+          <span
+            key="/1/2"
+          >
+            <NavLink
+              activeClassName="active"
+              ariaCurrent="true"
+              exact={true}
+              strict={true}
+              to="/1/2"
+            >
+              <Route
+                exact={true}
+                location={undefined}
+                path="/1/2"
+                strict={true}
+              >
+                <Link
+                  aria-current={false}
+                  className={undefined}
+                  replace={false}
+                  style={undefined}
+                  to="/1/2"
+                >
+                  <a
+                    aria-current={false}
+                    className={undefined}
+                    href="/1/2"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    <span>
+                      TWO
+                    </span>
+                  </a>
+                </Link>
+              </Route>
+            </NavLink>
+          </span>
+          <span
+            key="/1/2/:number"
+          >
+            <NavLink
+              activeClassName="active"
+              ariaCurrent="true"
+              exact={true}
+              strict={true}
+              to="/1/2/3"
+            >
+              <Route
+                exact={true}
+                location={undefined}
+                path="/1/2/3"
+                strict={true}
+              >
+                <Link
+                  aria-current="true"
+                  className="active"
+                  replace={false}
+                  style={Object {}}
+                  to="/1/2/3"
+                >
+                  <a
+                    aria-current="true"
+                    className="active"
+                    href="/1/2/3"
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    <span>
+                      3
+                    </span>
+                  </a>
+                </Link>
+              </Route>
+            </NavLink>
+          </span>
+        </div>
+      </Component>
+    </Component>
+  </Route>
+</withRouter()>
+`;

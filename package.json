@@ -1,0 +1,50 @@
+{
+  "name": "react-router-component-breadcrumbs",
+  "version": "1.0.0",
+  "description": "Dynamic, flexible, component-based breadcrumbs for react-router 4",
+  "keywords": [
+    "breadcrumbs",
+    "react-router",
+    "react-router 4"
+  ],
+  "main": "dist/src/index.js",
+  "author": "Koan Inc.",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-jest": "^21.2.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "chai": "^4.1.2",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
+    "enzyme-to-json": "^3.1.4",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "jest": "^21.2.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-test-renderer": "^16.0.0",
+    "regenerator-runtime": "^0.11.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.3"
+  },
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "babel -d dist/ src/index.js",
+    "test": "jest"
+  }
+}
