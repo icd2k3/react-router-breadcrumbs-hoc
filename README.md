@@ -18,7 +18,7 @@ We are currently using this method @ [Koan Inc.](https://koan.co)
 
 ## Install
 
-`yarn add react-router-breadcrumbs-hoc` or `npm install react-router-breadcrumbs-hoc`
+`yarn add react-router-breadcrumbs-hoc` or `npm install react-router-breadcrumbs-hoc --save`
 
 ## Usage
 
