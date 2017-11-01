@@ -17,7 +17,7 @@ exports[`react-router-breadcrumbs-hoc withBreadcrumbs Should render breadcrumb c
           "listen": [Function],
           "location": Object {
             "hash": "",
-            "pathname": "/1/2/3",
+            "pathname": "/1/2/3/4",
             "search": "",
           },
           "push": [Function],
@@ -27,7 +27,7 @@ exports[`react-router-breadcrumbs-hoc withBreadcrumbs Should render breadcrumb c
       location={
         Object {
           "hash": "",
-          "pathname": "/1/2/3",
+          "pathname": "/1/2/3/4",
           "search": "",
         }
       }
@@ -80,6 +80,24 @@ exports[`react-router-breadcrumbs-hoc withBreadcrumbs Should render breadcrumb c
               },
               "path": "/1/2/:number",
             },
+            Object {
+              "breadcrumb": <NavLink
+                activeClassName="active"
+                ariaCurrent="true"
+                to="/1/2/3/4"
+              >
+                Link
+              </NavLink>,
+              "match": Object {
+                "isExact": true,
+                "params": Object {
+                  "number": "3",
+                },
+                "path": "/1/2/:number/4",
+                "url": "/1/2/3/4",
+              },
+              "path": "/1/2/:number/4",
+            },
           ]
         }
         history={
@@ -93,7 +111,7 @@ exports[`react-router-breadcrumbs-hoc withBreadcrumbs Should render breadcrumb c
             "listen": [Function],
             "location": Object {
               "hash": "",
-              "pathname": "/1/2/3",
+              "pathname": "/1/2/3/4",
               "search": "",
             },
             "push": [Function],
@@ -103,7 +121,7 @@ exports[`react-router-breadcrumbs-hoc withBreadcrumbs Should render breadcrumb c
         location={
           Object {
             "hash": "",
-            "pathname": "/1/2/3",
+            "pathname": "/1/2/3/4",
             "search": "",
           }
         }
@@ -138,6 +156,40 @@ exports[`react-router-breadcrumbs-hoc withBreadcrumbs Should render breadcrumb c
             <span>
               3
             </span>
+          </span>
+          <span
+            key="/1/2/:number/4"
+          >
+            <NavLink
+              activeClassName="active"
+              ariaCurrent="true"
+              to="/1/2/3/4"
+            >
+              <Route
+                exact={undefined}
+                location={undefined}
+                path="/1/2/3/4"
+                strict={undefined}
+              >
+                <Link
+                  aria-current="true"
+                  className="active"
+                  replace={false}
+                  style={Object {}}
+                  to="/1/2/3/4"
+                >
+                  <a
+                    aria-current="true"
+                    className="active"
+                    href="/1/2/3/4"
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    Link
+                  </a>
+                </Link>
+              </Route>
+            </NavLink>
           </span>
         </div>
       </Breadcrumbs>
