@@ -10,17 +10,29 @@
   `http://site.com/user/id` -> `user / John Doe`
 </p>
 
+## Description
+
+Deconstruct a route and return matching breadcrumb components you can render however you like. For example, you can render a simple string, or create a breadcumb component that fetches a model in order to display the desired content.
+
+We are currently using this method @ [Koan Inc.](https://koan.co).
+
 ## Install
 
 `yarn add react-router-breadcrumbs-hoc` or `npm install react-router-breadcrumbs-hoc`
 
 ## Usage
 
-`Breadcrumbs.jsx`
 ```js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { withBreadcumbs } from 'react-router-breadcrumbs-hoc';
+import { fetchUser } from 'some-internal-user-fetcher-thing';
+
+const routes = [
+  { path: 'users', breadcrumb: 'Users' },
+  { path: 'users/:userId', breadcrumb: UserBreadcrumb},
+  { path: 'something-else', breadcrumb: ':)' },
+];
 
 const PureUserBreadcrumb = ({ firstName }) => <span>{firstName}</span>;
 const UserBreadcrumb = fetchUser(PureUserBreadcrumb);
@@ -38,11 +50,46 @@ const Breadcrumbs = ({ breadcrumbs }) => (
   </div>
 );
 
-export default withBreadcrumbs([
-  { path: users, breadcrumb: 'Users' },
-  { path: users/:userId, breadcrumb: UserBreadcrumb},
-  { path: something-else, breadcrumb: ':)' },
-])(MuhBreadcrumbs);
+export default withBreadcrumbs(routes)(Breadcrumbs);
 ```
 
+For the above example...
+
+Pathname | Result
+--- | ---
+/users | Users
+/users/id | Users / John
+/something-else | :)
+
 ## API
+
+### `withBreadcrumbs()`
+```js
+import { withBreadcrumbs } from 'react-router-breadcrumbs-hoc';
+
+withBreadcrumbs(routes)(Component): HigherOrderComponent
+```
+
+### `route` Object
+Param | Type | Default | Required
+--- | --- | ---
+path | String | null | Required
+breadcrumb | String or Function (component) | null | Required
+matchOptions | Object | { exact: true } | Optional
+
+### `getBreadcrumbs`
+```js
+import { getBreadcrumbs } from 'react-router-breadcrumbs-hoc';
+
+getBreadcrumbs({
+  routes,
+  pathname,
+}): breadcrumbs: Array<object> { breadcrumb, path, match }
+```
+
+If you don't want to use the HOC the `getBreadcrumbs` method is available to use instead.
+
+## Thanks
+- [Koan Inc.](https://koan.co)
+- [rjz](https://github.com/rjz)
+- [sqren](https://github.com/sqren)
