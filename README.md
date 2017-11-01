@@ -1,5 +1,5 @@
 <h3 align="center">
-  React Router Breadcrumbs [HOC](https://reactjs.org/docs/higher-order-components.html)
+  React Router Breadcrumbs HOC
 </h3>
 
 <p align="center">
@@ -12,7 +12,7 @@
 
 ## Description
 
-Deconstruct a route and return matching breadcrumb components you can render however you like. For example, you can render a simple string, or create a breadcumb component that fetches a model in order to display the desired content.
+Deconstruct a route and return matching breadcrumb components you can render however you like. Render a simple string, a component that fetches a model in order to display the desired content, or just render something totally unrelated to the route.
 
 We are currently using this method @ [Koan Inc.](https://koan.co)
 
