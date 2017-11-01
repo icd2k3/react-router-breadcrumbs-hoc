@@ -47,7 +47,9 @@ export const getBreadcrumbs = ({ routes, pathname }) => {
         return false;
       });
 
-      matches.push(breadcrumbMatch);
+      if (breadcrumbMatch) {
+        matches.push(breadcrumbMatch);
+      }
 
       return pathSection;
     });
