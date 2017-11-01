@@ -63,7 +63,7 @@ Pathname | Result
 
 ## API
 
-`withBreadcrumbs()`
+#### withBreadcrumbs
 ```js
 import { withBreadcrumbs } from 'react-router-breadcrumbs-hoc';
 
@@ -72,7 +72,7 @@ withBreadcrumbs(routes)(Component): HigherOrderComponent
 
 ---
 
-`route` Object
+#### route
 
 Param | Type | Default | Required
 --- | --- | --- | ---
@@ -82,7 +82,7 @@ matchOptions | Object | { exact: true } | Optional
 
 ---
 
-`getBreadcrumbs`
+#### getBreadcrumbs
 If you don't want to use the HOC the `getBreadcrumbs` method is available to use instead.
 
 ```js
