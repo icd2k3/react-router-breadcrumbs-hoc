@@ -7,14 +7,14 @@
 </p>
 
 <p align="center">
-  `http://site.com/user/id` -> `user / John Doe`
+  http://site.com/user/id --> user / John Doe
 </p>
 
 ## Description
 
 Deconstruct a route and return matching breadcrumb components you can render however you like. For example, you can render a simple string, or create a breadcumb component that fetches a model in order to display the desired content.
 
-We are currently using this method @ [Koan Inc.](https://koan.co).
+We are currently using this method @ [Koan Inc.](https://koan.co)
 
 ## Install
 
@@ -71,13 +71,16 @@ withBreadcrumbs(routes)(Component): HigherOrderComponent
 ```
 
 ### `route` Object
+
 Param | Type | Default | Required
---- | --- | ---
+--- | --- | --- | ---
 path | String | null | Required
 breadcrumb | String or Function (component) | null | Required
 matchOptions | Object | { exact: true } | Optional
 
 ### `getBreadcrumbs`
+If you don't want to use the HOC the `getBreadcrumbs` method is available to use instead.
+
 ```js
 import { getBreadcrumbs } from 'react-router-breadcrumbs-hoc';
 
@@ -86,8 +89,6 @@ getBreadcrumbs({
   pathname,
 }): breadcrumbs: Array<object> { breadcrumb, path, match }
 ```
-
-If you don't want to use the HOC the `getBreadcrumbs` method is available to use instead.
 
 ## Thanks
 - [Koan Inc.](https://koan.co)
