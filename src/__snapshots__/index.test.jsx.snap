@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`react-router-breadcrumbs-hoc withBreadcrumbs Should render breadcrumb components as expected 1`] = `
+<withRouter()>
+  <Route
+    render={[Function]}
+  >
+    <Component
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/1/2/3",
+            "search": "",
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+      location={
+        Object {
+          "hash": "",
+          "pathname": "/1/2/3",
+          "search": "",
+        }
+      }
+      match={
+        Object {
+          "isExact": false,
+          "params": Object {},
+          "path": "/",
+          "url": "/",
+        }
+      }
+      staticContext={Object {}}
+    >
+      <Breadcrumbs
+        breadcrumbs={
+          Array [
+            Object {
+              "breadcrumb": "1",
+              "match": Object {
+                "isExact": true,
+                "params": Object {},
+                "path": "/1",
+                "url": "/1",
+              },
+              "path": "/1",
+            },
+            Object {
+              "breadcrumb": <span>
+                TWO
+              </span>,
+              "match": Object {
+                "isExact": true,
+                "params": Object {},
+                "path": "/1/2",
+                "url": "/1/2",
+              },
+              "path": "/1/2",
+            },
+            Object {
+              "breadcrumb": <span>
+                3
+              </span>,
+              "match": Object {
+                "isExact": true,
+                "params": Object {
+                  "number": "3",
+                },
+                "path": "/1/2/:number",
+                "url": "/1/2/3",
+              },
+              "path": "/1/2/:number",
+            },
+          ]
+        }
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/1/2/3",
+              "search": "",
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/1/2/3",
+            "search": "",
+          }
+        }
+        match={
+          Object {
+            "isExact": false,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
+          }
+        }
+        staticContext={Object {}}
+      >
+        <div
+          className="breadcrumbs-container"
+        >
+          <span
+            key="/1"
+          >
+            1
+          </span>
+          <span
+            key="/1/2"
+          >
+            <span>
+              TWO
+            </span>
+          </span>
+          <span
+            key="/1/2/:number"
+          >
+            <span>
+              3
+            </span>
+          </span>
+        </div>
+      </Breadcrumbs>
+    </Component>
+  </Route>
+</withRouter()>
+`;
