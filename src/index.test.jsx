@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { mount } from 'enzyme';
 import { StaticRouter as Router } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import { withBreadcrumbs } from './index';
+import { getBreadcrumbs, withBreadcrumbs } from './index';
 
 const components = {
   Breadcrumbs: ({ breadcrumbs }) => (
@@ -41,7 +41,7 @@ components.BreadcrumbNavLinkTest.propTypes = {
 const shuffle = arr => arr.sort(() => Math.random() - 0.5);
 
 describe('react-router-breadcrumbs-hoc', () => {
-  describe('withBreadcrumbs', () => {
+  describe('valid routes', () => {
     const routes = shuffle([
       // test breadcrumb passed as string
       { path: '/1', breadcrumb: '1' },
@@ -65,6 +65,13 @@ describe('react-router-breadcrumbs-hoc', () => {
 
       expect(wrapper.find(ComposedComponent)).toMatchSnapshot();
       expect(wrapper.find(NavLink).props().to).toBe('/1/2/3/4');
+    });
+  });
+
+  describe('invalid route object', () => {
+    it('Should error if `path` is provided, but `breadcrumb` is not', () => {
+      expect(() => getBreadcrumbs({ routes: [{ path: '/1' }], pathname: '/1' }))
+        .toThrow('withBreadcrumbs: `breadcrumb` and `path` must be provided in every route object');
     });
   });
 });

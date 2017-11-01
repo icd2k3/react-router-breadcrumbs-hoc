@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`react-router-breadcrumbs-hoc withBreadcrumbs Should render breadcrumb components as expected 1`] = `
+exports[`react-router-breadcrumbs-hoc valid routes Should render breadcrumb components as expected 1`] = `
 <withRouter()>
   <Route
     render={[Function]}

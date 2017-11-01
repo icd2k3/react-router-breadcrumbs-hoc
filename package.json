@@ -46,6 +46,7 @@
     "prepublish": "npm run build",
     "build": "babel -d dist/ src/index.jsx",
     "test": "jest",
+    "test:watch": "jest --watch",
     "lint": "eslint ./src/**"
   }
 }
