@@ -2,6 +2,7 @@
   "name": "react-router-component-breadcrumbs",
   "version": "1.0.0",
   "description": "Dynamic, flexible, component-based breadcrumbs for react-router 4",
+  "repository": "icd2k3/react-router-breadcrumbs-hoc",
   "keywords": [
     "react",
     "router",
@@ -9,7 +10,7 @@
     "react-router",
     "react-router 4"
   ],
-  "main": "dist/src/index.js",
+  "main": "index.js",
   "author": "Koan Inc.",
   "license": "MIT",
   "peerDependencies": {
@@ -40,8 +41,8 @@
     "react-router-dom": "^4.2.2"
   },
   "scripts": {
-    "prepublish": "npm run build",
-    "build": "babel -d dist/ src/index.jsx",
+    "prepublishOnly": "npm run build",
+    "build": "babel src/index.jsx -o index.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint ./src/**"
