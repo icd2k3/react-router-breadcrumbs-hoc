@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Dynamic, flexible, component-based breadcrumbs for react-router 4",
   "keywords": [
+    "react",
+    "router",
     "breadcrumbs",
     "react-router",
     "react-router 4"
