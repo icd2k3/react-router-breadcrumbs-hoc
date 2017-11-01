@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  `http://site.com/user/id` -> `user / John Doe`
+  http://site.com/user/id --> user / John Doe
 </p>
 
 ## Description
