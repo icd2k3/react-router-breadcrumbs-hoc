@@ -26,7 +26,6 @@ We are currently using this method @ [Koan Inc.](https://koan.co)
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { withBreadcumbs } from 'react-router-breadcrumbs-hoc';
-import { fetchUser } from 'some-internal-user-fetcher-thing';
 
 const routes = [
   { path: 'users', breadcrumb: 'Users' },
@@ -34,8 +33,8 @@ const routes = [
   { path: 'something-else', breadcrumb: ':)' },
 ];
 
-const PureUserBreadcrumb = ({ firstName }) => <span>{firstName}</span>;
-const UserBreadcrumb = fetchUser(PureUserBreadcrumb);
+const UserBreadcrumb = ({ match }) =>
+  <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
 
 const Breadcrumbs = ({ breadcrumbs }) => (
   <div>
