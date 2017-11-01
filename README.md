@@ -3,7 +3,7 @@
 </h3>
 
 <p align="center">
-  A small, flexible HOC for rendering breadcrumbs
+  A very small, but flexible HOC for rendering breadcrumbs
 </p>
 
 <p align="center">
