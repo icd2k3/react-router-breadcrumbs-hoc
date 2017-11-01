@@ -62,37 +62,22 @@ Pathname | Result
 
 ## API
 
-#### withBreadcrumbs
 ```js
-import { withBreadcrumbs } from 'react-router-breadcrumbs-hoc';
+Route = {
+  path: String
+  breadcrumb: String|Function
+  matchOptions?: Object
+}
 
-withBreadcrumbs(routes)(Component): HigherOrderComponent
+Breadcrumb = {
+  path: String
+  match: String
+  breadcrumb: Component
+}
+
+withBreadcrumbs(routes: Array<Route>): HigherOrderComponent
+getBreadcrumbs({ routes: Array<Route>, pathname: String }): Array<Breadcrumb>
 ```
-
----
-
-#### route
-
-Param | Type | Default | Required
---- | --- | --- | ---
-path | String | null | Required
-breadcrumb | String or Function (component) | null | Required
-matchOptions | Object | { exact: true } | Optional
-
----
-
-#### getBreadcrumbs
-If you don't want to use the HOC the `getBreadcrumbs` method is available to use instead.
-
-```js
-import { getBreadcrumbs } from 'react-router-breadcrumbs-hoc';
-
-getBreadcrumbs({
-  routes,
-  pathname,
-}): breadcrumbs: Array<object> { breadcrumb, path, match }
-```
-
 
 ### Thanks
 - [Koan Inc.](https://koan.co)
