@@ -1,5 +1,5 @@
 <h3 align="center">
-  React Router Breadcrumbs HOC
+  React Router Breadcrumbs [HOC](https://reactjs.org/docs/higher-order-components.html)
 </h3>
 
 <p align="center">
