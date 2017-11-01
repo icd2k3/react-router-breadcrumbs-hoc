@@ -71,8 +71,9 @@ withBreadcrumbs(routes)(Component): HigherOrderComponent
 ```
 
 ### `route` Object
+
 Param | Type | Default | Required
---- | --- | ---
+--- | --- | --- | ---
 path | String | null | Required
 breadcrumb | String or Function (component) | null | Required
 matchOptions | Object | { exact: true } | Optional
