@@ -3,7 +3,7 @@
 </h3>
 
 <p align="center">
-  A very small, but flexible HOC for rendering breadcrumbs
+  A very small, but flexible HOC for rendering breadcrumbs with react-router 4.x
 </p>
 
 <p align="center">
