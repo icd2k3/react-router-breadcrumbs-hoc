@@ -27,14 +27,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { withBreadcumbs } from 'react-router-breadcrumbs-hoc';
 
+const UserBreadcrumb = ({ match }) =>
+  <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
+
 const routes = [
   { path: 'users', breadcrumb: 'Users' },
   { path: 'users/:userId', breadcrumb: UserBreadcrumb},
   { path: 'something-else', breadcrumb: ':)' },
 ];
-
-const UserBreadcrumb = ({ match }) =>
-  <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
 
 const Breadcrumbs = ({ breadcrumbs }) => (
   <div>
