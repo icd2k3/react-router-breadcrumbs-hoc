@@ -1,4 +1,4 @@
-[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/react-router-breadcrumbs-hoc) ![travis](https://travis-ci.org/icd2k3/react-router-breadcrumbs-hoc.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/icd2k3/react-router-breadcrumbs-hoc/badge.svg?branch=master)](https://coveralls.io/github/icd2k3/react-router-breadcrumbs-hoc?branch=master) [![devDependencies Status](https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc/dev-status.svg)](https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc?type=dev)
+[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/react-router-breadcrumbs-hoc) [![devDependencies Status](https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc/dev-status.svg)](https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc?type=dev) ![travis](https://travis-ci.org/icd2k3/react-router-breadcrumbs-hoc.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/icd2k3/react-router-breadcrumbs-hoc/badge.svg?branch=master)](https://coveralls.io/github/icd2k3/react-router-breadcrumbs-hoc?branch=master)
 
 <h3 align="center">
   React Router Breadcrumbs HOC
