@@ -25,6 +25,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "coveralls": "^3.0.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",
     "enzyme-to-json": "^3.1.4",
@@ -45,6 +46,7 @@
     "build": "babel src/index.jsx -o index.js",
     "test": "jest",
     "test:watch": "jest --watch",
+    "travis": "jest && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint ./src/**"
   }
 }
