@@ -1,5 +1,3 @@
-![travis](https://travis-ci.org/icd2k3/react-router-breadcrumbs-hoc.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/icd2k3/react-router-breadcrumbs-hoc/badge.svg?branch=master)](https://coveralls.io/github/icd2k3/react-router-breadcrumbs-hoc?branch=master)
-
 <h3 align="center">
   React Router Breadcrumbs HOC
 </h3>
@@ -10,6 +8,13 @@
 
 <p align="center">
   http://site.com/user/id → user / John Doe
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-router-breadcrumbs-hoc" target="_blank"><img src="https://img.shields.io/npm/v/npm.svg" /></a>
+  <a href="https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc?type=dev" target="_blank"><img src="https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc/dev-status.svg" /></a>
+  <a href="#" target="_blank"><img src="https://travis-ci.org/icd2k3/react-router-breadcrumbs-hoc.svg?branch=master" /></a>
+  <a href="#" target="_blank"><img src="https://coveralls.io/repos/github/icd2k3/react-router-breadcrumbs-hoc/badge.svg?branch=master" /></a>
 </p>
 
 ## Description
