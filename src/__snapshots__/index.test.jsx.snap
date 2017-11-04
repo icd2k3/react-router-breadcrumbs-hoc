@@ -1,6 +1,214 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`react-router-breadcrumbs-hoc valid routes Should render breadcrumb components as expected 1`] = `
+exports[`react-router-breadcrumbs-hoc Custom match options Should render empty container 1`] = `
+<withRouter()>
+  <Route
+    render={[Function]}
+  >
+    <Component
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/1/2",
+            "search": "",
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+      location={
+        Object {
+          "hash": "",
+          "pathname": "/1/2",
+          "search": "",
+        }
+      }
+      match={
+        Object {
+          "isExact": false,
+          "params": Object {},
+          "path": "/",
+          "url": "/",
+        }
+      }
+      staticContext={Object {}}
+    >
+      <Breadcrumbs
+        breadcrumbs={
+          Array [
+            Object {
+              "breadcrumb": "1",
+              "match": Object {
+                "isExact": true,
+                "params": Object {},
+                "path": "/1",
+                "url": "/1",
+              },
+              "path": "/1",
+            },
+            Object {
+              "breadcrumb": "1",
+              "match": Object {
+                "isExact": false,
+                "params": Object {},
+                "path": "/1",
+                "url": "/1",
+              },
+              "path": "/1",
+            },
+          ]
+        }
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/1/2",
+              "search": "",
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/1/2",
+            "search": "",
+          }
+        }
+        match={
+          Object {
+            "isExact": false,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
+          }
+        }
+        staticContext={Object {}}
+      >
+        <div
+          className="breadcrumbs-container"
+        >
+          <span
+            key="/10"
+          >
+            1
+          </span>
+          <span
+            key="/11"
+          >
+            1
+          </span>
+        </div>
+      </Breadcrumbs>
+    </Component>
+  </Route>
+</withRouter()>
+`;
+
+exports[`react-router-breadcrumbs-hoc No matching routes Should render empty container 1`] = `
+<withRouter()>
+  <Route
+    render={[Function]}
+  >
+    <Component
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "nope",
+            "search": "",
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+      location={
+        Object {
+          "hash": "",
+          "pathname": "nope",
+          "search": "",
+        }
+      }
+      match={
+        Object {
+          "isExact": false,
+          "params": Object {},
+          "path": "/",
+          "url": "/",
+        }
+      }
+      staticContext={Object {}}
+    >
+      <Breadcrumbs
+        breadcrumbs={Array []}
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "nope",
+              "search": "",
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "nope",
+            "search": "",
+          }
+        }
+        match={
+          Object {
+            "isExact": false,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
+          }
+        }
+        staticContext={Object {}}
+      >
+        <div
+          className="breadcrumbs-container"
+        />
+      </Breadcrumbs>
+    </Component>
+  </Route>
+</withRouter()>
+`;
+
+exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb components as expected 1`] = `
 <withRouter()>
   <Route
     render={[Function]}
@@ -139,26 +347,26 @@ exports[`react-router-breadcrumbs-hoc valid routes Should render breadcrumb comp
           className="breadcrumbs-container"
         >
           <span
-            key="/1"
+            key="/10"
           >
             1
           </span>
           <span
-            key="/1/2"
+            key="/1/21"
           >
             <span>
               TWO
             </span>
           </span>
           <span
-            key="/1/2/:number"
+            key="/1/2/:number2"
           >
             <span>
               3
             </span>
           </span>
           <span
-            key="/1/2/:number/4"
+            key="/1/2/:number/43"
           >
             <NavLink
               activeClassName="active"
@@ -166,10 +374,7 @@ exports[`react-router-breadcrumbs-hoc valid routes Should render breadcrumb comp
               to="/1/2/3/4"
             >
               <Route
-                exact={undefined}
-                location={undefined}
                 path="/1/2/3/4"
-                strict={undefined}
               >
                 <Link
                   aria-current="true"

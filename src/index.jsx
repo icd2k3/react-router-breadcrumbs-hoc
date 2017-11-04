@@ -47,6 +47,7 @@ export const getBreadcrumbs = ({ routes, pathname }) => {
         return false;
       });
 
+      /* istanbul ignore else */
       if (breadcrumbMatch) {
         matches.push(breadcrumbMatch);
       }

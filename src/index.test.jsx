@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+// ^ used in matchOptions test in which case 2 breadcrumbs have same path
 import React from 'react';
 import PropTypes from 'prop-types';
 import { mount } from 'enzyme';
@@ -8,7 +10,9 @@ import { getBreadcrumbs, withBreadcrumbs } from './index';
 const components = {
   Breadcrumbs: ({ breadcrumbs }) => (
     <div className="breadcrumbs-container">
-      {breadcrumbs.map(({ breadcrumb, path }) => <span key={path}>{breadcrumb}</span>)}
+      {breadcrumbs.map(({ breadcrumb, path }, index) => (
+        <span key={`${path}${index}`}>{breadcrumb}</span>
+      ))}
     </div>
   ),
   BreadcrumbMatchTest: ({ match }) => <span>{match.params.number}</span>,
@@ -41,7 +45,7 @@ components.BreadcrumbNavLinkTest.propTypes = {
 const shuffle = arr => arr.sort(() => Math.random() - 0.5);
 
 describe('react-router-breadcrumbs-hoc', () => {
-  describe('valid routes', () => {
+  describe('Valid routes', () => {
     const routes = shuffle([
       // test breadcrumb passed as string
       { path: '/1', breadcrumb: '1' },
@@ -68,7 +72,46 @@ describe('react-router-breadcrumbs-hoc', () => {
     });
   });
 
-  describe('invalid route object', () => {
+  describe('No matching routes', () => {
+    const routes = shuffle([
+      { path: '/1', breadcrumb: '1' },
+    ]);
+    const routerProps = {
+      context: {},
+      location: { pathname: 'nope' },
+    };
+
+    it('Should render empty container', () => {
+      const ComposedComponent = withBreadcrumbs(routes)(components.Breadcrumbs);
+      const wrapper = mount(<Router {...routerProps}><ComposedComponent /></Router>);
+
+      expect(wrapper.find(ComposedComponent)).toMatchSnapshot();
+    });
+  });
+
+  describe('Custom match options', () => {
+    const routes = shuffle([
+      {
+        path: '/1',
+        breadcrumb: '1',
+        // not recommended, but supported
+        matchOptions: { exact: false, strict: true },
+      },
+    ]);
+    const routerProps = {
+      context: {},
+      location: { pathname: '/1/2' },
+    };
+
+    it('Should render empty container', () => {
+      const ComposedComponent = withBreadcrumbs(routes)(components.Breadcrumbs);
+      const wrapper = mount(<Router {...routerProps}><ComposedComponent /></Router>);
+
+      expect(wrapper.find(ComposedComponent)).toMatchSnapshot();
+    });
+  });
+
+  describe('Invalid route object', () => {
     it('Should error if `path` is provided, but `breadcrumb` is not', () => {
       expect(() => getBreadcrumbs({ routes: [{ path: '/1' }], pathname: '/1' }))
         .toThrow('withBreadcrumbs: `breadcrumb` and `path` must be provided in every route object');
