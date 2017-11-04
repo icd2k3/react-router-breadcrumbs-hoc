@@ -1,3 +1,5 @@
+![travis](https://travis-ci.org/icd2k3/react-router-breadcrumbs-hoc.svg?branch=master)
+
 <h3 align="center">
   React Router Breadcrumbs HOC
 </h3>
