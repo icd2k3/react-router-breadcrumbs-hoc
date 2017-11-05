@@ -36,7 +36,7 @@ or
 ```js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { withBreadcumbs } from 'react-router-breadcrumbs-hoc';
+import { withBreadcrumbs } from 'react-router-breadcrumbs-hoc';
 
 const UserBreadcrumb = ({ match }) =>
   <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
