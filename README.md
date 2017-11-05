@@ -14,7 +14,7 @@
   <a href="https://www.npmjs.com/package/react-router-breadcrumbs-hoc" target="_blank"><img src="https://img.shields.io/npm/v/npm.svg" /></a>
   <a href="https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc?type=dev" target="_blank"><img src="https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc/dev-status.svg" /></a>
   <a href="#" target="_blank"><img src="https://travis-ci.org/icd2k3/react-router-breadcrumbs-hoc.svg?branch=master" /></a>
-  <a href="#" target="_blank"><img src="https://coveralls.io/repos/github/icd2k3/react-router-breadcrumbs-hoc/badge.svg?branch=master" /></a>
+  <a href="https://coveralls.io/github/icd2k3/react-router-breadcrumbs-hoc?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/icd2k3/react-router-breadcrumbs-hoc/badge.svg?branch=master" /></a>
 </p>
 
 ## Description
@@ -25,14 +25,18 @@ We are currently using this method @ [Koan Inc.](https://koan.co)
 
 ## Install
 
-`yarn add react-router-breadcrumbs-hoc` or `npm install react-router-breadcrumbs-hoc --save`
+`yarn add react-router-breadcrumbs-hoc`
+
+or
+
+`npm install react-router-breadcrumbs-hoc --save`
 
 ## Usage
 
 ```js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { withBreadcumbs } from 'react-router-breadcrumbs-hoc';
+import { withBreadcrumbs } from 'react-router-breadcrumbs-hoc';
 
 const UserBreadcrumb = ({ match }) =>
   <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
