@@ -47,6 +47,8 @@ const shuffle = arr => arr.sort(() => Math.random() - 0.5);
 describe('react-router-breadcrumbs-hoc', () => {
   describe('Valid routes', () => {
     const routes = shuffle([
+      // test home route
+      { path: '/', breadcrumb: 'Home' },
       // test breadcrumb passed as string
       { path: '/1', breadcrumb: '1' },
       // test simple breadcrumb component
