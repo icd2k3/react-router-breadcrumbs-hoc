@@ -23,7 +23,7 @@ export const getBreadcrumbs = ({ routes, pathname }) => {
       // combine the last route section with the current
       // ex `pathname = /1/2/3 results in match checks for
       // `/1`, `/1/2`, `/1/2/3`
-      const pathSection = `${previous}/${current}`;
+      const pathSection = current === '' ? '/' : `${previous}/${current}`;
 
       let breadcrumbMatch;
 
@@ -52,8 +52,8 @@ export const getBreadcrumbs = ({ routes, pathname }) => {
         matches.push(breadcrumbMatch);
       }
 
-      return pathSection;
-    });
+      return pathSection === '/' ? '' : pathSection;
+    }, '');
 
   return matches;
 };

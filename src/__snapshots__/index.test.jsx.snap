@@ -253,6 +253,16 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
         breadcrumbs={
           Array [
             Object {
+              "breadcrumb": "Home",
+              "match": Object {
+                "isExact": true,
+                "params": Object {},
+                "path": "/",
+                "url": "/",
+              },
+              "path": "/",
+            },
+            Object {
               "breadcrumb": "1",
               "match": Object {
                 "isExact": true,
@@ -347,26 +357,31 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
           className="breadcrumbs-container"
         >
           <span
-            key="/10"
+            key="/0"
+          >
+            Home
+          </span>
+          <span
+            key="/11"
           >
             1
           </span>
           <span
-            key="/1/21"
+            key="/1/22"
           >
             <span>
               TWO
             </span>
           </span>
           <span
-            key="/1/2/:number2"
+            key="/1/2/:number3"
           >
             <span>
               3
             </span>
           </span>
           <span
-            key="/1/2/:number/43"
+            key="/1/2/:number/44"
           >
             <NavLink
               activeClassName="active"
