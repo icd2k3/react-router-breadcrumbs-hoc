@@ -1,4 +1,4 @@
-import React from 'react';
+import { createElement } from 'react';
 import { matchPath, withRouter } from 'react-router';
 
 const DEFAULT_MATCH_OPTIONS = { exact: true };
@@ -23,7 +23,7 @@ export const getBreadcrumbs = ({ routes, pathname }) => {
       // combine the last route section with the current
       // ex `pathname = /1/2/3 results in match checks for
       // `/1`, `/1/2`, `/1/2/3`
-      const pathSection = current === '' ? '/' : `${previous}/${current}`;
+      const pathSection = !current ? '/' : `${previous}/${current}`;
 
       let breadcrumbMatch;
 
@@ -53,19 +53,16 @@ export const getBreadcrumbs = ({ routes, pathname }) => {
       }
 
       return pathSection === '/' ? '' : pathSection;
-    }, '');
+    }, null);
 
   return matches;
 };
 
-export const withBreadcrumbs = routes => Component => withRouter(props => (
-  <Component
-    {...props}
-    breadcrumbs={
-      getBreadcrumbs({
-        pathname: props.location.pathname,
-        routes,
-      })
-    }
-  />
-));
+export const withBreadcrumbs = routes => Component => withRouter(props =>
+  createElement(Component, {
+    ...props,
+    breadcrumbs: getBreadcrumbs({
+      pathname: props.location.pathname,
+      routes,
+    }),
+  }));
