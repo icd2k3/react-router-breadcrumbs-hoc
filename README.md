@@ -42,6 +42,7 @@ const UserBreadcrumb = ({ match }) =>
   <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
 
 const routes = [
+  { path: '/', breadcrumb: 'Home' },
   { path: 'users', breadcrumb: 'Users' },
   { path: 'users/:userId', breadcrumb: UserBreadcrumb},
   { path: 'something-else', breadcrumb: ':)' },
@@ -67,9 +68,9 @@ For the above example...
 
 Pathname | Result
 --- | ---
-/users | Users
-/users/id | Users / John
-/something-else | :)
+/users | Home / Users
+/users/id | Home / Users / John
+/something-else | Home / :)
 
 ## API
 
