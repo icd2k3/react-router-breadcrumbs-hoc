@@ -3,11 +3,11 @@
 </h3>
 
 <p align="center">
-  A very small, but flexible HOC for rendering breadcrumbs with react-router 4.x
+  A small, unopinionated, <a href="https://reactjs.org/docs/higher-order-components.html">HOC</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 4.x
 </p>
 
 <p align="center">
-  http://site.com/user/id → user / John Doe
+  site.com/user/id → user / John Doe
 </p>
 
 <p align="center">
@@ -90,8 +90,3 @@ Breadcrumb = {
 withBreadcrumbs(routes: Array<Route>): HigherOrderComponent
 getBreadcrumbs({ routes: Array<Route>, pathname: String }): Array<Breadcrumb>
 ```
-
-### Thanks
-- [Koan Inc.](https://koan.co)
-- [rjz](https://github.com/rjz)
-- [sqren](https://github.com/sqren)
