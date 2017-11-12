@@ -3,7 +3,7 @@
 </h3>
 
 <p align="center">
-  A small, unopinionated, <a href="https://reactjs.org/docs/higher-order-components.html">HOC</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 4.x
+  Just a tiny, flexible, <a href="https://reactjs.org/docs/higher-order-components.html">higher order component</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 4.x
 </p>
 
 <p align="center">
