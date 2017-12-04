@@ -34,6 +34,12 @@ or
 ## Usage
 
 ```js
+export default withBreadcrumbs(routeConfigObject)(MyComponent);
+```
+
+## Example
+
+```js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { withBreadcrumbs } from 'react-router-breadcrumbs-hoc';
