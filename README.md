@@ -34,7 +34,7 @@ or
 ## Usage
 
 ```js
-export default withBreadcrumbs(routeConfigObject)(MyComponent);
+withBreadcrumbs(routeConfigObject)(MyComponent);
 ```
 
 ## Example
