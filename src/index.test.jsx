@@ -41,12 +41,9 @@ components.BreadcrumbNavLinkTest.propTypes = {
   match: PropTypes.shape(matchShape).isRequired,
 };
 
-// randomize routes in array to make sure order doesn't matter
-const shuffle = arr => arr.sort(() => Math.random() - 0.5);
-
 describe('react-router-breadcrumbs-hoc', () => {
   describe('Valid routes', () => {
-    const routes = shuffle([
+    const routes = [
       // test home route
       { path: '/', breadcrumb: 'Home' },
       // test breadcrumb passed as string
@@ -59,7 +56,7 @@ describe('react-router-breadcrumbs-hoc', () => {
       { path: '/1/2/:number/4', breadcrumb: components.BreadcrumbNavLinkTest },
       // test a no-match route
       { path: '/no-match', breadcrumb: 'no match' },
-    ]);
+    ];
     const routerProps = {
       context: {},
       location: { pathname: '/1/2/3/4' },
@@ -75,9 +72,9 @@ describe('react-router-breadcrumbs-hoc', () => {
   });
 
   describe('No matching routes', () => {
-    const routes = shuffle([
+    const routes = [
       { path: '/1', breadcrumb: '1' },
-    ]);
+    ];
     const routerProps = {
       context: {},
       location: { pathname: 'nope' },
@@ -92,14 +89,14 @@ describe('react-router-breadcrumbs-hoc', () => {
   });
 
   describe('Custom match options', () => {
-    const routes = shuffle([
+    const routes = [
       {
         path: '/1',
         breadcrumb: '1',
         // not recommended, but supported
         matchOptions: { exact: false, strict: true },
       },
-    ]);
+    ];
     const routerProps = {
       context: {},
       location: { pathname: '/1/2' },
