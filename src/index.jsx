@@ -6,7 +6,9 @@ const DEFAULT_MATCH_OPTIONS = { exact: true };
 // if user is passing a function (component) as a breadcrumb, make sure we
 // pass the match object into it. Else just return the string.
 const renderer = ({ breadcrumb, match }) => {
-  if (typeof breadcrumb === 'function') { return breadcrumb({ match }); }
+  if (typeof breadcrumb === 'function') {
+    return createElement(breadcrumb, { match });
+  }
   return breadcrumb;
 };
 

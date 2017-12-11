@@ -273,9 +273,16 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
               "path": "/1",
             },
             Object {
-              "breadcrumb": <span>
-                TWO
-              </span>,
+              "breadcrumb": <breadcrumb
+                match={
+                  Object {
+                    "isExact": true,
+                    "params": Object {},
+                    "path": "/1/2",
+                    "url": "/1/2",
+                  }
+                }
+              />,
               "match": Object {
                 "isExact": true,
                 "params": Object {},
@@ -285,9 +292,18 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
               "path": "/1/2",
             },
             Object {
-              "breadcrumb": <span>
-                3
-              </span>,
+              "breadcrumb": <BreadcrumbMatchTest
+                match={
+                  Object {
+                    "isExact": true,
+                    "params": Object {
+                      "number": "3",
+                    },
+                    "path": "/1/2/:number",
+                    "url": "/1/2/3",
+                  }
+                }
+              />,
               "match": Object {
                 "isExact": true,
                 "params": Object {
@@ -299,13 +315,18 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
               "path": "/1/2/:number",
             },
             Object {
-              "breadcrumb": <NavLink
-                activeClassName="active"
-                ariaCurrent="true"
-                to="/1/2/3/4"
-              >
-                Link
-              </NavLink>,
+              "breadcrumb": <BreadcrumbNavLinkTest
+                match={
+                  Object {
+                    "isExact": true,
+                    "params": Object {
+                      "number": "3",
+                    },
+                    "path": "/1/2/:number/4",
+                    "url": "/1/2/3/4",
+                  }
+                }
+              />,
               "match": Object {
                 "isExact": true,
                 "params": Object {
@@ -369,47 +390,84 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
           <span
             key="/1/22"
           >
-            <span>
-              TWO
-            </span>
+            <breadcrumb
+              match={
+                Object {
+                  "isExact": true,
+                  "params": Object {},
+                  "path": "/1/2",
+                  "url": "/1/2",
+                }
+              }
+            >
+              <span>
+                TWO
+              </span>
+            </breadcrumb>
           </span>
           <span
             key="/1/2/:number3"
           >
-            <span>
-              3
-            </span>
+            <BreadcrumbMatchTest
+              match={
+                Object {
+                  "isExact": true,
+                  "params": Object {
+                    "number": "3",
+                  },
+                  "path": "/1/2/:number",
+                  "url": "/1/2/3",
+                }
+              }
+            >
+              <span>
+                3
+              </span>
+            </BreadcrumbMatchTest>
           </span>
           <span
             key="/1/2/:number/44"
           >
-            <NavLink
-              activeClassName="active"
-              ariaCurrent="true"
-              to="/1/2/3/4"
+            <BreadcrumbNavLinkTest
+              match={
+                Object {
+                  "isExact": true,
+                  "params": Object {
+                    "number": "3",
+                  },
+                  "path": "/1/2/:number/4",
+                  "url": "/1/2/3/4",
+                }
+              }
             >
-              <Route
-                path="/1/2/3/4"
+              <NavLink
+                activeClassName="active"
+                ariaCurrent="true"
+                to="/1/2/3/4"
               >
-                <Link
-                  aria-current="true"
-                  className="active"
-                  replace={false}
-                  style={Object {}}
-                  to="/1/2/3/4"
+                <Route
+                  path="/1/2/3/4"
                 >
-                  <a
+                  <Link
                     aria-current="true"
                     className="active"
-                    href="/1/2/3/4"
-                    onClick={[Function]}
+                    replace={false}
                     style={Object {}}
+                    to="/1/2/3/4"
                   >
-                    Link
-                  </a>
-                </Link>
-              </Route>
-            </NavLink>
+                    <a
+                      aria-current="true"
+                      className="active"
+                      href="/1/2/3/4"
+                      onClick={[Function]}
+                      style={Object {}}
+                    >
+                      Link
+                    </a>
+                  </Link>
+                </Route>
+              </NavLink>
+            </BreadcrumbNavLinkTest>
           </span>
         </div>
       </Breadcrumbs>
