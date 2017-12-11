@@ -1,7 +1,7 @@
 {
   "name": "react-router-breadcrumbs-hoc",
   "version": "1.0.6",
-  "description": "Dynamic, flexible, component-based breadcrumbs for react-router 4",
+  "description": "Just a tiny, flexible, higher order component for rendering breadcrumbs with react-router 4.x",
   "repository": "icd2k3/react-router-breadcrumbs-hoc",
   "keywords": [
     "react",
