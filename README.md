@@ -50,7 +50,7 @@ const UserBreadcrumb = ({ match }) =>
 const routes = [
   { path: '/', breadcrumb: 'Home' },
   { path: 'users', breadcrumb: 'Users' },
-  { path: 'users/:userId', breadcrumb: UserBreadcrumb},
+  { path: 'users/:userId', breadcrumb: UserBreadcrumb },
   { path: 'something-else', breadcrumb: ':)' },
 ];
 
