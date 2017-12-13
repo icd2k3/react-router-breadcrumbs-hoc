@@ -95,5 +95,8 @@ Breadcrumb = {
 }
 
 withBreadcrumbs(routes: Array<Route>): HigherOrderComponent
+
+// you shouldn't ever really have to use `getBreadcrumbs`, but it's
+// exported for convenience if you don't want to use the HOC
 getBreadcrumbs({ routes: Array<Route>, pathname: String }): Array<Breadcrumb>
 ```
