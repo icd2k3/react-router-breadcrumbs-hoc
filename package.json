@@ -10,7 +10,8 @@
     "react-router",
     "react-router 4"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "author": "Koan Inc.",
   "license": "MIT",
   "peerDependencies": {
@@ -20,8 +21,11 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.8.0",
     "babel-eslint": "^8.0.3",
     "babel-jest": "^22.0.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
@@ -39,13 +43,17 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "rollup": "^0.52.3",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-node-resolve": "^3.0.0"
   },
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "babel src/index.jsx -o index.js",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "build": "rollup -c",
+    "test": "NODE_ENV=test jest",
+    "test:watch": "npm run test -- --watch",
     "travis": "jest && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint ./src/**"
   }
