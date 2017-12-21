@@ -1,6 +1,6 @@
 {
   "name": "react-router-breadcrumbs-hoc",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Just a tiny, flexible, higher order component for rendering breadcrumbs with react-router 4.x",
   "repository": "icd2k3/react-router-breadcrumbs-hoc",
   "keywords": [
@@ -53,7 +53,6 @@
     "prepublishOnly": "npm run build",
     "build": "rollup -c",
     "test": "NODE_ENV=test jest",
-    "test:watch": "npm run test -- --watch",
     "travis": "jest && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint ./src/**"
   }

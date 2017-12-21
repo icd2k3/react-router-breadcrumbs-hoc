@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-// ^ used in matchOptions test in which case 2 breadcrumbs have same path
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { mount } from 'enzyme';

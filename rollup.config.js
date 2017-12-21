@@ -7,7 +7,7 @@ const pkg = require('./package.json');
 const external = Object.keys(pkg.peerDependencies);
 
 const config = {
-  input: 'src/index.jsx',
+  input: 'src/index.js',
   globals: {
     react: 'React',
     'react-router': 'ReactRouter',
@@ -29,7 +29,7 @@ const config = {
     {
       file: pkg.main,
       format: 'umd',
-      name: 'BreadCrumbs',
+      name: 'react-router-breadcrumbs-hoc',
       sourcemap: true,
     },
     {
