@@ -6,12 +6,13 @@ const pkg = require('./package.json');
 
 const external = Object.keys(pkg.peerDependencies);
 
+const globals = {
+  react: 'React',
+  'react-router': 'ReactRouter',
+};
+
 const config = {
   input: 'src/index.js',
-  globals: {
-    react: 'React',
-    'react-router': 'ReactRouter',
-  },
   plugins: [
     babel({
       exclude: 'node_modules/**',
@@ -29,12 +30,14 @@ const config = {
     {
       file: pkg.main,
       format: 'umd',
+      globals,
       name: 'react-router-breadcrumbs-hoc',
       sourcemap: true,
     },
     {
       file: pkg.module,
       format: 'es',
+      globals,
       sourcemap: true,
     },
   ],
