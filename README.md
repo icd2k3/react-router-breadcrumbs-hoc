@@ -53,9 +53,9 @@ const routes = [
   { path: 'something-else', breadcrumb: ':)' },
 ];
 
+// map & render your breadcrumb components however you want
 const Breadcrumbs = ({ breadcrumbs }) => (
   <div>
-    // map & render your breadcrumb components however you want
     {breadcrumbs.map(({ breadcrumb, path, match }) => (
       <span key={path}>
         <NavLink to={match.url}>
