@@ -104,7 +104,7 @@ getBreadcrumbs({ routes: Array<Route>, pathname: String }): Array<Breadcrumb>
 
 Consider the following route config:
 
-```
+```js
 [
   { path: '/users', breadcrumb: 'Users' },
   { path: '/users/:id, breadcrumb: 'Users - id' },
@@ -116,7 +116,7 @@ This package acts like a switch statement and matches the first breadcrumb it ca
 
 To get the right breadcrumbs, simply change the order:
 
-```
+```js
 [
   { path: '/users', breadcrumb: 'Users' },
   { path: '/users/create, breadcrumb: 'Users - create' },
