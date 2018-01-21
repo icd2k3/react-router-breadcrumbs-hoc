@@ -48,9 +48,9 @@ const UserBreadcrumb = ({ match }) =>
 
 const routes = [
   { path: '/', breadcrumb: 'Home' },
-  { path: 'users', breadcrumb: 'Users' },
-  { path: 'users/:userId', breadcrumb: UserBreadcrumb },
-  { path: 'something-else', breadcrumb: ':)' },
+  { path: '/users', breadcrumb: 'Users' },
+  { path: '/users/:userId', breadcrumb: UserBreadcrumb },
+  { path: '/something-else', breadcrumb: ':)' },
 ];
 
 // map & render your breadcrumb components however you want
