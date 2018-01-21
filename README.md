@@ -99,3 +99,29 @@ withBreadcrumbs(routes: Array<Route>): HigherOrderComponent
 // exported for convenience if you don't want to use the HOC
 getBreadcrumbs({ routes: Array<Route>, pathname: String }): Array<Breadcrumb>
 ```
+
+## Order Matters!
+
+Consider the following route config:
+
+```
+[
+  { path: '/users', breadcrumb: 'Users' },
+  { path: '/users/:id, breadcrumb: 'Users - id' },
+  { path: '/users/create, breadcrumb: 'Users - create' },
+]
+```
+
+This package acts like a switch statement and matches the first breadcrumb it can find. So, unfortunately, visiting `/users/create` will result in the `Users > Users - id` breadcrumbs instead of the desired `Users > Users - create` breadcrumbs.
+
+To get the right breadcrumbs, simply change the order:
+
+```
+[
+  { path: '/users', breadcrumb: 'Users' },
+  { path: '/users/create, breadcrumb: 'Users - create' },
+  { path: '/users/:id, breadcrumb: 'Users - id' },
+]
+```
+
+Now, `/users/create` will match the create breadcrumb first, and all others will fall through to `/:id`.
