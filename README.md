@@ -107,8 +107,8 @@ Consider the following route config:
 ```js
 [
   { path: '/users', breadcrumb: 'Users' },
-  { path: '/users/:id, breadcrumb: 'Users - id' },
-  { path: '/users/create, breadcrumb: 'Users - create' },
+  { path: '/users/:id', breadcrumb: 'Users - id' },
+  { path: '/users/create', breadcrumb: 'Users - create' },
 ]
 ```
 
@@ -119,8 +119,8 @@ To get the right breadcrumbs, simply change the order:
 ```js
 [
   { path: '/users', breadcrumb: 'Users' },
-  { path: '/users/create, breadcrumb: 'Users - create' },
-  { path: '/users/:id, breadcrumb: 'Users - id' },
+  { path: '/users/create', breadcrumb: 'Users - create' },
+  { path: '/users/:id', breadcrumb: 'Users - id' },
 ]
 ```
 
