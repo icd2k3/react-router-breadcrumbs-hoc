@@ -110,10 +110,29 @@ describe('react-router-breadcrumbs-hoc', () => {
     });
   });
 
+  describe('When extending react-router config', () => {
+    const routes = [
+      { path: '/1', breadcrumb: '1' },
+      // no breadcrumb required for this route
+      { path: '/2' },
+    ];
+    const routerProps = {
+      context: {},
+      location: { pathname: '/2' },
+    };
+
+    it('Should render expected breadcrumbs and omit routes that do not require them', () => {
+      const ComposedComponent = withBreadcrumbs(routes)(components.Breadcrumbs);
+      const wrapper = mount(<Router {...routerProps}><ComposedComponent /></Router>);
+
+      expect(wrapper.find(ComposedComponent)).toMatchSnapshot();
+    });
+  });
+
   describe('Invalid route object', () => {
-    it('Should error if `path` is provided, but `breadcrumb` is not', () => {
-      expect(() => getBreadcrumbs({ routes: [{ path: '/1' }], pathname: '/1' }))
-        .toThrow('withBreadcrumbs: `breadcrumb` and `path` must be provided in every route object');
+    it('Should error if `path` is not provided', () => {
+      expect(() => getBreadcrumbs({ routes: [{ breadcrumb: 'Yo' }], pathname: '/1' }))
+        .toThrow('withBreadcrumbs: `path` must be provided in every route object');
     });
   });
 });
