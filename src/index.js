@@ -30,8 +30,11 @@ export const getBreadcrumbs = ({ routes, pathname }) => {
       let breadcrumbMatch;
 
       routes.some(({ breadcrumb, matchOptions, path }) => {
-        if (!breadcrumb || !path) {
-          throw new Error('withBreadcrumbs: `breadcrumb` and `path` must be provided in every route object');
+        if (!path) {
+          throw new Error('withBreadcrumbs: `path` must be provided in every route object');
+        }
+        if (!breadcrumb) {
+          return false;
         }
         const match = matchPath(pathSection, { ...(matchOptions || DEFAULT_MATCH_OPTIONS), path });
 

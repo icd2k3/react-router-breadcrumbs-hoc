@@ -475,3 +475,90 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
   </Route>
 </withRouter()>
 `;
+
+exports[`react-router-breadcrumbs-hoc When extending react-router config Should render expected breadcrumbs and omit routes that do not require them 1`] = `
+<withRouter()>
+  <Route
+    render={[Function]}
+  >
+    <Component
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/2",
+            "search": "",
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+      location={
+        Object {
+          "hash": "",
+          "pathname": "/2",
+          "search": "",
+        }
+      }
+      match={
+        Object {
+          "isExact": false,
+          "params": Object {},
+          "path": "/",
+          "url": "/",
+        }
+      }
+      staticContext={Object {}}
+    >
+      <Breadcrumbs
+        breadcrumbs={Array []}
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/2",
+              "search": "",
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/2",
+            "search": "",
+          }
+        }
+        match={
+          Object {
+            "isExact": false,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
+          }
+        }
+        staticContext={Object {}}
+      >
+        <div
+          className="breadcrumbs-container"
+        />
+      </Breadcrumbs>
+    </Component>
+  </Route>
+</withRouter()>
+`;
