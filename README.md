@@ -3,11 +3,11 @@
 </h3>
 
 <p align="center">
-  Just a tiny, flexible, <a href="https://reactjs.org/docs/higher-order-components.html">higher order component</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 4.x
+  A tiny (~2kb minified), flexible, <a href="https://reactjs.org/docs/higher-order-components.html">higher order component</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 4.x
 </p>
 
 <p align="center">
-  site.com/user/id → user / John Doe
+  site.com/user/id → Home / User / John Doe
 </p>
 
 <p align="center">
@@ -34,35 +34,36 @@ or
 ## Usage
 
 ```js
-withBreadcrumbs(routeConfigObject)(MyComponent);
+withBreadcrumbs()(MyComponent);
 ```
 
-## Example
+## Simple example
 
 ```js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { withBreadcrumbs } from 'react-router-breadcrumbs-hoc';
+import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
 
+// breadcrumbs can be any type of component or string
 const UserBreadcrumb = ({ match }) =>
   <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
 
+// define some custom breadcrumbs for certain routes (optional)
 const routes = [
-  { path: '/', breadcrumb: 'Home' },
-  { path: '/users', breadcrumb: 'Users' },
   { path: '/users/:userId', breadcrumb: UserBreadcrumb },
-  { path: '/something-else', breadcrumb: ':)' },
+  { path: '/example', breadcrumb: 'Custom Example' },
 ];
 
-// map & render your breadcrumb components however you want
+// map & render your breadcrumb components however you want.
+// each `breadcrumb` has the props `key`, `location`, and `match` included!
 const Breadcrumbs = ({ breadcrumbs }) => (
   <div>
-    {breadcrumbs.map(({ breadcrumb, path, match }) => (
-      <span key={path}>
-        <NavLink to={match.url}>
+    {breadcrumbs.map((breadcrumb, index) => (
+      <span key={breadcrumb.props.key}>
+        <NavLink to={breadcrumb.props.match.url}>
           {breadcrumb}
         </NavLink>
-        <span>/</span>
+        {(index < breadcrumbs.length - 1) && <i> / </i>}
       </span>
     ))}
   </div>
@@ -77,72 +78,79 @@ Pathname | Result
 --- | ---
 /users | Home / Users
 /users/id | Home / Users / John
-/something-else | Home / :)
+/example | Home / Custom Example
+
+## Disabling default breadcrumbs for paths
+
+This package will attempt to create breadcrumbs for you based on the route section via [humanize-string](https://github.com/sindresorhus/humanize-string). For example `/users` will auotmatically create the breadcrumb `"Users"`. There are two ways to disable default breadcrumbs for a path:
+
+1.) Pass `breadcrumb: null` in the routes config
+`{ path: '/a/b', breadcrumb: null }`
+
+2.) Pass an `excludePaths` array in the `options`
+`withBreadcrumbs(routes, { excludePaths: ['/', '/no-breadcrumb/for-this-route'] })` 
+
+in your routes array.
 
 ## Already using a [route config](https://reacttraining.com/react-router/web/example/route-config) array with react-router?
 
-Just add a `breadcrumbs` prop to your routes that require breadcrumbs!
+Just add a `breadcrumbs` prop to your routes that require custom breadcrumbs.
 
-> Note: currently nested `routes` arrays are not supported, but will be soon (see: https://github.com/icd2k3/react-router-breadcrumbs-hoc/issues/24) 
+> Note: currently, nested `route`s arrays are _not_ supported, but will be soon (see: https://github.com/icd2k3/react-router-breadcrumbs-hoc/issues/24)
 
 ## API
 
 ```js
 Route = {
   path: String
-  breadcrumb: String|Function
+  breadcrumb: String|Function? // note: if not provided, a default breadcrumb will be returned
   matchOptions?: Object
 }
 
-Breadcrumb = {
-  path: String
-  match: String
-  breadcrumb: Component
+Options = {
+  excludePaths: Array
 }
 
-// react-router's location object: https://reacttraining.com/react-router/web/api/location
-Location = {
-  key: String
-  pathname: String
-  search: String
-  hash: String
-  state: Object
-}
-
-withBreadcrumbs(routes: Array<Route>): HigherOrderComponent
+// if routes are not passed, default breadcrumbs will be returned
+withBreadcrumbs(routes?: Array<Route>, options? Object<Options>): HigherOrderComponent
 
 // you shouldn't ever really have to use `getBreadcrumbs`, but it's
 // exported for convenience if you don't want to use the HOC
-getBreadcrumbs({ routes: Array<Route>, location: Location }): Array<Breadcrumb>
+getBreadcrumbs({
+  routes: Array<Route>,
+  location: Object<Location>, // react-router's location object: https://reacttraining.com/react-router/web/api/location
+  options: Object<Options>,
+}): Array<Breadcrumb>
 ```
 
-## Order Matters!
+## Order matters!
 
-Consider the following route config:
+Consider the following route configs:
 
 ```js
 [
-  { path: '/users', breadcrumb: 'Users' },
-  { path: '/users/:id', breadcrumb: 'Users - id' },
-  { path: '/users/create', breadcrumb: 'Users - create' },
+  { path: '/users/:id', breadcrumb: 'id-breadcrumb' },
+  { path: '/users/create', breadcrumb: 'create-breadcrumb' },
 ]
+
+// example.com/users/create = 'id-breadcrumb' (because path: '/users/:id' will match first)
+// example.com/users/123 = 'id-breadcumb'
 ```
 
-This package acts like a switch statement and matches the first breadcrumb it can find. So, unfortunately, visiting `/users/create` will result in the `Users > Users - id` breadcrumbs instead of the desired `Users > Users - create` breadcrumbs.
-
-To get the right breadcrumbs, simply change the order:
+To fix the issue above, just adjust the order of your routes:
 
 ```js
 [
-  { path: '/users', breadcrumb: 'Users' },
-  { path: '/users/create', breadcrumb: 'Users - create' },
-  { path: '/users/:id', breadcrumb: 'Users - id' },
+  { path: '/users/create', breadcrumb: 'create-breadcrumb' },
+  { path: '/users/:id', breadcrumb: 'id-breadcrumb' },
 ]
+
+// example.com/users/create = 'create-breadcrumb' (because path: '/users/create' will match first)
+// example.com/users/123 = 'id-breadcrumb'
 ```
 
-Now, `/users/create` will match the create breadcrumb first, and all others will fall through to `/:id`.
+## Using the location object
 
-## Using the Location Object
 React Router's [location](https://reacttraining.com/react-router/web/api/location) object lets you pass `state` property. Using the `state` allows one to update the Breadcrumb to display dynamic info at runtime. Consider this example:
 
 ```jsx
