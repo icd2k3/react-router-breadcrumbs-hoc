@@ -145,8 +145,9 @@ React Router's [location](https://reacttraining.com/react-router/web/api/locatio
 ```jsx
 // Breadcrumb.js
 const Breadcrumb = ({location: { state: { isNew } } }) => {
-  return <span>{isNew ? 'Add New' : 'Update'}</span>  // lets one dynamically update Breadcrumb based on some state info
-}
+  // Dynamically update Breadcrumb based on state info
+  return <span>{isNew ? 'Add New' : 'Update'}</span>;
+};
 
 // routes
 {
@@ -159,10 +160,10 @@ const Breadcrumb = ({location: { state: { isNew } } }) => {
 // Oversimplified example showing usage of state props
 
 // Upon navigation, breadcrumb will display: Update
-<Link to={{pathname: '/editor'}}>Edit</Link>
+<Link to={{ pathname: '/editor' }}>Edit</Link>
 
 // Upon navigation, breadcrumb will display: Add New
-<Link to={{pathname: '/editor', state: {isNew: true}}}>Add</Link>
+<Link to={{ pathname: '/editor', state: { isNew: true } }}>Add</Link>
 ```
 
 Now, based on what you pass in the `state` prop, the Breadcrumb will display dynamic values at runtime!
