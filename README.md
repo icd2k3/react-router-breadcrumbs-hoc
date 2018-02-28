@@ -143,11 +143,10 @@ Now, `/users/create` will match the create breadcrumb first, and all others will
 React Router's [location](https://reacttraining.com/react-router/web/api/location) object lets you pass `state` property. Using the `state` allows one to update the Breadcrumb to display dynamic info at runtime. Consider this example:
 
 ```jsx
-// Breadcrumb.js
-const Breadcrumb = ({location: { state: { isNew } } }) => {
-  // Dynamically update Breadcrumb based on state info
-  return <span>{isNew ? 'Add New' : 'Update'}</span>;
-};
+// dynamically update Breadcrumb based on state info
+const Breadcrumb = ({ location: { state: { isNew } } }) => (
+  <span>{isNew ? 'Add New' : 'Update'}</span>
+);
 
 // routes
 {
@@ -156,13 +155,10 @@ const Breadcrumb = ({location: { state: { isNew } } }) => {
   ...
 }
 
-// Component
-// Oversimplified example showing usage of state props
-
-// Upon navigation, breadcrumb will display: Update
+// upon navigation, breadcrumb will display: Update
 <Link to={{ pathname: '/editor' }}>Edit</Link>
 
-// Upon navigation, breadcrumb will display: Add New
+// upon navigation, breadcrumb will display: Add New
 <Link to={{ pathname: '/editor', state: { isNew: true } }}>Add</Link>
 ```
 
