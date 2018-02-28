@@ -274,6 +274,13 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
             },
             Object {
               "breadcrumb": <breadcrumb
+                location={
+                  Object {
+                    "hash": "",
+                    "pathname": "/1/2/3/4",
+                    "search": "",
+                  }
+                }
                 match={
                   Object {
                     "isExact": true,
@@ -293,6 +300,13 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
             },
             Object {
               "breadcrumb": <BreadcrumbMatchTest
+                location={
+                  Object {
+                    "hash": "",
+                    "pathname": "/1/2/3/4",
+                    "search": "",
+                  }
+                }
                 match={
                   Object {
                     "isExact": true,
@@ -316,6 +330,13 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
             },
             Object {
               "breadcrumb": <BreadcrumbNavLinkTest
+                location={
+                  Object {
+                    "hash": "",
+                    "pathname": "/1/2/3/4",
+                    "search": "",
+                  }
+                }
                 match={
                   Object {
                     "isExact": true,
@@ -391,6 +412,13 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
             key="/1/22"
           >
             <breadcrumb
+              location={
+                Object {
+                  "hash": "",
+                  "pathname": "/1/2/3/4",
+                  "search": "",
+                }
+              }
               match={
                 Object {
                   "isExact": true,
@@ -409,6 +437,13 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
             key="/1/2/:number3"
           >
             <BreadcrumbMatchTest
+              location={
+                Object {
+                  "hash": "",
+                  "pathname": "/1/2/3/4",
+                  "search": "",
+                }
+              }
               match={
                 Object {
                   "isExact": true,
@@ -429,6 +464,13 @@ exports[`react-router-breadcrumbs-hoc Valid routes Should render breadcrumb comp
             key="/1/2/:number/44"
           >
             <BreadcrumbNavLinkTest
+              location={
+                Object {
+                  "hash": "",
+                  "pathname": "/1/2/3/4",
+                  "search": "",
+                }
+              }
               match={
                 Object {
                   "isExact": true,

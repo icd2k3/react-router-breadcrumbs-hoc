@@ -97,11 +97,20 @@ Breadcrumb = {
   breadcrumb: Component
 }
 
+// react-router's location object: https://reacttraining.com/react-router/web/api/location
+Location = {
+  key: String
+  pathname: String
+  search: String
+  hash: String
+  state: Object
+}
+
 withBreadcrumbs(routes: Array<Route>): HigherOrderComponent
 
 // you shouldn't ever really have to use `getBreadcrumbs`, but it's
 // exported for convenience if you don't want to use the HOC
-getBreadcrumbs({ routes: Array<Route>, pathname: String }): Array<Breadcrumb>
+getBreadcrumbs({ routes: Array<Route>, location: Location }): Array<Breadcrumb>
 ```
 
 ## Order Matters!
@@ -129,3 +138,27 @@ To get the right breadcrumbs, simply change the order:
 ```
 
 Now, `/users/create` will match the create breadcrumb first, and all others will fall through to `/:id`.
+
+## Dynamic Breadcrumbs
+React Router's [location](https://reacttraining.com/react-router/web/api/location) object let's you pass `state` property. Using the `state` allows one to update the Breadcrumb to display dynamic info at runtime. Consider this example:
+
+```jsx
+// Breadcrumb.js
+const Breadcrumb = ({location: { state: { isNew } } }) => {
+  return <span>{isNew ? 'Add New' : 'Update'}</span>  // lets one dynamically update Breadcrumb based on some state info
+}
+
+// routes
+{
+  pathname: '/editor',
+  breadcrumb: Breadcrumb
+  ...
+}
+
+// Component
+// Oversimplified example showing usage of state props
+<Link to={{pathname: '/editor'}}>Edit</Link>} // Upon navigation, breadcrumb will display: Update
+<Link to={{pathname: '/editor', state: {isNew: true}}}>Add</Link>} // Upon navigation, breadcrumb will display: Add New
+```
+
+Now based on what you pass in the `state` prop, the Breadcrumb will display dynamic values at runtime!
