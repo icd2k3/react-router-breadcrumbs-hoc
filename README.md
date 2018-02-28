@@ -139,8 +139,8 @@ To get the right breadcrumbs, simply change the order:
 
 Now, `/users/create` will match the create breadcrumb first, and all others will fall through to `/:id`.
 
-## Dynamic Breadcrumbs
-React Router's [location](https://reacttraining.com/react-router/web/api/location) object let's you pass `state` property. Using the `state` allows one to update the Breadcrumb to display dynamic info at runtime. Consider this example:
+## Using the Location Object
+React Router's [location](https://reacttraining.com/react-router/web/api/location) object lets you pass `state` property. Using the `state` allows one to update the Breadcrumb to display dynamic info at runtime. Consider this example:
 
 ```jsx
 // Breadcrumb.js
@@ -157,8 +157,12 @@ const Breadcrumb = ({location: { state: { isNew } } }) => {
 
 // Component
 // Oversimplified example showing usage of state props
-<Link to={{pathname: '/editor'}}>Edit</Link>} // Upon navigation, breadcrumb will display: Update
-<Link to={{pathname: '/editor', state: {isNew: true}}}>Add</Link>} // Upon navigation, breadcrumb will display: Add New
+
+// Upon navigation, breadcrumb will display: Update
+<Link to={{pathname: '/editor'}}>Edit</Link>
+
+// Upon navigation, breadcrumb will display: Add New
+<Link to={{pathname: '/editor', state: {isNew: true}}}>Add</Link>
 ```
 
-Now based on what you pass in the `state` prop, the Breadcrumb will display dynamic values at runtime!
+Now, based on what you pass in the `state` prop, the Breadcrumb will display dynamic values at runtime!
