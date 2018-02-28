@@ -131,7 +131,7 @@ describe('react-router-breadcrumbs-hoc', () => {
 
   describe('Invalid route object', () => {
     it('Should error if `path` is not provided', () => {
-      expect(() => getBreadcrumbs({ routes: [{ breadcrumb: 'Yo' }], pathname: '/1' }))
+      expect(() => getBreadcrumbs({ routes: [{ breadcrumb: 'Yo' }], location: { pathname: '/1' } }))
         .toThrow('withBreadcrumbs: `path` must be provided in every route object');
     });
   });

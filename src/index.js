@@ -12,8 +12,9 @@ const renderer = ({ breadcrumb, match, location }) => {
   return breadcrumb;
 };
 
-export const getBreadcrumbs = ({ routes, pathname, location }) => {
+export const getBreadcrumbs = ({ routes, location }) => {
   const matches = [];
+  const { pathname } = location;
 
   pathname
     // remove trailing slash "/" from pathname (avoids multiple of the same match)
@@ -67,8 +68,7 @@ export const withBreadcrumbs = routes => Component => withRouter(props =>
   createElement(Component, {
     ...props,
     breadcrumbs: getBreadcrumbs({
-      pathname: props.location.pathname,
-      routes, 
-      location: props.location,      
+      routes,
+      location: props.location,
     }),
   }));
