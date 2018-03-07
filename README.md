@@ -80,7 +80,10 @@ Pathname | Result
 /something-else | Home / :)
 
 ## Already using a [route config](https://reacttraining.com/react-router/web/example/route-config) array with react-router?
-Simple! Just add a `breadcrumbs` prop to your routes that require breadcrumbs.
+
+Just add a `breadcrumbs` prop to your routes that require breadcrumbs!
+
+> Note: currently nested `routes` arrays are not supported, but will be soon (see: https://github.com/icd2k3/react-router-breadcrumbs-hoc/issues/24) 
 
 ## API
 
