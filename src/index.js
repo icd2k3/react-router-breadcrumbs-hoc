@@ -1,61 +1,117 @@
 import { createElement } from 'react';
 import { matchPath, withRouter } from 'react-router';
+import humanizeString from 'humanize-string';
 
 const DEFAULT_MATCH_OPTIONS = { exact: true };
+const NO_BREADCRUMB = 'NO_BREADCRUMB';
 
-// if user is passing a function (component) as a breadcrumb, make sure we
-// pass the match object into it. Else just return the string.
-const renderer = ({ breadcrumb, match, location }) => {
+// renders and returns the breadcrumb complete with `match`, `location`, and `key` props
+const render = ({ breadcrumb, match, location }) => {
+  const componentProps = { match, location, key: match.path };
   if (typeof breadcrumb === 'function') {
-    return createElement(breadcrumb, { match, location });
+    return createElement(breadcrumb, componentProps);
   }
-  return breadcrumb;
+  return createElement('span', componentProps, breadcrumb);
 };
 
-export const getBreadcrumbs = ({ routes, location }) => {
+// small helper method to get a default `humanize-string` breadcrumb if the
+// user hasn't provided one
+const getDefaultBreadcrumb = ({ pathSection, currentSection, location }) => {
+  const match = matchPath(pathSection, { ...DEFAULT_MATCH_OPTIONS, path: pathSection });
+
+  return render({
+    breadcrumb: humanizeString(currentSection),
+    match,
+    location,
+  });
+};
+
+// loops through the route array (if provided) and returns either
+// a user-provided breadcrumb OR a sensible default via `humanize-string`
+const getBreadcrumb = ({
+  currentSection,
+  excludePaths,
+  location,
+  pathSection,
+  routes,
+}) => {
+  let breadcrumb;
+
+  // check the optional `exludePaths` option in `options` to see if the
+  // current path should not include a breadcrumb
+  if (excludePaths && excludePaths.includes(pathSection)) {
+    return NO_BREADCRUMB;
+  }
+
+  // loop through the route array and see if the user has provided a custom breadcrumb
+  routes.some(({ breadcrumb: userProvidedBreadcrumb, matchOptions, path }) => {
+    if (!path) {
+      throw new Error('withBreadcrumbs: `path` must be provided in every route object');
+    }
+
+    const match = matchPath(pathSection, { ...(matchOptions || DEFAULT_MATCH_OPTIONS), path });
+
+    // if user passed breadcrumb: null OR custom match options to suppress a breadcrumb
+    // we need to know NOT to add it to the matches array
+    // see: `if (breadcrumb !== NO_BREADCRUMB)` below
+    if ((match && userProvidedBreadcrumb === null) || (!match && matchOptions)) {
+      breadcrumb = NO_BREADCRUMB;
+      return true;
+    }
+
+    if (match) {
+      breadcrumb = render({
+        // although we have a match, the user may be passing their react-router config object
+        // which we support. The route config object may not have a `breadcrumb` param specified.
+        // If this is the case, we should provide a default via `humanizeString`
+        breadcrumb: userProvidedBreadcrumb || humanizeString(currentSection),
+        match,
+        location,
+      });
+      return true;
+    }
+    return false;
+  });
+
+  // if there are no breadcrumbs provided in the routes array we return a default breadcrumb instead
+  return breadcrumb
+    || getDefaultBreadcrumb({
+      pathSection,
+      // include a "Home" breadcrumb by default (can be overrode or disabled in config)
+      currentSection: pathSection === '/' ? 'Home' : currentSection,
+      location,
+    });
+};
+
+export const getBreadcrumbs = ({ routes, location, options = {} }) => {
   const matches = [];
   const { pathname } = location;
 
   pathname
-    // remove trailing slash "/" from pathname (avoids multiple of the same match)
+    .split('?')[0]
+    // remove trailing slash "/" from pathname
     .replace(/\/$/, '')
     // split pathname into sections
     .split('/')
     // reduce over the sections and find matches from `routes` prop
-    .reduce((previous, current) => {
-      // combine the last route section with the current
+    .reduce((previousSection, currentSection) => {
+      // combine the last route section with the currentSection
       // ex `pathname = /1/2/3 results in match checks for
       // `/1`, `/1/2`, `/1/2/3`
-      const pathSection = !current ? '/' : `${previous}/${current}`;
+      const pathSection = !currentSection ? '/' : `${previousSection}/${currentSection}`;
 
-      let breadcrumbMatch;
-
-      routes.some(({ breadcrumb, matchOptions, path }) => {
-        if (!path) {
-          throw new Error('withBreadcrumbs: `path` must be provided in every route object');
-        }
-        if (!breadcrumb) {
-          return false;
-        }
-        const match = matchPath(pathSection, { ...(matchOptions || DEFAULT_MATCH_OPTIONS), path });
-
-        // if a route match is found ^ break out of the loop with a rendered breadcumb
-        // and match object to add to the `matches` array
-        if (match) {
-          breadcrumbMatch = {
-            breadcrumb: renderer({ breadcrumb, match, location }),
-            path,
-            match,
-          };
-          return true;
-        }
-
-        return false;
+      const breadcrumb = getBreadcrumb({
+        currentSection,
+        excludePaths: options.excludePaths,
+        location,
+        pathSection,
+        routes,
       });
 
-      /* istanbul ignore else */
-      if (breadcrumbMatch) {
-        matches.push(breadcrumbMatch);
+      // add the breadcrumb to the matches array
+      // unless the user has explicitly passed { path: x, breadcrumb: null } to disable
+      if (breadcrumb !== NO_BREADCRUMB) {
+        matches.push(breadcrumb);
       }
 
       return pathSection === '/' ? '' : pathSection;
@@ -64,11 +120,14 @@ export const getBreadcrumbs = ({ routes, location }) => {
   return matches;
 };
 
-export const withBreadcrumbs = routes => Component => withRouter(props =>
+const withBreadcrumbs = (routes = [], options) => Component => withRouter(props =>
   createElement(Component, {
     ...props,
     breadcrumbs: getBreadcrumbs({
       routes,
       location: props.location,
+      options,
     }),
   }));
+
+export default withBreadcrumbs;

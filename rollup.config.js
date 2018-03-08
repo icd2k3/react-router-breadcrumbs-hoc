@@ -13,6 +13,7 @@ const globals = {
 
 const config = {
   input: 'src/index.js',
+  exports: 'named',
   plugins: [
     babel({
       exclude: 'node_modules/**',
