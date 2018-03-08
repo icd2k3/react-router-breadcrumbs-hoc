@@ -23,6 +23,8 @@ Deconstruct a route and return matching breadcrumb components you can render how
 
 We are currently using this method @ [Koan Inc.](https://koan.co)
 
+**Note:** Upgrading from `1.x.x` to `2.x.x`? Check out the guide [here](https://github.com/icd2k3/react-router-breadcrumbs-hoc/blob/master/MIGRATIONS.md)
+
 ## Install
 
 `yarn add react-router-breadcrumbs-hoc`
