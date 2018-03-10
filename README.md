@@ -86,17 +86,19 @@ Pathname | Result
 
 This package will attempt to create breadcrumbs for you based on the route section via [humanize-string](https://github.com/sindresorhus/humanize-string). For example `/users` will auotmatically create the breadcrumb `"Users"`. There are two ways to disable default breadcrumbs for a path:
 
-1.) Pass `breadcrumb: null` in the routes config
+Pass `breadcrumb: null` in the routes config:
+
 `{ path: '/a/b', breadcrumb: null }`
 
-2.) Pass an `excludePaths` array in the `options`
+Or, Pass an `excludePaths` array in the `options` object
+
 `withBreadcrumbs(routes, { excludePaths: ['/', '/no-breadcrumb/for-this-route'] })` 
 
 in your routes array.
 
 ## Already using a [route config](https://reacttraining.com/react-router/web/example/route-config) array with react-router?
 
-Just add a `breadcrumbs` prop to your routes that require custom breadcrumbs.
+Just add a `breadcrumb` prop to your routes that require custom breadcrumbs.
 
 > Note: currently, nested `route`s arrays are _not_ supported, but will be soon (see: https://github.com/icd2k3/react-router-breadcrumbs-hoc/issues/24)
 
