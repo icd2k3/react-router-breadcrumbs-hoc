@@ -82,6 +82,10 @@ Pathname | Result
 /users/id | Home / Users / John
 /example | Home / Custom Example
 
+## Already using a [route config](https://reacttraining.com/react-router/web/example/route-config) array with react-router?
+
+Just add a `breadcrumb` prop to your routes that require custom breadcrumbs.
+
 ## Disabling default breadcrumbs for paths
 
 This package will attempt to create breadcrumbs for you based on the route section via [humanize-string](https://github.com/sindresorhus/humanize-string). For example `/users` will auotmatically create the breadcrumb `"Users"`. There are two ways to disable default breadcrumbs for a path:
@@ -95,10 +99,6 @@ Or, Pass an `excludePaths` array in the `options` object
 `withBreadcrumbs(routes, { excludePaths: ['/', '/no-breadcrumb/for-this-route'] })` 
 
 in your routes array.
-
-## Already using a [route config](https://reacttraining.com/react-router/web/example/route-config) array with react-router?
-
-Just add a `breadcrumb` prop to your routes that require custom breadcrumbs.
 
 ## API
 
