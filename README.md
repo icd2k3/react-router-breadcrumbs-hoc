@@ -100,8 +100,6 @@ in your routes array.
 
 Just add a `breadcrumb` prop to your routes that require custom breadcrumbs.
 
-> Note: currently, nested `route`s arrays are _not_ supported, but will be soon (see: https://github.com/icd2k3/react-router-breadcrumbs-hoc/issues/24)
-
 ## API
 
 ```js
