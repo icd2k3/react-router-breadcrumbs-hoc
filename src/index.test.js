@@ -38,7 +38,7 @@ const render = ({
     mount(<Router initialIndex={0} initialEntries={[{ pathname, state }]}><Breadcrumbs /></Router>);
 
   return {
-    Breadcrumbs: wrapper.find('.breadcrumbs-container'),
+    breadcrumbs: wrapper.find('.breadcrumbs-container').text(),
     wrapper,
   };
 };
@@ -87,8 +87,8 @@ describe('react-router-breadcrumbs-hoc', () => {
         // test a no-match route
         { path: '/no-match', breadcrumb: 'no match' },
       ];
-      const { Breadcrumbs, wrapper } = render({ pathname: '/1/2/3/4', routes });
-      expect(Breadcrumbs.text()).toBe('Home / One / TWO / 3 / Link');
+      const { breadcrumbs, wrapper } = render({ pathname: '/1/2/3/4', routes });
+      expect(breadcrumbs).toBe('Home / One / TWO / 3 / Link');
       expect(wrapper.find(NavLink).props().to).toBe('/1/2/3/4');
     });
   });
@@ -105,8 +105,8 @@ describe('react-router-breadcrumbs-hoc', () => {
           breadcrumb: '1',
         },
       ];
-      const { Breadcrumbs } = render({ pathname: '/user/create', routes });
-      expect(Breadcrumbs.text()).toBe('Home / User / Add User');
+      const { breadcrumbs } = render({ pathname: '/user/create', routes });
+      expect(breadcrumbs).toBe('Home / User / Add User');
     });
 
     it('Should match the first breadcrumb in route array user/:id', () => {
@@ -120,8 +120,8 @@ describe('react-router-breadcrumbs-hoc', () => {
           breadcrumb: 'Add User',
         },
       ];
-      const { Breadcrumbs } = render({ pathname: '/user/create', routes });
-      expect(Breadcrumbs.text()).toBe('Home / User / Oops');
+      const { breadcrumbs } = render({ pathname: '/user/create', routes });
+      expect(breadcrumbs).toBe('Home / User / Oops');
     });
   });
 
@@ -135,8 +135,8 @@ describe('react-router-breadcrumbs-hoc', () => {
           matchOptions: { exact: false, strict: true },
         },
       ];
-      const { Breadcrumbs } = render({ pathname: '/one', routes });
-      expect(Breadcrumbs.text()).toBe('');
+      const { breadcrumbs } = render({ pathname: '/one', routes });
+      expect(breadcrumbs).toBe('');
     });
   });
 
@@ -146,42 +146,61 @@ describe('react-router-breadcrumbs-hoc', () => {
         { path: '/one', breadcrumb: 'OneCustom' },
         { path: '/one/two' },
       ];
-      const { Breadcrumbs } = render({ pathname: '/one/two', routes });
-      expect(Breadcrumbs.text()).toBe('Home / OneCustom / Two');
+      const { breadcrumbs } = render({ pathname: '/one/two', routes });
+      expect(breadcrumbs).toBe('Home / OneCustom / Two');
+    });
+
+    it('Should support nested routes', () => {
+      const routes = [
+        {
+          path: '/one',
+          routes: [
+            {
+              path: '/one/two',
+              breadcrumb: 'TwoCustom',
+              routes: [
+                { path: '/one/two/three', breadcrumb: 'ThreeCustom' },
+              ],
+            },
+          ],
+        },
+      ];
+      const { breadcrumbs } = render({ pathname: '/one/two/three', routes });
+      expect(breadcrumbs).toBe('Home / One / TwoCustom / ThreeCustom');
     });
   });
 
   describe('Defaults', () => {
     describe('No routes array', () => {
       it('Should automatically render breadcrumbs with default strings', () => {
-        const { Breadcrumbs } = render({ pathname: '/one/two' });
+        const { breadcrumbs } = render({ pathname: '/one/two' });
 
-        expect(Breadcrumbs.text()).toBe('Home / One / Two');
+        expect(breadcrumbs).toBe('Home / One / Two');
       });
     });
 
     describe('Override defaults', () => {
       it('Should render user-provided breadcrumbs where possible and use defaults otherwise', () => {
         const routes = [{ path: '/one', breadcrumb: 'Override' }];
-        const { Breadcrumbs } = render({ pathname: '/one/two', routes });
+        const { breadcrumbs } = render({ pathname: '/one/two', routes });
 
-        expect(Breadcrumbs.text()).toBe('Home / Override / Two');
+        expect(breadcrumbs).toBe('Home / Override / Two');
       });
     });
 
     describe('No breadcrumb', () => {
       it('Should be possible to NOT render a breadcrumb', () => {
         const routes = [{ path: '/one', breadcrumb: null }];
-        const { Breadcrumbs } = render({ pathname: '/one/two', routes });
+        const { breadcrumbs } = render({ pathname: '/one/two', routes });
 
-        expect(Breadcrumbs.text()).toBe('Home / Two');
+        expect(breadcrumbs).toBe('Home / Two');
       });
 
       it('Should be possible to NOT render a "Home" breadcrumb', () => {
         const routes = [{ path: '/', breadcrumb: null }];
-        const { Breadcrumbs } = render({ pathname: '/one/two', routes });
+        const { breadcrumbs } = render({ pathname: '/one/two', routes });
 
-        expect(Breadcrumbs.text()).toBe('One / Two');
+        expect(breadcrumbs).toBe('One / Two');
       });
     });
   });
@@ -189,30 +208,30 @@ describe('react-router-breadcrumbs-hoc', () => {
   describe('When using the location object', () => {
     it('Should be provided in the rendered breadcrumb component', () => {
       const routes = [{ path: '/one', breadcrumb: components.BreadcrumbLocationTest }];
-      const { Breadcrumbs } = render({ pathname: '/one', state: { isLocationTest: true }, routes });
-      expect(Breadcrumbs.text()).toBe('Home / pass');
+      const { breadcrumbs } = render({ pathname: '/one', state: { isLocationTest: true }, routes });
+      expect(breadcrumbs).toBe('Home / pass');
     });
   });
 
   describe('When pathname includes query params', () => {
     it('Should not render query breadcrumb', () => {
-      const { Breadcrumbs } = render({ pathname: '/one?mock=query' });
-      expect(Breadcrumbs.text()).toBe('Home / One');
+      const { breadcrumbs } = render({ pathname: '/one?mock=query' });
+      expect(breadcrumbs).toBe('Home / One');
     });
   });
 
   describe('When pathname includes a trailing slash', () => {
     it('Should ignore the trailing slash', () => {
-      const { Breadcrumbs } = render({ pathname: '/one/' });
-      expect(Breadcrumbs.text()).toBe('Home / One');
+      const { breadcrumbs } = render({ pathname: '/one/' });
+      expect(breadcrumbs).toBe('Home / One');
     });
   });
 
   describe('Options', () => {
     describe('excludePaths', () => {
       it('Should not return breadcrumbs for specified paths', () => {
-        const { Breadcrumbs } = render({ pathname: '/one/two', options: { excludePaths: ['/', '/one'] } });
-        expect(Breadcrumbs.text()).toBe('Two');
+        const { breadcrumbs } = render({ pathname: '/one/two', options: { excludePaths: ['/', '/one'] } });
+        expect(breadcrumbs).toBe('Two');
       });
     });
   });
