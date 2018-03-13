@@ -82,6 +82,44 @@ Pathname | Result
 /users/id | Home / Users / John
 /example | Home / Custom Example
 
+## Dynamic Breadcrumbs
+
+If you pass a component as the `breadcrumb` prop it will be injected with react-router's [match](https://reacttraining.com/react-router/web/api/match) and [location](https://reacttraining.com/react-router/web/api/location) objects as props. These objects contain ids, hashes, queries, etc from the route that will allow you to map back to whatever you want to display in the breadcrumb.
+
+Let's use Redux as an example with the [match](https://reacttraining.com/react-router/web/api/match) object:
+
+```js
+// UserBreadcrumb.jsx
+const PureUserBreadcrumb = ({ firstName }) => <span>{firstName}</span>;
+
+// find the user in the store with the `id` from the route
+const mapStateToProps = (state, props) => ({
+  firstName: state.userReducer.usersById[props.match.params.id].firstName,
+});
+
+export default connect(mapStateToProps)(PureUserBreadcrumb);
+
+// routes = [{ path: '/users/:id', breadcrumb: UserBreadcrumb }]
+// example.com/users/123 --> Home / Users / John
+```
+
+Similarly, the [location](https://reacttraining.com/react-router/web/api/location) object could be useful for displaying dynamic breadcrumbs based on the route's state:
+
+```jsx
+// dynamically update Breadcrumb based on state info
+const EditorBreadcrumb = ({ location: { state: { isNew } } }) => (
+  <span>{isNew ? 'Add New' : 'Update'}</span>
+);
+
+// routes = [{ path: '/editor', breadcrumb: EditorBreadcrumb }]
+
+// upon navigation, breadcrumb will display: Update
+<Link to={{ pathname: '/editor' }}>Edit</Link>
+
+// upon navigation, breadcrumb will display: Add New
+<Link to={{ pathname: '/editor', state: { isNew: true } }}>Add</Link>
+```
+
 ## Already using a [route config](https://reacttraining.com/react-router/web/example/route-config) array with react-router?
 
 Just add a `breadcrumb` prop to your routes that require custom breadcrumbs.
@@ -150,29 +188,3 @@ To fix the issue above, just adjust the order of your routes:
 // example.com/users/create = 'create-breadcrumb' (because path: '/users/create' will match first)
 // example.com/users/123 = 'id-breadcrumb'
 ```
-
-## Using the location object
-
-React Router's [location](https://reacttraining.com/react-router/web/api/location) object lets you pass `state` property. Using the `state` allows one to update the Breadcrumb to display dynamic info at runtime. Consider this example:
-
-```jsx
-// dynamically update Breadcrumb based on state info
-const Breadcrumb = ({ location: { state: { isNew } } }) => (
-  <span>{isNew ? 'Add New' : 'Update'}</span>
-);
-
-// routes
-{
-  pathname: '/editor',
-  breadcrumb: Breadcrumb
-  ...
-}
-
-// upon navigation, breadcrumb will display: Update
-<Link to={{ pathname: '/editor' }}>Edit</Link>
-
-// upon navigation, breadcrumb will display: Add New
-<Link to={{ pathname: '/editor', state: { isNew: true } }}>Add</Link>
-```
-
-Now, based on what you pass in the `state` prop, the Breadcrumb will display dynamic values at runtime!
