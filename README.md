@@ -82,6 +82,10 @@ Pathname | Result
 /users/id | Home / Users / John
 /example | Home / Custom Example
 
+## Already using a [route config](https://reacttraining.com/react-router/web/example/route-config) array with react-router?
+
+Just add a `breadcrumb` prop to your routes that require custom breadcrumbs.
+
 ## Dynamic Breadcrumbs
 
 If you pass a component as the `breadcrumb` prop it will be injected with react-router's [match](https://reacttraining.com/react-router/web/api/match) and [location](https://reacttraining.com/react-router/web/api/location) objects as props. These objects contain ids, hashes, queries, etc from the route that will allow you to map back to whatever you want to display in the breadcrumb.
@@ -121,10 +125,6 @@ const EditorBreadcrumb = ({ location: { state: { isNew } } }) => (
 // upon navigation, breadcrumb will display: Add New
 <Link to={{ pathname: '/editor', state: { isNew: true } }}>Add</Link>
 ```
-
-## Already using a [route config](https://reacttraining.com/react-router/web/example/route-config) array with react-router?
-
-Just add a `breadcrumb` prop to your routes that require custom breadcrumbs.
 
 ## Disabling default breadcrumbs for paths
 
