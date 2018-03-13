@@ -103,10 +103,12 @@ export default connect(mapStateToProps)(PureUserBreadcrumb);
 // example.com/users/123 --> Home / Users / John
 ```
 
+----
+
 Similarly, the [location](https://reacttraining.com/react-router/web/api/location) object could be useful for displaying dynamic breadcrumbs based on the route's state:
 
 ```jsx
-// dynamically update Breadcrumb based on state info
+// dynamically update EditorBreadcrumb based on state info
 const EditorBreadcrumb = ({ location: { state: { isNew } } }) => (
   <span>{isNew ? 'Add New' : 'Update'}</span>
 );
@@ -128,40 +130,13 @@ Just add a `breadcrumb` prop to your routes that require custom breadcrumbs.
 
 This package will attempt to create breadcrumbs for you based on the route section via [humanize-string](https://github.com/sindresorhus/humanize-string). For example `/users` will auotmatically create the breadcrumb `"Users"`. There are two ways to disable default breadcrumbs for a path:
 
-Pass `breadcrumb: null` in the routes config:
+**Option 1:** Pass `breadcrumb: null` in the routes config:
 
 `{ path: '/a/b', breadcrumb: null }`
 
-Or, Pass an `excludePaths` array in the `options` object
+**Option 2:** Or, Pass an `excludePaths` array in the `options` object
 
-`withBreadcrumbs(routes, { excludePaths: ['/', '/no-breadcrumb/for-this-route'] })` 
-
-in your routes array.
-
-## API
-
-```js
-Route = {
-  path: String
-  breadcrumb: String|Function? // note: if not provided, a default breadcrumb will be returned
-  matchOptions?: Object
-}
-
-Options = {
-  excludePaths: Array
-}
-
-// if routes are not passed, default breadcrumbs will be returned
-withBreadcrumbs(routes?: Array<Route>, options? Object<Options>): HigherOrderComponent
-
-// you shouldn't ever really have to use `getBreadcrumbs`, but it's
-// exported for convenience if you don't want to use the HOC
-getBreadcrumbs({
-  routes: Array<Route>,
-  location: Object<Location>, // react-router's location object: https://reacttraining.com/react-router/web/api/location
-  options: Object<Options>,
-}): Array<Breadcrumb>
-```
+`withBreadcrumbs(routes, { excludePaths: ['/', '/no-breadcrumb/for-this-route'] })`
 
 ## Order matters!
 
@@ -187,4 +162,29 @@ To fix the issue above, just adjust the order of your routes:
 
 // example.com/users/create = 'create-breadcrumb' (because path: '/users/create' will match first)
 // example.com/users/123 = 'id-breadcrumb'
+```
+
+## API
+
+```js
+Route = {
+  path: String
+  breadcrumb: String|Function? // note: if not provided, a default breadcrumb will be returned
+  matchOptions?: Object
+}
+
+Options = {
+  excludePaths: Array
+}
+
+// if routes are not passed, default breadcrumbs will be returned
+withBreadcrumbs(routes?: Array<Route>, options? Object<Options>): HigherOrderComponent
+
+// you shouldn't ever really have to use `getBreadcrumbs`, but it's
+// exported for convenience if you don't want to use the HOC
+getBreadcrumbs({
+  routes: Array<Route>,
+  location: Object<Location>,
+  options: Object<Options>,
+}): Array<Breadcrumb>
 ```
