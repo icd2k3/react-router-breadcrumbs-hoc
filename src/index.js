@@ -30,6 +30,7 @@ const getDefaultBreadcrumb = ({ pathSection, currentSection, location }) => {
 // a user-provided breadcrumb OR a sensible default via `humanize-string`
 const getBreadcrumb = ({
   currentSection,
+  disableDefaults,
   excludePaths,
   location,
   pathSection,
@@ -60,6 +61,14 @@ const getBreadcrumb = ({
     }
 
     if (match) {
+      // this covers the case where a user may be extending their react-router route
+      // config with breadcrumbs, but also does not want default breadcrumbs to be
+      // automatically generated (opt-in)
+      if (!userProvidedBreadcrumb && disableDefaults) {
+        breadcrumb = NO_BREADCRUMB;
+        return true;
+      }
+
       breadcrumb = render({
         // although we have a match, the user may be passing their react-router config object
         // which we support. The route config object may not have a `breadcrumb` param specified.
@@ -73,14 +82,21 @@ const getBreadcrumb = ({
     return false;
   });
 
-  // if there are no breadcrumbs provided in the routes array we return a default breadcrumb instead
-  return breadcrumb
-    || getDefaultBreadcrumb({
-      pathSection,
-      // include a "Home" breadcrumb by default (can be overrode or disabled in config)
-      currentSection: pathSection === '/' ? 'Home' : currentSection,
-      location,
-    });
+  if (breadcrumb) {
+    // user provided a breadcrumb prop, or we generated one via humanizeString above ~L75
+    return breadcrumb;
+  } else if (disableDefaults) {
+    // if there was no breadcrumb provided and user has disableDefaults turned on
+    return NO_BREADCRUMB;
+  }
+
+  // if the above conditionals don't fire, generate a default breadcrumb based on the path
+  return getDefaultBreadcrumb({
+    pathSection,
+    // include a "Home" breadcrumb by default (can be overrode or disabled in config)
+    currentSection: pathSection === '/' ? 'Home' : currentSection,
+    location,
+  });
 };
 
 export const getBreadcrumbs = ({ routes, location, options = {} }) => {
@@ -102,10 +118,10 @@ export const getBreadcrumbs = ({ routes, location, options = {} }) => {
 
       const breadcrumb = getBreadcrumb({
         currentSection,
-        excludePaths: options.excludePaths,
         location,
         pathSection,
         routes,
+        ...options,
       });
 
       // add the breadcrumb to the matches array
