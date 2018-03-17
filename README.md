@@ -173,12 +173,13 @@ To fix the issue above, just adjust the order of your routes:
 ```js
 Route = {
   path: String
-  breadcrumb: String|Function? // note: if not provided, a default breadcrumb will be returned
-  matchOptions?: Object
+  breadcrumb: String|Function? // if not provided, a default breadcrumb will be returned
+  matchOptions?: Object        // see: https://reacttraining.com/react-router/web/api/match
 }
 
 Options = {
-  excludePaths: Array
+  excludePaths: Array       // disable default breadcrumb generation for specific paths
+  disableDefaults: Boolean  // disable all default breadcrumb generation
 }
 
 // if routes are not passed, default breadcrumbs will be returned
