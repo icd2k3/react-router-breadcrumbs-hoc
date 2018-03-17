@@ -234,6 +234,15 @@ describe('react-router-breadcrumbs-hoc', () => {
         expect(breadcrumbs).toBe('Two');
       });
     });
+
+    describe('disableDefaults', () => {
+      it('Should disable all default breadcrumb generation', () => {
+        const routes = [{ path: '/one', breadcrumb: 'One' }, { path: '/one/two' }];
+        const { breadcrumbs } = render({ pathname: '/one/two', routes, options: { disableDefaults: true } });
+
+        expect(breadcrumbs).toBe('One');
+      });
+    });
   });
 
   describe('Invalid route object', () => {

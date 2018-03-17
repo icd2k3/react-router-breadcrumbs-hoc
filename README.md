@@ -130,11 +130,15 @@ const EditorBreadcrumb = ({ location: { state: { isNew } } }) => (
 
 This package will attempt to create breadcrumbs for you based on the route section via [humanize-string](https://github.com/sindresorhus/humanize-string). For example `/users` will auotmatically create the breadcrumb `"Users"`. There are two ways to disable default breadcrumbs for a path:
 
-**Option 1:** Pass `breadcrumb: null` in the routes config:
+**Option 1:** Disable _all_ default breadcrumb generation by passing `disableDefaults: true` in the `options` object
+
+`withBreadcrumbs(routes, { disableDefaults: true })`
+
+**Option 2:** Disable _individual_ default breadcrumbs by passing `breadcrumb: null` in route config:
 
 `{ path: '/a/b', breadcrumb: null }`
 
-**Option 2:** Or, Pass an `excludePaths` array in the `options` object
+**Option 3:** Disable _individual_ default breadcrumbs by passing an `excludePaths` array in the `options` object
 
 `withBreadcrumbs(routes, { excludePaths: ['/', '/no-breadcrumb/for-this-route'] })`
 
