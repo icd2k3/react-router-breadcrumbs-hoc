@@ -61,7 +61,7 @@ const routes = [
 const Breadcrumbs = ({ breadcrumbs }) => (
   <div>
     {breadcrumbs.map((breadcrumb, index) => (
-      <span key={breadcrumb.props.key}>
+      <span key={breadcrumb.key}>
         <NavLink to={breadcrumb.props.match.url}>
           {breadcrumb}
         </NavLink>
