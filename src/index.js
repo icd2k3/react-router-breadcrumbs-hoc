@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import { matchPath, withRouter } from 'react-router';
+import { matchPath, withRouter } from 'react-router-dom';
 import humanizeString from 'humanize-string';
 
 const DEFAULT_MATCH_OPTIONS = { exact: true };
