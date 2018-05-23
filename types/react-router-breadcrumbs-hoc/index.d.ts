@@ -6,35 +6,33 @@
 import * as React from "react";
 import { Omit, RouteComponentProps, Route } from "react-router";
 
-export type Options = {
+export interface Options {
   disableDefaults?: boolean;
   excludePaths?: string[];
   pathSection?: string;
-};
+}
 
-export type BreadcrumbsRoute = {
+export interface BreadcrumbsRoute {
   path: string;
   breadcrumb: React.ReactNode | string;
-};
+}
 
-export type BreadcrumbsProps = {
+export interface BreadcrumbsProps {
   key: string;
   props: {
     match: {
       url: string;
     };
   };
-};
+}
 
 export interface InjectedProps extends RouteComponentProps<any> {
   breadcrumbs: BreadcrumbsProps[];
 }
 
-export interface withRouter<P extends RouteComponentProps<any>> {
-  (component: React.ComponentType<P>): React.ComponentClass<
+export type withRouter<P extends RouteComponentProps<any>> = (component: React.ComponentType<P>) => React.ComponentClass<
     Omit<P, keyof RouteComponentProps<any>>
   >;
-}
 
 export default function withBreadcrumbs(
   routes: BreadcrumbsRoute[],
