@@ -23,6 +23,8 @@
     "humanize-string": "^1.0.2"
   },
   "devDependencies": {
+    "@types/react": "^16.3.14",
+    "@types/react-router-dom": "^4.2.6",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
@@ -49,13 +51,16 @@
     "rollup": "^0.59.0",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-commonjs": "^9.1.3",
-    "rollup-plugin-node-resolve": "^3.3.0"
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "typescript": "^2.8.3"
   },
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "rollup -c",
     "test": "jest",
-    "travis": "yarn run lint && jest && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "types": "tsc -p types/react-router-breadcrumbs-hoc",
+    "travis": "yarn run lint && yarn types && jest && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint ./src/**"
-  }
+  },
+  "types": "types/react-router-breadcrumbs-hoc/index.d.ts"
 }
