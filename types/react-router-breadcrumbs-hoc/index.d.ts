@@ -18,18 +18,20 @@ export interface BreadcrumbsRoute {
   breadcrumb: React.ReactNode | string;
 }
 
-export interface BreadcrumbsProps {
+export interface BreadcrumbsProps<T = {}> {
   key: string;
-  props: RouteComponentProps<{}>;
+  props: RouteComponentProps<T>;
 }
 
-export interface InjectedProps extends RouteComponentProps<{}> {
-  breadcrumbs: BreadcrumbsProps[];
+export interface InjectedProps<P = {}> extends RouteComponentProps<P> {
+  breadcrumbs: BreadcrumbsProps<P>[];
 }
 
-export type withRouter<P extends RouteComponentProps<any>> = (component: React.ComponentType<P>) => React.ComponentClass<{}>;
+export type withRouter<P extends InjectedProps<any>> = (component: React.ComponentType<P>) => React.ComponentClass<
+  Omit<P, keyof InjectedProps<any>>
+>;
 
-export default function withBreadcrumbs(
+export default function withBreadcrumbs<P>(
   routes: BreadcrumbsRoute[],
   options?: Options
-): withRouter<InjectedProps>;
+): withRouter<InjectedProps<P>>;
