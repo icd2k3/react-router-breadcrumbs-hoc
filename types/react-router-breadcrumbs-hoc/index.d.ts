@@ -7,6 +7,7 @@ import * as React from "react";
 import { Omit, RouteComponentProps, Route } from "react-router";
 
 export interface Options {
+  currentSection?: string;
   disableDefaults?: boolean;
   excludePaths?: string[];
   pathSection?: string;
@@ -19,20 +20,14 @@ export interface BreadcrumbsRoute {
 
 export interface BreadcrumbsProps {
   key: string;
-  props: {
-    match: {
-      url: string;
-    };
-  };
+  props: RouteComponentProps<{}>;
 }
 
-export interface InjectedProps extends RouteComponentProps<any> {
+export interface InjectedProps extends RouteComponentProps<{}> {
   breadcrumbs: BreadcrumbsProps[];
 }
 
-export type withRouter<P extends RouteComponentProps<any>> = (component: React.ComponentType<P>) => React.ComponentClass<
-    Omit<P, keyof RouteComponentProps<any>>
-  >;
+export type withRouter<P extends RouteComponentProps<any>> = (component: React.ComponentType<P>) => React.ComponentClass<{}>;
 
 export default function withBreadcrumbs(
   routes: BreadcrumbsRoute[],

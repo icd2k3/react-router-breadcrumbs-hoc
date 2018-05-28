@@ -1,8 +1,8 @@
-import * as React from 'react'
-import BreadCrumbs from './react-router-breadcrumbs-hoc-tests'
+import * as React from 'react';
+import BreadCrumbs from './react-router-breadcrumbs-hoc-tests';
 
-export default function () {
+export default function() {
     return  (
         <BreadCrumbs />
-    )
+    );
 }
