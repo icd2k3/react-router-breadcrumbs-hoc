@@ -9,6 +9,8 @@
     ],
     "module": "commonjs",
     "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
@@ -19,6 +21,7 @@
   },
   "files": [
     "index.d.ts",
+    "index-tests.tsx",
     "react-router-breadcrumbs-hoc-tests.tsx"
   ]
 }
