@@ -2,8 +2,9 @@ module.exports = {
   collectCoverage: true,
   coverageDirectory: './coverage',
   coveragePathIgnorePatterns: [
-    '/node_modules/',
     '/coverage/',
+    '/dist/',
+    '/node_modules/',
     'jest.config.js',
     'jest.setup.js',
   ],

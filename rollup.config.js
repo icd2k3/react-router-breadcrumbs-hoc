@@ -29,6 +29,7 @@ const config = {
   external,
   output: [
     {
+      exports: 'named',
       file: pkg.main,
       format: 'umd',
       globals,
@@ -36,6 +37,7 @@ const config = {
       sourcemap: true,
     },
     {
+      exports: 'named',
       file: pkg.module,
       format: 'es',
       globals,
