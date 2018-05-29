@@ -7,6 +7,10 @@ import { MemoryRouter as Router } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import withBreadcrumbs, { getBreadcrumbs } from './index';
 
+// imports to test compiled builds
+import withBreadcrumbsCompiledES, { getBreadcrumbs as getBreadcrumbsCompiledES } from '../dist/es/index';
+import withBreadcrumbsCompiledUMD, { getBreadcrumbs as getBreadcrumbsCompiledUMD } from '../dist/umd/index';
+
 const components = {
   Breadcrumbs: ({ breadcrumbs }) => (
     <h1 className="breadcrumbs-container">
@@ -27,13 +31,35 @@ const components = {
   ),
 };
 
+const getHOC = () => {
+  switch (process.env.TEST_BUILD) {
+    case 'umd':
+      return withBreadcrumbsCompiledUMD;
+    case 'es':
+      return withBreadcrumbsCompiledES;
+    default:
+      return withBreadcrumbs;
+  }
+};
+
+const getMethod = () => {
+  switch (process.env.TEST_BUILD) {
+    case 'umd':
+      return getBreadcrumbsCompiledUMD;
+    case 'es':
+      return getBreadcrumbsCompiledES;
+    default:
+      return getBreadcrumbs;
+  }
+};
+
 const render = ({
   options,
   pathname,
   routes,
   state,
 }) => {
-  const Breadcrumbs = withBreadcrumbs(routes, options)(components.Breadcrumbs);
+  const Breadcrumbs = getHOC()(routes, options)(components.Breadcrumbs);
   const wrapper =
     mount(<Router initialIndex={0} initialEntries={[{ pathname, state }]}><Breadcrumbs /></Router>);
 
@@ -247,7 +273,7 @@ describe('react-router-breadcrumbs-hoc', () => {
 
   describe('Invalid route object', () => {
     it('Should error if `path` is not provided', () => {
-      expect(() => getBreadcrumbs({ routes: [{ breadcrumb: 'Yo' }], location: { pathname: '/1' } }))
+      expect(() => getMethod()({ routes: [{ breadcrumb: 'Yo' }], location: { pathname: '/1' } }))
         .toThrow('withBreadcrumbs: `path` must be provided in every route object');
     });
   });

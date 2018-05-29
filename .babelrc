@@ -2,7 +2,7 @@
   "presets": [
     ["env", {"modules": false}],
     "react",
-    "stage-1"
+    "stage-3"
   ],
   "env": {
     "test": {
