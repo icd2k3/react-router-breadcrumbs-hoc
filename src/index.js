@@ -7,7 +7,7 @@ const NO_BREADCRUMB = 'NO_BREADCRUMB';
 
 // renders and returns the breadcrumb complete with `match`, `location`, and `key` props
 const render = ({ breadcrumb, match, location }) => {
-  const componentProps = { match, location, key: match.path };
+  const componentProps = { match, location, key: match.url };
   if (typeof breadcrumb === 'function') {
     return createElement(breadcrumb, componentProps);
   }
