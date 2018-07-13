@@ -60,8 +60,9 @@ const render = ({
   state,
 }) => {
   const Breadcrumbs = getHOC()(routes, options)(components.Breadcrumbs);
-  const wrapper =
-    mount(<Router initialIndex={0} initialEntries={[{ pathname, state }]}><Breadcrumbs /></Router>);
+  const wrapper = mount(
+    <Router initialIndex={0} initialEntries={[{ pathname, state }]}><Breadcrumbs /></Router>,
+  );
 
   return {
     breadcrumbs: wrapper.find('.breadcrumbs-container').text(),

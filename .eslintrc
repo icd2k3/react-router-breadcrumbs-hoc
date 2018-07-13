@@ -1,5 +1,9 @@
 {
   "extends": "airbnb",
   "parser": "babel-eslint",
-  "env": { "jasmine": true }
+  "env": { "jasmine": true },
+  "rules": {
+    "react/destructuring-assignment": 0,
+    "react/jsx-one-expression-per-line": 0
+  }
 }
