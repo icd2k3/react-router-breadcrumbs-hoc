@@ -18,7 +18,16 @@ const UserBreadcrumb = ({ match }: UserBreadcrumbProps) => (
 
 const routes: BreadcrumbsRoute[] = [
   { path: "/users/:userId", breadcrumb: UserBreadcrumb },
-  { path: "/example", breadcrumb: "Custom Example" }
+  { path: "/example", breadcrumb: "Custom Example" },
+  {
+    path: "/example/config",
+    breadcrumb: "Custom Example with Config",
+    matchOptions: {
+      exact: true,
+      sensitive: false,
+      strict: false,
+    }
+  }
 ];
 
 const Breadcrumbs = ({ breadcrumbs }: InjectedProps) => (
