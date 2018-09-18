@@ -13,9 +13,16 @@ export interface Options {
   pathSection?: string;
 }
 
+export interface MatchOptions {
+  exact?: boolean;
+  strict?: boolean;
+  sensitive?: boolean;
+}
+
 export interface BreadcrumbsRoute {
   path: string;
   breadcrumb: React.ReactNode | string;
+  matchOptions?: MatchOptions;
 }
 
 export interface BreadcrumbsProps<T = {}> {
