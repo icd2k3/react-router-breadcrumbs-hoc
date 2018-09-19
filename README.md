@@ -176,7 +176,10 @@ To fix the issue above, just adjust the order of your routes:
 Route = {
   path: String
   breadcrumb: String|Function? // if not provided, a default breadcrumb will be returned
-  matchOptions?: Object        // see: https://reacttraining.com/react-router/web/api/match
+  matchOptions?: {             // see: https://reacttraining.com/react-router/web/api/matchPath
+    exact?: Boolean,
+    strict?: Boolean,
+  }
 }
 
 Options = {
