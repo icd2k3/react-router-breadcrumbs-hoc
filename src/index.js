@@ -29,8 +29,8 @@ const NO_BREADCRUMB = 'NO_BREADCRUMB';
  * Renders and returns the breadcrumb complete
  * with `match`, `location`, and `key` props.
  */
-const render = ({ breadcrumb, match, location }) => {
-  const componentProps = { match, location, key: match.url };
+const render = ({ breadcrumb, match, location, ...rest }) => {
+  const componentProps = { match, location, key: match.url, ...rest };
   if (typeof breadcrumb === 'function') {
     return createElement(breadcrumb, componentProps);
   }
@@ -73,7 +73,7 @@ const getBreadcrumb = ({
   }
 
   // Loop through the route array and see if the user has provided a custom breadcrumb.
-  routes.some(({ breadcrumb: userProvidedBreadcrumb, matchOptions, path }) => {
+  routes.some(({ breadcrumb: userProvidedBreadcrumb, matchOptions, path, ...rest }) => {
     if (!path) {
       throw new Error('withBreadcrumbs: `path` must be provided in every route object');
     }
@@ -104,6 +104,7 @@ const getBreadcrumb = ({
         breadcrumb: userProvidedBreadcrumb || humanizeString(currentSection),
         match,
         location,
+        ...rest,
       });
       return true;
     }
