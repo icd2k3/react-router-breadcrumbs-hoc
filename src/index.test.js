@@ -254,6 +254,17 @@ describe('react-router-breadcrumbs-hoc', () => {
     });
   });
 
+  describe('When using additional props inside routes', () => {
+    it('Should forward additional from props from routes to generated breadcrumbs', () => {
+      const routes = [{ path: '/one', breadcrumb: 'One', foo: 'One Foo', bar: 'One Bar' }, { path: '/one/two', foo: 'Two Foo' }];
+      const breadcrumbs = getMethod()({ routes, location: { pathname: '/one/two' } });
+      expect(breadcrumbs[1].props).toHaveProperty('foo', 'One Foo');
+      expect(breadcrumbs[1].props).toHaveProperty('bar', 'One Bar');
+      expect(breadcrumbs[2].props).toHaveProperty('foo', 'Two Foo');
+      expect(breadcrumbs[2].props).not.toHaveProperty('bar');
+    });
+  });
+
   describe('Options', () => {
     describe('excludePaths', () => {
       it('Should not return breadcrumbs for specified paths', () => {
