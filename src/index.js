@@ -60,8 +60,10 @@ const getBreadcrumb = ({
   currentSection,
   disableDefaults,
   excludePaths,
+  isLastSection,
   location,
   pathSection,
+  routeNotFoundBreadcrumb,
   routes,
 }) => {
   let breadcrumb;
@@ -85,6 +87,17 @@ const getBreadcrumb = ({
     // see: `if (breadcrumb !== NO_BREADCRUMB)` below.
     if ((match && userProvidedBreadcrumb === null) || (!match && matchOptions)) {
       breadcrumb = NO_BREADCRUMB;
+      return true;
+    }
+
+    // If the routeNotFoundBreadcrumb option is set, and this is the last path section
+    // then return that breadcrumb
+    if (!match && isLastSection && routeNotFoundBreadcrumb) {
+      breadcrumb = render({
+        breadcrumb: routeNotFoundBreadcrumb,
+        match: { url: '404' },
+        ...rest,
+      });
       return true;
     }
 
@@ -138,24 +151,29 @@ export const getBreadcrumbs = ({ routes, location, options = {} }) => {
   const matches = [];
   const { pathname } = location;
 
-  pathname
+  const splitPathname = pathname
     .split('?')[0]
     // Remove trailing slash "/" from pathname.
     .replace(/\/$/, '')
     // Split pathname into sections.
-    .split('/')
+    .split('/');
+
+  splitPathname
     // Reduce over the sections and call `getBreadcrumb()` for each section.
-    .reduce((previousSection, currentSection) => {
+    .reduce((previousSection, currentSection, index) => {
       // Combine the last route section with the currentSection.
       // For example, `pathname = /1/2/3` results in match checks for
       // `/1`, `/1/2`, `/1/2/3`.
       const pathSection = !currentSection ? '/' : `${previousSection}/${currentSection}`;
+
+      const isLastSection = index >= splitPathname.length - 1;
 
       const breadcrumb = getBreadcrumb({
         currentSection,
         location,
         pathSection,
         routes,
+        isLastSection,
         ...options,
       });
 

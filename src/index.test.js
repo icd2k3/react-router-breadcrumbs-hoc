@@ -277,8 +277,21 @@ describe('react-router-breadcrumbs-hoc', () => {
       it('Should disable all default breadcrumb generation', () => {
         const routes = [{ path: '/one', breadcrumb: 'One' }, { path: '/one/two' }];
         const { breadcrumbs } = render({ pathname: '/one/two', routes, options: { disableDefaults: true } });
-
         expect(breadcrumbs).toBe('One');
+      });
+    });
+
+    describe('routeNotFoundBreadcrumb', () => {
+      it('Should render a breadcrumb when there is no route match', () => {
+        const routes = [{ path: '/one', breadcrumb: 'One' }];
+        const { breadcrumbs } = render({ pathname: '/one/two', routes, options: { routeNotFoundBreadcrumb: '404' } });
+        expect(breadcrumbs).toBe('Home / One / 404');
+      });
+
+      it('Should also work when disableDefaults is set', () => {
+        const routes = [{ path: '/one', breadcrumb: 'One' }];
+        const { breadcrumbs } = render({ pathname: '/one/two', routes, options: { routeNotFoundBreadcrumb: '404', disableDefaults: true } });
+        expect(breadcrumbs).toBe('One / 404');
       });
     });
   });

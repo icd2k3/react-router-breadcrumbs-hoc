@@ -170,6 +170,15 @@ To fix the issue above, just adjust the order of your routes:
 // example.com/users/123 = 'id-breadcrumb'
 ```
 
+## routeNotFoundBreadcrumb (404)
+
+You can optionally provide a breadcrumb for 404 routes with the `routeNotFoundBreadcrumb` option.
+
+```js
+withBreadcrumbs([{ path: '/users', breadcrumb: 'Users' }], { routeNotFoundBreadcrumb: '404' })
+// '/users/no-route-set' === 'Users / 404'
+```
+
 ## API
 
 ```js
@@ -183,8 +192,9 @@ Route = {
 }
 
 Options = {
-  excludePaths: Array       // disable default breadcrumb generation for specific paths
-  disableDefaults: Boolean  // disable all default breadcrumb generation
+  excludePaths: Array                       // disable default breadcrumb generation for specific paths
+  disableDefaults: Boolean                  // disable all default breadcrumb generation
+  routeNotFoundBreadcrumb: String|Function  // optionally provide a breadcrumb for 404 routes
 }
 
 // if routes are not passed, default breadcrumbs will be returned
