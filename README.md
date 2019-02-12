@@ -190,7 +190,6 @@ withBreadcrumbs(routes?: Array<Route>, options? Object<Options>): HigherOrderCom
 // exported for convenience if you don't want to use the HOC
 getBreadcrumbs({
   routes: Array<Route>,
-  location: Object<Location>,
   options: Object<Options>,
 }): Array<Breadcrumb>
 ```
