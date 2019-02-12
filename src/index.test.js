@@ -195,6 +195,19 @@ describe('react-router-breadcrumbs-hoc', () => {
       const { breadcrumbs } = render({ pathname: '/one/two/three', routes });
       expect(breadcrumbs).toBe('Home / One / TwoCustom / ThreeCustom');
     });
+
+    it('Should not produce a console warning for unsupported element attributes', () => {
+      // see: https://github.com/icd2k3/react-router-breadcrumbs-hoc/issues/59
+      global.console.error = jest.fn();
+      const routes = [
+        { path: '/one', breadcrumb: 'OneCustom', component: () => <span>One Page</span> },
+        { path: '/one/two', component: () => <span>Two Page</span> },
+      ];
+      const { breadcrumbs } = render({ pathname: '/one/two', routes });
+      expect(breadcrumbs).toBe('Home / OneCustom / Two');
+      // eslint-disable-next-line no-console
+      expect(console.error).not.toHaveBeenCalled();
+    });
   });
 
   describe('Defaults', () => {
