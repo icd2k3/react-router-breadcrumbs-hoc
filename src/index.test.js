@@ -14,8 +14,8 @@ import withBreadcrumbsCompiledUMD, { getBreadcrumbs as getBreadcrumbsCompiledUMD
 const components = {
   Breadcrumbs: ({ breadcrumbs }) => (
     <h1 className="breadcrumbs-container">
-      {breadcrumbs.map((breadcrumb, index) => (
-        <span key={breadcrumb.key}>
+      {breadcrumbs.map(({ breadcrumb, key }, index) => (
+        <span key={key}>
           {breadcrumb}
           {(index < breadcrumbs.length - 1) && <i> / </i>}
         </span>
@@ -29,6 +29,7 @@ const components = {
       {isLocationTest ? 'pass' : 'fail'}
     </span>
   ),
+  BreadcrumbExtraPropsTest: ({ foo, bar }) => <span>{foo}{bar}</span>,
 };
 
 const getHOC = () => {
@@ -78,7 +79,11 @@ const matchShape = {
 };
 
 components.Breadcrumbs.propTypes = {
-  breadcrumbs: PropTypes.arrayOf(PropTypes.node).isRequired,
+  breadcrumbs: PropTypes.arrayOf(PropTypes.shape({
+    breadcrumb: PropTypes.node.isRequired,
+    match: PropTypes.shape().isRequired,
+    location: PropTypes.shape.isRequired,
+  })).isRequired,
 };
 
 components.BreadcrumbMatchTest.propTypes = {
@@ -95,6 +100,11 @@ components.BreadcrumbLocationTest.propTypes = {
       isLocationTest: PropTypes.bool.isRequired,
     }).isRequired,
   }).isRequired,
+};
+
+components.BreadcrumbExtraPropsTest.propTypes = {
+  foo: PropTypes.string.isRequired,
+  bar: PropTypes.string.isRequired,
 };
 
 describe('react-router-breadcrumbs-hoc', () => {
@@ -195,19 +205,6 @@ describe('react-router-breadcrumbs-hoc', () => {
       const { breadcrumbs } = render({ pathname: '/one/two/three', routes });
       expect(breadcrumbs).toBe('Home / One / TwoCustom / ThreeCustom');
     });
-
-    it('Should not produce a console warning for unsupported element attributes', () => {
-      // see: https://github.com/icd2k3/react-router-breadcrumbs-hoc/issues/59
-      global.console.error = jest.fn();
-      const routes = [
-        { path: '/one', breadcrumb: 'OneCustom', component: () => <span>One Page</span> },
-        { path: '/one/two', component: () => <span>Two Page</span> },
-      ];
-      const { breadcrumbs } = render({ pathname: '/one/two', routes });
-      expect(breadcrumbs).toBe('Home / OneCustom / Two');
-      // eslint-disable-next-line no-console
-      expect(console.error).not.toHaveBeenCalled();
-    });
   });
 
   describe('Defaults', () => {
@@ -268,13 +265,17 @@ describe('react-router-breadcrumbs-hoc', () => {
   });
 
   describe('When using additional props inside routes', () => {
-    it('Should forward additional from props from routes to generated breadcrumbs', () => {
-      const routes = [{ path: '/one', breadcrumb: 'One', foo: 'One Foo', bar: 'One Bar' }, { path: '/one/two', foo: 'Two Foo' }];
-      const breadcrumbs = getMethod()({ routes, location: { pathname: '/one/two' } });
-      expect(breadcrumbs[1].props).toHaveProperty('foo', 'One Foo');
-      expect(breadcrumbs[1].props).toHaveProperty('bar', 'One Bar');
-      expect(breadcrumbs[2].props).toHaveProperty('foo', 'Two Foo');
-      expect(breadcrumbs[2].props).not.toHaveProperty('bar');
+    it('Should pass through extra props to user-provided components', () => {
+      const routes = [
+        {
+          path: '/one',
+          breadcrumb: components.BreadcrumbExtraPropsTest,
+          foo: 'Pass through',
+          bar: ' props',
+        },
+      ];
+      const { breadcrumbs } = render({ pathname: '/one', routes });
+      expect(breadcrumbs).toBe('Home / Pass through props');
     });
   });
 
@@ -300,6 +301,13 @@ describe('react-router-breadcrumbs-hoc', () => {
     it('Should error if `path` is not provided', () => {
       expect(() => getMethod()({ routes: [{ breadcrumb: 'Yo' }], location: { pathname: '/1' } }))
         .toThrow('withBreadcrumbs: `path` must be provided in every route object');
+    });
+  });
+
+  describe('DOM rendering', () => {
+    it('Should not render props as element attributes on breadcrumbs', () => {
+      const { wrapper } = render({ pathname: '/one' });
+      expect(wrapper.html()).not.toContain('[object Object]');
     });
   });
 });

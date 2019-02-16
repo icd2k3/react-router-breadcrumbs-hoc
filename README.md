@@ -42,9 +42,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
 
-// breadcrumbs can be any type of component or string
-const UserBreadcrumb = ({ match }) =>
-  <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
+// breadcrumbs can be any type of component OR string. This userId
+// could be used to fetch & display the user's name, for example
+const UserBreadcrumb = ({ match }) => (
+  <span>{match.params.userId}</span>
+);
 
 // define some custom breadcrumbs for certain routes (optional)
 const routes = [
@@ -53,15 +55,16 @@ const routes = [
 ];
 
 // map & render your breadcrumb components however you want.
-// each `breadcrumb` has the props `key`, `location`, and `match` included!
 const Breadcrumbs = ({ breadcrumbs }) => (
   <div>
-    {breadcrumbs.map((breadcrumb, index) => (
-      <span key={breadcrumb.key}>
-        <NavLink to={breadcrumb.props.match.url}>
-          {breadcrumb}
-        </NavLink>
-        {(index < breadcrumbs.length - 1) && <i> / </i>}
+    {breadcrumbs.map(({
+      match,
+      breadcrumb
+      // other props are available during render, such as `location` 
+      // and any props found in your route objects will be included too
+    }) => (
+      <span key={match.url}>
+        <NavLink to={match.url}>{breadcrumb}</NavLink>
       </span>
     ))}
   </div>
