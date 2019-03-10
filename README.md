@@ -17,22 +17,6 @@
   <a href="https://codeclimate.com/github/icd2k3/react-router-breadcrumbs-hoc/maintainability"><img src="https://api.codeclimate.com/v1/badges/9f4bd022e2a21f40fc3a/maintainability" /></a>
 </p>
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [Description](#description)
-- [Install](#install)
-- [Usage](#usage)
-- [Examples](#examples)
-- [Already using a route config array with react-router?](#already-using-a-route-config-array-with-react-router)
-- [Disabling default generated breadcrumbs](#disabling-default-generated-breadcrumbs)
-- [Dynamic breadcrumbs](#dynamic-breadcrumbs)
-- [Order matters!](#order-matters)
-- [API](#api)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 ## Description
 
 Deconstruct a route and return matching breadcrumb components you can render however you like. Render a simple string, a component that fetches a model in order to display the desired content, or just render something totally unrelated to the route.
@@ -66,7 +50,7 @@ const Breadcrumbs = ({ breadcrumbs }) => (
 export default withBreadcrumbs()(Breadcrumbs);
 ```
 
-This will work for some routes, but you may want other routes to be dynamic (such as a user name breadcrumb). Let's modify the above example to handle custom-set breadcrumbs.
+The example above will work for some routes, but you may want other routes to be dynamic (such as a user name breadcrumb). Let's modify the above example to handle custom-set breadcrumbs.
 
 ```js
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
