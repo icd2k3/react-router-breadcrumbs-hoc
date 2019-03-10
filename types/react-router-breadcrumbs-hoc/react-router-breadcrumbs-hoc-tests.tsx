@@ -28,9 +28,9 @@ const routes: BreadcrumbsRoute[] = [
 
 const Breadcrumbs = ({ breadcrumbs }: InjectedProps) => (
   <div>
-    {breadcrumbs.map((breadcrumb: BreadcrumbsProps, index: number) => (
-      <span key={breadcrumb.key}>
-        <NavLink to={breadcrumb.props.match.url}>{breadcrumb}</NavLink>
+    {breadcrumbs.map(({ breadcrumb, match }: BreadcrumbsProps, index: number) => (
+      <span key={match.url}>
+        <NavLink to={match.url}>{breadcrumb}</NavLink>
         {index < breadcrumbs.length - 1 && <i> / </i>}
       </span>
     ))}

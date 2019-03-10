@@ -25,9 +25,8 @@ export interface BreadcrumbsRoute {
   matchOptions?: MatchOptions;
 }
 
-export interface BreadcrumbsProps<T = {}> {
-  key: string;
-  props: RouteComponentProps<T>;
+export interface BreadcrumbsProps<T = {}> extends RouteComponentProps<T> {
+  breadcrumb: React.ReactNode | string;
 }
 
 export interface InjectedProps<P = {}> extends RouteComponentProps<P> {
