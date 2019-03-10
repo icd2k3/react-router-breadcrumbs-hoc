@@ -1,52 +1,28 @@
-## Migrating from 1.x.x -> 2.x.x
+## Migrating from 2.x.x -> 3.x.x
 
-#### 1.) `withBreadcrumbs` is now the default export
+#### First things, first...
 
-**1.x.x**
-```js
-import { withBreadcrumbs } from 'react-router-breadcrumbs-hoc';
+`withBreadcrumbs` now returns an array of `Object`s instead of `Component`s:
+
+```diff
+-  breadcrumbs.map(breadcrumb)
++  breadcrumbs.map({ breadcrumb })
 ```
 
-**2.x.x**
-```js
-import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
+Within this object, other props like `match`, `location`, and pass-through props are also returned:
+
+```diff
+-  breadcrumbs.map((breadcrumb) => {})
++  breadcrumbs.map(({ breadcrumb, match, location, someCustomProp }) => {})
 ```
 
-#### 2.) The breadcrumbs array returned by the HOC is now _just_ the components. It _used_ to be an array of objects, but I decided this approach was easier to understand and made the implementation code a bit cleaner.
+#### Why was this change made?
 
-**1.x.x**
-```js
-{breadcrumbs.map(({ breadcrumb, path, match }) => (
-  <span key={path}>
-    <NavLink to={match.url}>
-      {breadcrumb}
-    </NavLink>
-  </span>
-))}
-```
+Under the hood, `withBreadcrumbs` uses React's `createElement` method to render breadcrumbs. In version 2, all props (like `match`, `location`, etc) were assigned to the rendered component (for example: `createElement(breadcrumb, componentProps);`).
 
-**2.x.x**
-```js
-{breadcrumbs.map(breadcrumb => (
-  <span key={breadcrumb.props.key}>
-    <NavLink to={breadcrumb.props.match.url}>
-      {breadcrumb}
-    </NavLink>
-  </span>
-))}
-```
+This had the unintended side-effect of rendering any of these props as an _attribute_ on the DOM element. So, ultimately this resulted in some breadcrumbs rendering like `<span someProp="[Object object]"/>'` as well as some React console warnings [in certain cases](https://github.com/icd2k3/react-router-breadcrumbs-hoc/issues/59).
 
-#### 3.) The package will now attempt to return sensible defaults for breadcrumbs unless otherwise provided making the the package now "opt-out" instead of "opt-in" for all paths. See the readme for how to disable default breadcrumb behavior.
-
-**1.x.x**
-```js
-withBreadcrumbs([
-  { path: '/', breadcrumb: 'Home' },
-  { path: '/users', breadcrumb: 'Users' },
-])(Component);
-```
-
-**2.x.x** (the above breadcrumbs will be automagically generated so there's no need to include them in config)
-```js
-withBreadcrumbs()(Component);
-```
+This issue has been solved by adding the following logic:
+- If the breadcrumb is a simple string, don't render it with props applied
+- If the breadcrumb is a function/class (dynamic), _then_ pass all the props to it
+- Return objects instead of components so that we can still utilize all the props during the `map`
