@@ -30,30 +30,21 @@ const NO_BREADCRUMB = 'NO_BREADCRUMB';
  * with `match`, `location`, and `key` props.
  */
 const render = ({
-  /**
-   * extracting `component` here to avoid an invalid attribute warning
-   * see: https://github.com/icd2k3/react-router-breadcrumbs-hoc/issues/59
-   * This is actually a symptom of a larger issue with this current
-   * functionality of passing route data (needed for breadcrumb rendering)
-   * as props on the component itself. This has the unintended side-effect
-   * of rendering those props as element attributes in the DOM.
-   * TODO: Refactor this render logic (and probably the API) to not render
-   * those props as attributes on the breadcrumb element.
-   */
-  component,
-
+  component: reactRouterConfigComponent,
   breadcrumb,
   match,
   location,
   ...rest
 }) => {
   const componentProps = { match, location, key: match.url, ...rest };
-  if (typeof breadcrumb === 'function') {
-    return createElement(breadcrumb, componentProps);
-  }
-  return createElement('span', componentProps, breadcrumb);
-};
 
+  return {
+    ...componentProps,
+    breadcrumb: typeof breadcrumb === 'function'
+      ? createElement(breadcrumb, componentProps)
+      : createElement('span', { key: componentProps.key }, breadcrumb),
+  };
+};
 
 /**
  * Small helper method to get a default `humanize-string`
@@ -73,7 +64,7 @@ const getDefaultBreadcrumb = ({ pathSection, currentSection, location }) => {
  * Loops through the route array (if provided) and returns either a
  * user-provided breadcrumb OR a sensible default (if enabled) via `humanize-string`.
 */
-const getBreadcrumb = ({
+const getBreadcrumbMatch = ({
   currentSection,
   disableDefaults,
   excludePaths,
@@ -161,14 +152,14 @@ export const getBreadcrumbs = ({ routes, location, options = {} }) => {
     .replace(/\/$/, '')
     // Split pathname into sections.
     .split('/')
-    // Reduce over the sections and call `getBreadcrumb()` for each section.
+    // Reduce over the sections and call `getBreadcrumbMatch()` for each section.
     .reduce((previousSection, currentSection) => {
       // Combine the last route section with the currentSection.
       // For example, `pathname = /1/2/3` results in match checks for
       // `/1`, `/1/2`, `/1/2/3`.
       const pathSection = !currentSection ? '/' : `${previousSection}/${currentSection}`;
 
-      const breadcrumb = getBreadcrumb({
+      const breadcrumb = getBreadcrumbMatch({
         currentSection,
         location,
         pathSection,

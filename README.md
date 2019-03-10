@@ -35,33 +35,48 @@ or
 withBreadcrumbs()(MyComponent);
 ```
 
-## Example
+## Examples
 
+Start seeing generated breadcrumbs right away with this simple example
 ```js
-import React from 'react';
-import { NavLink } from 'react-router-dom';
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
 
-// breadcrumbs can be any type of component or string
-const UserBreadcrumb = ({ match }) =>
-  <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
+const Breadcrumbs = ({ breadcrumbs }) => (
+  <React.Fragment>
+    {breadcrumbs.map(({ breadcrumb }) => breadcrumb)}
+  </React.Fragment>
+)
 
-// define some custom breadcrumbs for certain routes (optional)
+export default withBreadcrumbs()(Breadcrumbs);
+```
+
+The example above will work for some routes, but you may want other routes to be dynamic (such as a user name breadcrumb). Let's modify it to handle custom-set breadcrumbs.
+
+```js
+import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
+
+const userNamesById = { '1': 'John' }
+
+const DynamicUserBreadcrumb = ({ match }) => (
+  <span>{userNamesById[match.params.userId]}</span>
+);
+
 const routes = [
-  { path: '/users/:userId', breadcrumb: UserBreadcrumb },
+  { path: '/users/:userId', breadcrumb: DynamicUserBreadcrumb },
   { path: '/example', breadcrumb: 'Custom Example' },
 ];
 
 // map & render your breadcrumb components however you want.
-// each `breadcrumb` has the props `key`, `location`, and `match` included!
 const Breadcrumbs = ({ breadcrumbs }) => (
   <div>
-    {breadcrumbs.map((breadcrumb, index) => (
-      <span key={breadcrumb.key}>
-        <NavLink to={breadcrumb.props.match.url}>
-          {breadcrumb}
-        </NavLink>
-        {(index < breadcrumbs.length - 1) && <i> / </i>}
+    {breadcrumbs.map(({
+      match,
+      breadcrumb
+      // other props are available during render, such as `location` 
+      // and any props found in your route objects will be passed through too
+    }) => (
+      <span key={match.url}>
+        <NavLink to={match.url}>{breadcrumb}</NavLink>
       </span>
     ))}
   </div>
@@ -75,14 +90,33 @@ For the above example...
 Pathname | Result
 --- | ---
 /users | Home / Users
-/users/id | Home / Users / John
+/users/1 | Home / Users / John
 /example | Home / Custom Example
 
 ## Already using a [route config](https://reacttraining.com/react-router/web/example/route-config) array with react-router?
 
 Just add a `breadcrumb` prop to your routes that require custom breadcrumbs.
 
+`{ path, component }` -> `{ path, component, breadcrumb }`
+
 `withBreadcrumbs(routeConfig)(MyComponent)`
+
+## Disabling default generated breadcrumbs
+
+This package will attempt to create breadcrumbs for you based on the route section via [humanize-string](https://github.com/sindresorhus/humanize-string). For example `/users` will auotmatically create the breadcrumb `"Users"`. There are two ways to disable default breadcrumbs for a path:
+
+**Option 1:** Disable _all_ default breadcrumb generation by passing `disableDefaults: true` in the `options` object
+
+`withBreadcrumbs(routes, { disableDefaults: true })`
+
+**Option 2:** Disable _individual_ default breadcrumbs by passing `breadcrumb: null` in route config:
+
+`{ path: '/a/b', breadcrumb: null }`
+
+**Option 3:** Disable _individual_ default breadcrumbs by passing an `excludePaths` array in the `options` object
+
+`withBreadcrumbs(routes, { excludePaths: ['/', '/no-breadcrumb/for-this-route'] })`
+
 
 ## Dynamic breadcrumbs
 
@@ -123,22 +157,6 @@ const EditorBreadcrumb = ({ location: { state: { isNew } } }) => (
 // upon navigation, breadcrumb will display: Add New
 <Link to={{ pathname: '/editor', state: { isNew: true } }}>Add</Link>
 ```
-
-## Disabling default breadcrumbs for paths
-
-This package will attempt to create breadcrumbs for you based on the route section via [humanize-string](https://github.com/sindresorhus/humanize-string). For example `/users` will auotmatically create the breadcrumb `"Users"`. There are two ways to disable default breadcrumbs for a path:
-
-**Option 1:** Disable _all_ default breadcrumb generation by passing `disableDefaults: true` in the `options` object
-
-`withBreadcrumbs(routes, { disableDefaults: true })`
-
-**Option 2:** Disable _individual_ default breadcrumbs by passing `breadcrumb: null` in route config:
-
-`{ path: '/a/b', breadcrumb: null }`
-
-**Option 3:** Disable _individual_ default breadcrumbs by passing an `excludePaths` array in the `options` object
-
-`withBreadcrumbs(routes, { excludePaths: ['/', '/no-breadcrumb/for-this-route'] })`
 
 ## Order matters!
 
