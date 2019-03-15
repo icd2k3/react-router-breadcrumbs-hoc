@@ -3,7 +3,7 @@
 </h3>
 
 <p align="center">
-  A small (~3kb gzip), zero-dependency, flexible, <a href="https://reactjs.org/docs/higher-order-components.html">higher order component</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 4.x
+  A small (~3kb gzip), flexible, <a href="https://reactjs.org/docs/higher-order-components.html">higher order component</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 4.x
 </p>
 
 <p align="center">
