@@ -20,10 +20,19 @@
 
 import { createElement } from 'react';
 import { matchPath, withRouter } from 'react-router';
-import humanizeString from 'humanize-string';
 
 const DEFAULT_MATCH_OPTIONS = { exact: true };
 const NO_BREADCRUMB = 'NO_BREADCRUMB';
+
+/**
+ * This method was "borrowed" from https://stackoverflow.com/a/28339742
+ * we used to use the humanize-string package, but it added a lot of bundle
+ * size and issues with compilation. This 4-liner seems to cover most cases.
+ */
+const humanize = str => str
+  .replace(/^[\s_]+|[\s_]+$/g, '')
+  .replace(/[_\s]+/g, ' ')
+  .replace(/^[a-z]/, m => m.toUpperCase());
 
 /**
  * Renders and returns the breadcrumb complete
@@ -47,14 +56,13 @@ const render = ({
 };
 
 /**
- * Small helper method to get a default `humanize-string`
- * breadcrumb if the user hasn't provided one.
+ * Small helper method to get a default breadcrumb if the user hasn't provided one.
 */
 const getDefaultBreadcrumb = ({ pathSection, currentSection, location }) => {
   const match = matchPath(pathSection, { ...DEFAULT_MATCH_OPTIONS, path: pathSection });
 
   return render({
-    breadcrumb: humanizeString(currentSection),
+    breadcrumb: humanize(currentSection),
     match,
     location,
   });
@@ -62,7 +70,7 @@ const getDefaultBreadcrumb = ({ pathSection, currentSection, location }) => {
 
 /**
  * Loops through the route array (if provided) and returns either a
- * user-provided breadcrumb OR a sensible default (if enabled) via `humanize-string`.
+ * user-provided breadcrumb OR a sensible default (if enabled)
 */
 const getBreadcrumbMatch = ({
   currentSection,
@@ -108,8 +116,8 @@ const getBreadcrumbMatch = ({
       breadcrumb = render({
         // Although we have a match, the user may be passing their react-router config object
         // which we support. The route config object may not have a `breadcrumb` param specified.
-        // If this is the case, we should provide a default via `humanizeString`.
-        breadcrumb: userProvidedBreadcrumb || humanizeString(currentSection),
+        // If this is the case, we should provide a default via `humanize`.
+        breadcrumb: userProvidedBreadcrumb || humanize(currentSection),
         match,
         location,
         ...rest,
@@ -119,7 +127,7 @@ const getBreadcrumbMatch = ({
     return false;
   });
 
-  // User provided a breadcrumb prop, or we generated one via `humanize-string` above.
+  // User provided a breadcrumb prop, or we generated one above.
   if (breadcrumb) {
     return breadcrumb;
   }
@@ -140,7 +148,7 @@ const getBreadcrumbMatch = ({
 
 /**
  * Splits the pathname into sections, then search for matches in the routes
- * a user-provided breadcrumb OR a sensible default via `humanize-string`.
+ * a user-provided breadcrumb OR a sensible default.
 */
 export const getBreadcrumbs = ({ routes, location, options = {} }) => {
   const matches = [];

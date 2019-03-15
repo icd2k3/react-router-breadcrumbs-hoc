@@ -1,6 +1,6 @@
 {
   "name": "react-router-breadcrumbs-hoc",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Just a tiny, flexible, higher order component for rendering breadcrumbs with react-router 4.x",
   "repository": "icd2k3/react-router-breadcrumbs-hoc",
   "keywords": [
@@ -19,9 +19,7 @@
     "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0"
   },
-  "dependencies": {
-    "humanize-string": "^2.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.3.4",
