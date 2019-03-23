@@ -36,7 +36,7 @@ withBreadcrumbs()(MyComponent);
 
 ## Examples
 
-Start seeing generated breadcrumbs right away with this simple example
+Start seeing generated breadcrumbs right away with this simple example [codesandbox](https://codesandbox.io/s/p7vy15zn9x)
 ```js
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
 
