@@ -49,7 +49,7 @@ const Breadcrumbs = ({ breadcrumbs }) => (
 export default withBreadcrumbs()(Breadcrumbs);
 ```
 
-The example above will work for some routes, but you may want other routes to be dynamic (such as a user name breadcrumb). Let's modify it to handle custom-set breadcrumbs.
+The example above will work for some routes, but you may want other routes to be dynamic (such as a user name breadcrumb). Let's modify it to handle custom-set breadcrumbs. ([codesandbox](https://codesandbox.io/s/503n8kw12n))
 
 ```js
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
