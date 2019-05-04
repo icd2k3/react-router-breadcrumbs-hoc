@@ -1,1 +1,3 @@
 src/
+coverage/
+/yarn-error.log

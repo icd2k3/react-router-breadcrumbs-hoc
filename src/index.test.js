@@ -10,6 +10,7 @@ import withBreadcrumbs, { getBreadcrumbs } from './index';
 // imports to test compiled builds
 import withBreadcrumbsCompiledES, { getBreadcrumbs as getBreadcrumbsCompiledES } from '../dist/es/index';
 import withBreadcrumbsCompiledUMD, { getBreadcrumbs as getBreadcrumbsCompiledUMD } from '../dist/umd/index';
+import withBreadcrumbsCompiledCJS, { getBreadcrumbs as getBreadcrumbsCompiledCJS } from '../dist/cjs/index';
 
 const components = {
   Breadcrumbs: ({ breadcrumbs }) => (
@@ -39,6 +40,8 @@ const components = {
 
 const getHOC = () => {
   switch (process.env.TEST_BUILD) {
+    case 'cjs':
+      return withBreadcrumbsCompiledCJS;
     case 'umd':
       return withBreadcrumbsCompiledUMD;
     case 'es':
@@ -50,6 +53,8 @@ const getHOC = () => {
 
 const getMethod = () => {
   switch (process.env.TEST_BUILD) {
+    case 'cjs':
+      return getBreadcrumbsCompiledCJS;
     case 'umd':
       return getBreadcrumbsCompiledUMD;
     case 'es':
