@@ -18,7 +18,7 @@
  *
  */
 
-import { createElement } from 'react';
+import React, { createElement } from 'react';
 import { matchPath, withRouter } from 'react-router';
 
 const DEFAULT_MATCH_OPTIONS = { exact: true };
@@ -40,7 +40,7 @@ const humanize = str => str
  */
 const render = ({
   component: reactRouterConfigComponent,
-  breadcrumb,
+  breadcrumb: Breadcrumb,
   match,
   location,
   ...rest
@@ -49,9 +49,9 @@ const render = ({
 
   return {
     ...componentProps,
-    breadcrumb: typeof breadcrumb === 'function'
-      ? createElement(breadcrumb, componentProps)
-      : createElement('span', { key: componentProps.key }, breadcrumb),
+    breadcrumb: typeof Breadcrumb === 'string'
+      ? createElement('span', { key: componentProps.key }, Breadcrumb)
+      : <Breadcrumb {...componentProps} />,
   };
 };
 

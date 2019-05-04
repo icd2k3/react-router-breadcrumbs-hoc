@@ -30,6 +30,11 @@ const components = {
     </span>
   ),
   BreadcrumbExtraPropsTest: ({ foo, bar }) => <span>{foo}{bar}</span>,
+  BreadcrumbMemoized: React.memo(() => <span>Memoized</span>),
+  // eslint-disable-next-line react/prefer-stateless-function
+  BreadcrumbClass: class BreadcrumbClass extends React.PureComponent {
+    render() { return (<span>Class</span>); }
+  },
 };
 
 const getHOC = () => {
@@ -159,6 +164,20 @@ describe('react-router-breadcrumbs-hoc', () => {
       ];
       const { breadcrumbs } = render({ pathname: '/user/create', routes });
       expect(breadcrumbs).toBe('Home / User / Oops');
+    });
+  });
+
+  describe('Different component types', () => {
+    it('Should render memoized components', () => {
+      const routes = [{ path: '/memo', breadcrumb: components.BreadcrumbMemoized }];
+      const { breadcrumbs } = render({ pathname: '/memo', routes });
+      expect(breadcrumbs).toBe('Home / Memoized');
+    });
+
+    it('Should render class components', () => {
+      const routes = [{ path: '/class', breadcrumb: components.BreadcrumbClass }];
+      const { breadcrumbs } = render({ pathname: '/class', routes });
+      expect(breadcrumbs).toBe('Home / Class');
     });
   });
 
