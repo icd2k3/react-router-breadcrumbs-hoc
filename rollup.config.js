@@ -1,47 +1,42 @@
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
+import { uglify } from 'rollup-plugin-uglify';
 
 const pkg = require('./package.json');
 
 const external = Object.keys(pkg.peerDependencies);
+
+const plugins = [
+  babel({
+    exclude: 'node_modules/**',
+  }),
+  resolve({
+    mainFields: ['module', 'main', 'umd'],
+  }),
+];
+
+const exports = [
+  { format: 'cjs', file: pkg.main, plugins: plugins.concat([commonjs(), uglify()]) },
+  { format: 'umd', file: pkg.umd, plugins: plugins.concat([commonjs(), uglify()]) },
+  { format: 'es', file: pkg.module, plugins },
+];
 
 const globals = {
   react: 'React',
   'react-router': 'ReactRouter',
 };
 
-const config = {
+export default exports.map(item => ({
   input: 'src/index.js',
-  plugins: [
-    babel({
-      exclude: 'node_modules/**',
-    }),
-    resolve({
-      module: true,
-      jsnext: true,
-      main: true,
-    }),
-    commonjs(),
-  ],
+  plugins: item.plugins,
   external,
-  output: [
-    {
-      exports: 'named',
-      file: pkg.main,
-      format: 'umd',
-      globals,
-      name: 'react-router-breadcrumbs-hoc',
-      sourcemap: true,
-    },
-    {
-      exports: 'named',
-      file: pkg.module,
-      format: 'es',
-      globals,
-      sourcemap: true,
-    },
-  ],
-};
-
-export default config;
+  output: {
+    exports: 'named',
+    file: item.file,
+    format: item.format,
+    name: 'react-router-breadcrumbs-hoc',
+    globals,
+    sourcemap: true,
+  },
+}));
