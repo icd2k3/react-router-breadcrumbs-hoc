@@ -311,6 +311,13 @@ describe('react-router-breadcrumbs-hoc', () => {
       });
     });
 
+    describe('options without routes array', () => {
+      it('Should be able to set options without defining a routes array', () => {
+        const { breadcrumbs } = render({ pathname: '/one/two', routes: null, options: { excludePaths: ['/', '/one'] } });
+        expect(breadcrumbs).toBe('Two');
+      });
+    });
+
     describe('disableDefaults', () => {
       it('Should disable all default breadcrumb generation', () => {
         const routes = [{ path: '/one', breadcrumb: 'One' }, { path: '/one/two' }];

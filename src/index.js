@@ -192,7 +192,7 @@ export const getBreadcrumbs = ({ routes, location, options = {} }) => {
  * Takes a route array and recursively flattens it IF there are
  * nested routes in the config.
 */
-const flattenRoutes = routes => routes.reduce((arr, route) => {
+const flattenRoutes = routes => (routes || []).reduce((arr, route) => {
   if (route.routes) {
     return arr.concat([route, ...flattenRoutes(route.routes)]);
   }
