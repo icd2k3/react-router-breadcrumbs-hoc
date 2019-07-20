@@ -1,6 +1,6 @@
 {
   "name": "react-router-breadcrumbs-hoc",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "small, flexible, higher order component for rendering breadcrumbs with react-router 4.x",
   "repository": "icd2k3/react-router-breadcrumbs-hoc",
   "main": "dist/cjs/index.js",
@@ -8,7 +8,6 @@
   "umd": "dist/umd/index.js",
   "types": "types/react-router-breadcrumbs-hoc/index.d.ts",
   "scripts": {
-    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('Please use yarn to install dependencies, not npm')\"",
     "prepublishOnly": "npm run build",
     "build": "rollup -c",
     "test": "jest",
