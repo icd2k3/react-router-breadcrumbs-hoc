@@ -84,7 +84,8 @@ const getBreadcrumbMatch = ({
 
   // Check the optional `exludePaths` option in `options` to see if the
   // current path should not include a breadcrumb.
-  if (excludePaths && excludePaths.includes(pathSection)) {
+  const getIsPathExcluded = path => matchPath(pathSection, { path, exact: true, strict: false });
+  if (excludePaths && excludePaths.some(getIsPathExcluded)) {
     return NO_BREADCRUMB;
   }
 

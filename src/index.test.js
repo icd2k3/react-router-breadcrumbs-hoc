@@ -285,6 +285,20 @@ describe('react-router-breadcrumbs-hoc', () => {
         const { breadcrumbs } = render({ pathname: '/one/two', options: { excludePaths: ['/', '/one'] } });
         expect(breadcrumbs).toBe('Two');
       });
+
+      it('Should work with url params', () => {
+        const routes = [
+          { path: '/a' },
+          { path: '/a/:b' },
+          { path: '/a/:b/:c' },
+        ];
+        const { breadcrumbs } = render({
+          pathname: '/a/b/c',
+          routes,
+          options: { excludePaths: ['/a/:b', '/a'] },
+        });
+        expect(breadcrumbs).toBe('Home / C');
+      });
     });
 
     describe('disableDefaults', () => {
