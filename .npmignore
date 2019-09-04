@@ -1,3 +1,6 @@
 src/
 coverage/
 /yarn-error.log
+scripts/
+hooks/
+coverage/

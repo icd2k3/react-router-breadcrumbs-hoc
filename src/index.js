@@ -29,10 +29,10 @@ const NO_BREADCRUMB = 'NO_BREADCRUMB';
  * we used to use the humanize-string package, but it added a lot of bundle
  * size and issues with compilation. This 4-liner seems to cover most cases.
  */
-const humanize = str => str
+const humanize = (str) => str
   .replace(/^[\s_]+|[\s_]+$/g, '')
   .replace(/[_\s]+/g, ' ')
-  .replace(/^[a-z]/, m => m.toUpperCase());
+  .replace(/^[a-z]/, (m) => m.toUpperCase());
 
 /**
  * Renders and returns the breadcrumb complete
@@ -84,7 +84,8 @@ const getBreadcrumbMatch = ({
 
   // Check the optional `exludePaths` option in `options` to see if the
   // current path should not include a breadcrumb.
-  if (excludePaths && excludePaths.includes(pathSection)) {
+  const getIsPathExcluded = (path) => matchPath(pathSection, { path, exact: true, strict: false });
+  if (excludePaths && excludePaths.some(getIsPathExcluded)) {
     return NO_BREADCRUMB;
   }
 
@@ -192,18 +193,20 @@ export const getBreadcrumbs = ({ routes, location, options = {} }) => {
  * Takes a route array and recursively flattens it IF there are
  * nested routes in the config.
 */
-const flattenRoutes = routes => (routes || []).reduce((arr, route) => {
+const flattenRoutes = (routes) => (routes || []).reduce((arr, route) => {
   if (route.routes) {
     return arr.concat([route, ...flattenRoutes(route.routes)]);
   }
   return arr.concat(route);
 }, []);
 
-export default (routes = [], options) => Component => withRouter(props => createElement(Component, {
-  ...props,
-  breadcrumbs: getBreadcrumbs({
-    routes: flattenRoutes(routes),
-    location: props.location,
-    options,
+export default (routes = [], options) => (Component) => withRouter(
+  (props) => createElement(Component, {
+    ...props,
+    breadcrumbs: getBreadcrumbs({
+      routes: flattenRoutes(routes),
+      location: props.location,
+      options,
+    }),
   }),
-}));
+);
