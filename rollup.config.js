@@ -18,9 +18,7 @@ const config = {
       exclude: 'node_modules/**',
     }),
     resolve({
-      module: true,
-      jsnext: true,
-      main: true,
+      mainFields: ['module', 'main', 'jsnext'],
     }),
     commonjs(),
   ],
