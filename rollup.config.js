@@ -27,7 +27,7 @@ const globals = {
   'react-router': 'ReactRouter',
 };
 
-export default exports.map(item => ({
+export default exports.map((item) => ({
   input: 'src/index.js',
   plugins: item.plugins,
   external,
