@@ -38,6 +38,6 @@ export type withRouter<P extends InjectedProps<any>> = (component: React.Compone
 >;
 
 export default function withBreadcrumbs<P>(
-  routes: BreadcrumbsRoute[],
+  routes?: BreadcrumbsRoute[],
   options?: Options
 ): withRouter<InjectedProps<P>>;
