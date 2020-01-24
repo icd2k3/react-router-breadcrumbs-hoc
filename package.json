@@ -10,13 +10,13 @@
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "rollup -c",
-    "test": "yarn build && jest",
+    "test": "jest",
     "test-build": "sh ./scripts/test-build.sh",
     "types": "yarn type-src && yarn type-descriptions",
     "type-src": "tsc -p tsconfig.json",
     "type-descriptions": "tsc -p types/react-router-breadcrumbs-hoc",
     "travis": "sh ./scripts/travis.sh",
-    "lint": "yarn build && eslint ./src/**"
+    "lint": "eslint ./src/**"
   },
   "husky": {
     "hooks": {
