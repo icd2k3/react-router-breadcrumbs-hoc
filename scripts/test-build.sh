@@ -6,7 +6,6 @@
 
 set -e
 
-yarn build && \
 TEST_BUILD=cjs yarn test --coverage=0 && \
 TEST_BUILD=umd yarn test --coverage=0 && \
 TEST_BUILD=es yarn test --coverage=0

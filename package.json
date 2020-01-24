@@ -1,6 +1,6 @@
 {
   "name": "react-router-breadcrumbs-hoc",
-  "version": "3.2.4",
+  "version": "3.2.5",
   "description": "small, flexible, higher order component for rendering breadcrumbs with react-router 4.x",
   "repository": "icd2k3/react-router-breadcrumbs-hoc",
   "main": "dist/cjs/index.js",
@@ -12,15 +12,17 @@
     "build": "rollup -c",
     "test": "jest",
     "test-build": "sh ./scripts/test-build.sh",
-    "types": "tsc -p types/react-router-breadcrumbs-hoc",
+    "types": "yarn type-src && yarn type-descriptions",
+    "type-src": "tsc -p tsconfig.json",
+    "type-descriptions": "tsc -p types/react-router-breadcrumbs-hoc",
     "travis": "sh ./scripts/travis.sh",
     "lint": "eslint ./src/**"
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn lint && yarn test",
-      "pre-push": "yarn types && yarn lint && yarn test-build"
+      "pre-commit": "yarn build && yarn lint && yarn test",
+      "pre-push": "yarn build && yarn types && yarn lint && yarn test-build"
     }
   },
   "author": "Justin Schrader (me@justin.beer)",
@@ -34,16 +36,17 @@
   "devDependencies": {
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
-    "@babel/plugin-transform-modules-commonjs": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "@types/react": "^16.9.19",
     "@types/react-router-dom": "^5.1.3",
-    "babel-core": "^7.0.0-0",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^25.1.0",
     "coveralls": "^3.0.9",

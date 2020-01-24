@@ -7,12 +7,16 @@ const pkg = require('./package.json');
 
 const external = Object.keys(pkg.peerDependencies);
 
+const extensions = ['.js', '.tsx'];
+
 const plugins = [
   babel({
     exclude: 'node_modules/**',
+    extensions,
   }),
   resolve({
     mainFields: ['module', 'main', 'umd'],
+    extensions,
   }),
 ];
 
@@ -28,7 +32,7 @@ const globals = {
 };
 
 export default exports.map((item) => ({
-  input: 'src/index.js',
+  input: 'src/index.tsx',
   plugins: item.plugins,
   external,
   output: {
