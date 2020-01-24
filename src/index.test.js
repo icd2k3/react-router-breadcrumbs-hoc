@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
@@ -5,7 +6,7 @@ import PropTypes from 'prop-types';
 import { mount } from 'enzyme';
 import { MemoryRouter as Router } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import withBreadcrumbs, { getBreadcrumbs } from './index';
+import withBreadcrumbs, { getBreadcrumbs } from './index.tsx';
 
 // imports to test compiled builds
 import withBreadcrumbsCompiledES, { getBreadcrumbs as getBreadcrumbsCompiledES } from '../dist/es/index';

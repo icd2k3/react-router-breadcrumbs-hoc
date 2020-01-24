@@ -1,6 +1,7 @@
 {
   "extends": "airbnb",
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "env": { "jasmine": true },
   "rules": {
     "object-curly-newline": 0,
