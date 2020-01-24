@@ -21,8 +21,8 @@
 import React, { createElement } from 'react';
 import { matchPath, withRouter } from 'react-router';
 
-/* eslint-disable-next-line */
-import * as types from '../types/react-router-breadcrumbs-hoc/index'
+// eslint-disable-next-line import/extensions, import/no-unresolved, no-unused-vars
+import * as types from '../types/react-router-breadcrumbs-hoc/index';
 
 const DEFAULT_MATCH_OPTIONS = { exact: true };
 const NO_BREADCRUMB = 'NO_BREADCRUMB';
