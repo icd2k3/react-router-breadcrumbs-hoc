@@ -36,7 +36,7 @@ withBreadcrumbs()(MyComponent);
 
 ## Examples
 
-Start seeing generated breadcrumbs right away with this simple example ([codesandbox](https://codesandbox.io/s/p7vy15zn9x))
+Start seeing generated breadcrumbs right away with this simple example ([codesandbox](https://codesandbox.io/s/bare-bones-example-kcdrt))
 ```js
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
 
@@ -49,7 +49,7 @@ const Breadcrumbs = ({ breadcrumbs }) => (
 export default withBreadcrumbs()(Breadcrumbs);
 ```
 
-The example above will work for some routes, but you may want other routes to be dynamic (such as a user name breadcrumb). Let's modify it to handle custom-set breadcrumbs. ([codesandbox](https://codesandbox.io/s/503n8kw12n))
+The example above will work for some routes, but you may want other routes to be dynamic (such as a user name breadcrumb). Let's modify it to handle custom-set breadcrumbs. ([codesandbox](https://codesandbox.io/s/basic-dynamic-example-m03tz))
 
 ```js
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
@@ -188,7 +188,7 @@ To fix the issue above, just adjust the order of your routes:
 ```js
 Route = {
   path: String
-  breadcrumb: String|Function? // if not provided, a default breadcrumb will be returned
+  breadcrumb?: String|Component // if not provided, a default breadcrumb will be returned
   matchOptions?: {             // see: https://reacttraining.com/react-router/web/api/matchPath
     exact?: Boolean,
     strict?: Boolean,
@@ -196,17 +196,17 @@ Route = {
 }
 
 Options = {
-  excludePaths: Array       // disable default breadcrumb generation for specific paths
-  disableDefaults: Boolean  // disable all default breadcrumb generation
+  excludePaths?: string[]       // disable default breadcrumb generation for specific paths
+  disableDefaults?: Boolean  // disable all default breadcrumb generation
 }
 
 // if routes are not passed, default breadcrumbs will be returned
-withBreadcrumbs(routes?: Array<Route>, options? Object<Options>): HigherOrderComponent
+withBreadcrumbs(routes?: Route[], options?: Options): HigherOrderComponent
 
 // you shouldn't ever really have to use `getBreadcrumbs`, but it's
 // exported for convenience if you don't want to use the HOC
 getBreadcrumbs({
-  routes: Array<Route>,
-  options: Object<Options>,
-}): Array<Breadcrumb>
+  routes: Route[],
+  options: Options,
+}): Breadcrumb[]
 ```
