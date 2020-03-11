@@ -15,7 +15,6 @@
     "types": "yarn type-src && yarn type-descriptions",
     "type-src": "tsc -p tsconfig.json",
     "type-descriptions": "tsc -p types/react-router-breadcrumbs-hoc",
-    "travis": "sh ./scripts/travis.sh",
     "lint": "eslint ./src/**"
   },
   "husky": {
