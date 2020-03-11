@@ -28,6 +28,10 @@ jobs:
       uses: borales/actions-yarn@v2.0.0
       with:
         cmd: install
+    - name: yarn build
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: build
     - name: yarn lint
       uses: borales/actions-yarn@v2.0.0
       with:
@@ -40,10 +44,6 @@ jobs:
       uses: borales/actions-yarn@v2.0.0
       with:
         cmd: test
-    - name: yarn build
-      uses: borales/actions-yarn@v2.0.0
-      with:
-        cmd: build
     - name: yarn test-build
       uses: borales/actions-yarn@v2.0.0
       with:
