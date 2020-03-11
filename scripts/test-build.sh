@@ -6,9 +6,9 @@
 
 set -e
 
-echo "Testing CJS dist build" && \
+printf "\n====\nTesting CJS dist build\n====\n" && \
 TEST_BUILD=cjs yarn test --coverage=0 && \
-echo "Testing UMD dist build" && \
+printf "\n====\nTesting UMD dist build\n====\n" && \
 TEST_BUILD=umd yarn test --coverage=0 && \
-echo "Testing ES dist build" && \
+printf "\n====\nTesting ES dist build\n====\n" && \
 TEST_BUILD=es yarn test --coverage=0
