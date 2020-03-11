@@ -24,13 +24,33 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Yarn install
+    - name: yarn install
       uses: borales/actions-yarn@v2.0.0
       with:
         cmd: install
-    - name: Yarn test
+    - name: yarn lint
       uses: borales/actions-yarn@v2.0.0
       with:
-        cmd: travis
+        cmd: lint
+    - name: yarn types
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: types
+    - name: yarn test
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: test
+    - name: yarn build
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: build
+    - name: yarn test-build
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: test-build
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
       env:
         CI: true
