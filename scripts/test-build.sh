@@ -6,6 +6,9 @@
 
 set -e
 
+echo "Testing CJS dist build" && \
 TEST_BUILD=cjs yarn test --coverage=0 && \
+echo "Testing UMD dist build" && \
 TEST_BUILD=umd yarn test --coverage=0 && \
+echo "Testing ES dist build" && \
 TEST_BUILD=es yarn test --coverage=0
