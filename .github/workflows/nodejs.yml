@@ -24,32 +24,28 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: yarn set version
-      uses: borales/actions-yarn@v2.0.0
-      with:
-        cmd: set version 1.22.4
     - name: yarn install
-      uses: borales/actions-yarn@v2.0.0
+      uses: borales/actions-yarn@v2.1.0
       with:
         cmd: install
     - name: yarn build
-      uses: borales/actions-yarn@v2.0.0
+      uses: borales/actions-yarn@v2.1.0
       with:
         cmd: build
     - name: yarn lint
-      uses: borales/actions-yarn@v2.0.0
+      uses: borales/actions-yarn@v2.1.0
       with:
         cmd: lint
     - name: yarn types
-      uses: borales/actions-yarn@v2.0.0
+      uses: borales/actions-yarn@v2.1.0
       with:
         cmd: types
     - name: yarn test
-      uses: borales/actions-yarn@v2.0.0
+      uses: borales/actions-yarn@v2.1.0
       with:
         cmd: test
     - name: yarn test-build
-      uses: borales/actions-yarn@v2.0.0
+      uses: borales/actions-yarn@v2.1.0
       with:
         cmd: test-build
     - name: Coveralls
