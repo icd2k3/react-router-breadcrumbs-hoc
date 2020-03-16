@@ -276,7 +276,7 @@ export default (
   return withRouter(
     (props: { location: types.Location }) => {
       // eslint-disable-next-line no-console
-      console.warn('[react-router-breadcrumbs-hoc]: react-router v4 support will be deprecated in the next major release. Please consider upgrading react-router and react-router-dom to >= v5.');
+      console.warn('[react-router-breadcrumbs-hoc]: react-router v4 support will be deprecated in the next major release. Please consider upgrading react-router and react-router-dom to >= 5.1.0');
 
       return createElement(Component, {
         ...props,

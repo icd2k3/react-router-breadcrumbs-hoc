@@ -27,7 +27,7 @@
   "author": "Justin Schrader (me@justin.beer)",
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=16",
+    "react": ">=16.8",
     "react-router": ">=4",
     "react-router-dom": ">=4"
   },
