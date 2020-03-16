@@ -19,7 +19,8 @@
  */
 
 import React, { createElement } from 'react';
-import { matchPath, withRouter } from 'react-router';
+import { matchPath } from 'react-router';
+import { useLocation } from 'react-router-dom';
 
 // eslint-disable-next-line import/extensions, import/no-unresolved, no-unused-vars
 import * as types from '../types/react-router-breadcrumbs-hoc/index';
@@ -246,14 +247,13 @@ const flattenRoutes = (routes: types.BreadcrumbsRoute[]) => (routes)
 export default (
   routes?: types.BreadcrumbsRoute[],
   options?: types.Options,
-) => (Component: React.ComponentType) => withRouter(
-  (props: { location: types.Location }) => createElement(Component, {
-    ...props,
-    // @ts-ignore-next-line
-    breadcrumbs: getBreadcrumbs({
-      routes: flattenRoutes(routes || []),
-      location: props.location,
-      options,
-    }),
+) => (
+  Component: React.ComponentType,
+) => () => createElement(Component, {
+  // @ts-ignore-next-line
+  breadcrumbs: getBreadcrumbs({
+    routes: flattenRoutes(routes || []),
+    location: useLocation(),
+    options,
   }),
-);
+});
