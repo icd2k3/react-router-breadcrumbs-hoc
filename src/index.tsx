@@ -19,7 +19,7 @@
  */
 
 import React, { createElement } from 'react';
-import { matchPath } from 'react-router';
+import { matchPath, withRouter } from 'react-router';
 import { useLocation } from 'react-router-dom';
 
 // eslint-disable-next-line import/extensions, import/no-unresolved, no-unused-vars
@@ -244,16 +244,48 @@ const flattenRoutes = (routes: types.BreadcrumbsRoute[]) => (routes)
     return arr.concat(route);
   }, [] as types.BreadcrumbsRoute[]);
 
+/**
+ * This is the main default HOC wrapper component. There is some
+ * logic in here for legacy react-router v4 support
+ */
 export default (
   routes?: types.BreadcrumbsRoute[],
   options?: types.Options,
 ) => (
   Component: React.ComponentType,
-) => () => createElement(Component, {
-  // @ts-ignore-next-line
-  breadcrumbs: getBreadcrumbs({
-    routes: flattenRoutes(routes || []),
-    location: useLocation(),
+) => {
+  const sharedBreadcrumbProps = {
     options,
-  }),
-});
+    routes: flattenRoutes(routes || []),
+  };
+
+  // use the location hook if available (5.x)
+  /* istanbul ignore else */
+  if (useLocation) {
+    return () => createElement(Component, {
+      // @ts-ignore-next-line
+      breadcrumbs: getBreadcrumbs({
+        ...sharedBreadcrumbProps,
+        location: useLocation(),
+      }),
+    });
+  }
+
+  // fallback to withRouter for older react-router versions (4.x)
+  /* istanbul ignore next */
+  return withRouter(
+    (props: { location: types.Location }) => {
+      // eslint-disable-next-line no-console
+      console.warn('[react-router-breadcrumbs-hoc]: react-router v4 support will be deprecated in the next major release. Please consider upgrading react-router and react-router-dom to >= v5.');
+
+      return createElement(Component, {
+        ...props,
+        // @ts-ignore-next-line
+        breadcrumbs: getBreadcrumbs({
+          ...sharedBreadcrumbProps,
+          location: props.location,
+        }),
+      });
+    },
+  );
+};
