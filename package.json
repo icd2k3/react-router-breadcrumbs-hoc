@@ -1,6 +1,6 @@
 {
   "name": "react-router-breadcrumbs-hoc",
-  "version": "3.2.5",
+  "version": "3.2.6",
   "description": "small, flexible, higher order component for rendering breadcrumbs with react-router 4.x",
   "repository": "icd2k3/react-router-breadcrumbs-hoc",
   "main": "dist/cjs/index.js",
@@ -27,7 +27,7 @@
   "author": "Justin Schrader (me@justin.beer)",
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=16",
+    "react": ">=16.8",
     "react-router": ">=4",
     "react-router-dom": ">=4"
   },
@@ -52,7 +52,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
@@ -65,7 +65,7 @@
     "react-dom": "16.13.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
-    "rollup": "^2.0.3",
+    "rollup": "^2.0.6",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-uglify": "^6.0.2",
     "typescript": "^3.8.3"
@@ -78,6 +78,7 @@
     "router",
     "breadcrumbs",
     "react-router",
-    "react-router 4"
+    "react-router 4",
+    "react-router 5"
   ]
 }
