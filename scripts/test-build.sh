@@ -3,6 +3,8 @@
 # runs the tests in ./src/index.test.js, but
 # replaces the import to target the compiled builds
 # in ./dist/es/index.js, ./dist/umd/index.js, and ./dist/cjs/index.js
+# this ensures that the act of compiling doesn't break the
+# expected behavior somehow.
 
 set -e
 

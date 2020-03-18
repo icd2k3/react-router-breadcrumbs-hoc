@@ -252,7 +252,9 @@ export default (
   routes?: types.BreadcrumbsRoute[],
   options?: types.Options,
 ) => (
-  Component: React.ComponentType,
+  Component: React.ComponentType<{
+    breadcrumbs: Array<React.ReactNode | string>
+  }>,
 ) => {
   const sharedBreadcrumbProps = {
     options,
@@ -262,8 +264,8 @@ export default (
   // use the location hook if available (5.x)
   /* istanbul ignore else */
   if (useLocation) {
-    return () => createElement(Component, {
-      // @ts-ignore-next-line
+    return (props: any) => React.createElement(Component, {
+      ...props,
       breadcrumbs: getBreadcrumbs({
         ...sharedBreadcrumbProps,
         location: useLocation(),
@@ -280,7 +282,6 @@ export default (
 
       return createElement(Component, {
         ...props,
-        // @ts-ignore-next-line
         breadcrumbs: getBreadcrumbs({
           ...sharedBreadcrumbProps,
           location: props.location,
