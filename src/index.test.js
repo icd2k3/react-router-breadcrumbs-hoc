@@ -14,14 +14,21 @@ import withBreadcrumbsCompiledUMD, { getBreadcrumbs as getBreadcrumbsCompiledUMD
 import withBreadcrumbsCompiledCJS, { getBreadcrumbs as getBreadcrumbsCompiledCJS } from '../dist/cjs/index';
 
 const components = {
-  Breadcrumbs: ({ breadcrumbs }) => (
-    <h1 className="breadcrumbs-container">
-      {breadcrumbs.map(({ breadcrumb, key }, index) => (
-        <span key={key}>
-          {breadcrumb}
-          {(index < breadcrumbs.length - 1) && <i> / </i>}
-        </span>
-      ))}
+  Breadcrumbs: ({ breadcrumbs, ...forwardedProps }) => (
+    <h1>
+      <div className="forwarded-props">
+        {forwardedProps && Object.values(forwardedProps).filter((v) => typeof v === 'string').map((value) => (
+          <span key={value}>{value}</span>
+        ))}
+      </div>
+      <div className="breadcrumbs-container">
+        {breadcrumbs.map(({ breadcrumb, key }, index) => (
+          <span key={key}>
+            {breadcrumb}
+            {(index < breadcrumbs.length - 1) && <i> / </i>}
+          </span>
+        ))}
+      </div>
     </h1>
   ),
   BreadcrumbMatchTest: ({ match }) => <span>{match.params.number}</span>,
@@ -70,14 +77,21 @@ const render = ({
   pathname,
   routes,
   state,
+  props,
 }) => {
   const Breadcrumbs = getHOC()(routes, options)(components.Breadcrumbs);
   const wrapper = mount(
-    <Router initialIndex={0} initialEntries={[{ pathname, state }]}><Breadcrumbs /></Router>,
+    <Router
+      initialIndex={0}
+      initialEntries={[{ pathname, state }]}
+    >
+      <Breadcrumbs {...props || {}} />
+    </Router>,
   );
 
   return {
     breadcrumbs: wrapper.find('.breadcrumbs-container').text(),
+    forwardedProps: wrapper.find('.forwarded-props').text(),
     wrapper,
   };
 };
@@ -354,6 +368,14 @@ describe('react-router-breadcrumbs-hoc', () => {
     it('Should not render props as element attributes on breadcrumbs', () => {
       const { wrapper } = render({ pathname: '/one' });
       expect(wrapper.html()).not.toContain('[object Object]');
+    });
+  });
+
+  describe('HOC prop forwarding', () => {
+    it('Should allow for forwarding props to the wrapped component', () => {
+      const props = { testing: 'prop forwarding works' };
+      const { forwardedProps } = render({ pathname: '/', props });
+      expect(forwardedProps).toEqual('prop forwarding works');
     });
   });
 });
