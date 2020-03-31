@@ -77,19 +77,19 @@ const DynamicUserBreadcrumb = ({ match }) => (
   <span>{userNamesById[match.params.userId]}</span>
 );
 
+// define custom breadcrumbs for certain routes.
+// breadcumbs can be components or strings.
 const routes = [
   { path: '/users/:userId', breadcrumb: DynamicUserBreadcrumb },
   { path: '/example', breadcrumb: 'Custom Example' },
 ];
 
-// map & render your breadcrumb components however you want.
+// map, render, and wrap your breadcrumb components however you want.
 const Breadcrumbs = ({ breadcrumbs }) => (
   <div>
     {breadcrumbs.map(({
       match,
       breadcrumb
-      // other props are available during render, such as `location` 
-      // and any props found in your route objects will be passed through too
     }) => (
       <span key={match.url}>
         <NavLink to={match.url}>{breadcrumb}</NavLink>
