@@ -16,7 +16,7 @@
 </p>
 
 --- 
-> Do you prefer hooks over HOCs? Are you using `react-router v5.1+`? Try out our new project over at [use-react-router-breadcrumbs](https://github.com/icd2k3/use-react-router-breadcrumbs).
+> Do you prefer hooks? Are you using `react-router v5.1+`? Try [use-react-router-breadcrumbs](https://github.com/icd2k3/use-react-router-breadcrumbs).
 ---
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
