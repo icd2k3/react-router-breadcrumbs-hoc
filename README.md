@@ -111,15 +111,40 @@ Pathname | Result
 
 ## Already using a [route config](https://reacttraining.com/react-router/web/example/route-config) array with react-router?
 
-Just add a `breadcrumb` prop to your routes that require custom breadcrumbs.
+Add breadcrumbs to your existing [route config](https://reacttraining.com/react-router/web/example/route-config). This is a great way to keep all routing config in a single place!
 
-`{ path, component }` -> `{ path, component, breadcrumb }`
+For example...
 
-`withBreadcrumbs(routeConfig)(MyComponent)`
+```js
+const routeConfig = [
+  {
+    path: "/sandwiches",
+    component: Sandwiches
+  }
+];
+```
+
+becomes...
+
+```js
+const routeConfig = [
+  {
+    path: "/sandwiches",
+    component: Sandwiches,
+    breadcrumb: 'I love sandwiches'
+  }
+];
+```
+
+then you can just pass the whole route config right into the hook:
+
+```js
+const breadcrumbs = useBreadcrumbs(routeConfig);
+```
 
 ## Disabling default generated breadcrumbs
 
-This package will attempt to create breadcrumbs for you based on the route section. For example `/users` will auotmatically create the breadcrumb `"Users"`. There are two ways to disable default breadcrumbs for a path:
+This package will attempt to create breadcrumbs for you based on the route section. For example `/users` will automatically create the breadcrumb `"Users"`. There are two ways to disable default breadcrumbs for a path:
 
 **Option 1:** Disable _all_ default breadcrumb generation by passing `disableDefaults: true` in the `options` object
 
