@@ -146,7 +146,7 @@ const routeConfig = [
 then you can just pass the whole route config right into the hook:
 
 ```js
-const breadcrumbs = useBreadcrumbs(routeConfig);
+withBreadcrumbs(routeConfig)(MyComponent);
 ```
 
 ## Dynamic breadcrumbs
@@ -203,7 +203,7 @@ const EditorBreadcrumb = ({ location: { state: { isNew } } }) => (
 An options object can be passed as the 2nd argument to the hook.
 
 ```js
-useBreadcrumbs(routes, options);
+withBreadcrumbs(routes, options)(Component);
 ```
 
 Option | Type | Description
