@@ -5,7 +5,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { mount } from 'enzyme';
 import { MemoryRouter as Router } from 'react-router';
-import { NavLink } from 'react-router-dom';
 import withBreadcrumbs, { getBreadcrumbs } from './index.tsx';
 
 // imports to test compiled builds
@@ -32,7 +31,7 @@ const components = {
     </h1>
   ),
   BreadcrumbMatchTest: ({ match }) => <span>{match.params.number}</span>,
-  BreadcrumbNavLinkTest: ({ match }) => <NavLink to={match.url}>Link</NavLink>,
+  BreadcrumbNavLinkTest: ({ match }) => <a to={match.url}>Link</a>,
   BreadcrumbLocationTest: ({ location: { state: { isLocationTest } } }) => (
     <span>
       {isLocationTest ? 'pass' : 'fail'}
@@ -151,7 +150,7 @@ describe('react-router-breadcrumbs-hoc', () => {
       ];
       const { breadcrumbs, wrapper } = render({ pathname: '/1/2/3/4', routes });
       expect(breadcrumbs).toBe('Home / One / TWO / 3 / Link');
-      expect(wrapper.find(NavLink).props().to).toBe('/1/2/3/4');
+      expect(wrapper.find('a').props().to).toBe('/1/2/3/4');
     });
   });
 

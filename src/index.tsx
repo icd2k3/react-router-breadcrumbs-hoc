@@ -19,8 +19,7 @@
  */
 
 import React, { createElement } from 'react';
-import { matchPath, withRouter } from 'react-router';
-import { useLocation } from 'react-router-dom';
+import { useLocation, matchPath, withRouter } from 'react-router';
 
 // eslint-disable-next-line import/extensions, import/no-unresolved, no-unused-vars
 import * as types from '../types/react-router-breadcrumbs-hoc/index';

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
-import { NavLink } from "react-router-dom";
 import withBreadcrumbs, {
   BreadcrumbsRoute,
   BreadcrumbsProps,
@@ -30,7 +29,7 @@ const Breadcrumbs = ({ breadcrumbs }: InjectedProps) => (
   <div>
     {breadcrumbs.map(({ breadcrumb, match }: BreadcrumbsProps, index: number) => (
       <span key={match.url}>
-        <NavLink to={match.url}>{breadcrumb}</NavLink>
+        <a href={match.url}>{breadcrumb}</a>
         {index < breadcrumbs.length - 1 && <i> / </i>}
       </span>
     ))}
