@@ -12,6 +12,7 @@
 
 <p align="center">
   <a href="https://github.com/icd2k3/react-router-breadcrumbs-hoc/actions" target="_blank"><img src="https://github.com/icd2k3/react-router-breadcrumbs-hoc/workflows/Node.js%20CI/badge.svg?branch=master" /></a>
+  <a href="https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc" title="dependencies status"><img src="https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc/status.svg"/></a>
   <a href="https://coveralls.io/github/icd2k3/react-router-breadcrumbs-hoc?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/icd2k3/react-router-breadcrumbs-hoc/badge.svg?branch=master" /></a>
 </p>
 
