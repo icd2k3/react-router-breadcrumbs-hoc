@@ -20,9 +20,11 @@
   <a href="https://coveralls.io/github/icd2k3/react-router-breadcrumbs-hoc?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/icd2k3/react-router-breadcrumbs-hoc/badge.svg?branch=master" /></a>
 </p>
 
-<blockquote>
-Want to use hooks instead? Try <a href="https://github.com/icd2k3/use-react-router-breadcrumbs">use-react-router-breadcrumbs</a>.
-</blockquote>
+<p align="center">
+  <code>
+    Want to use hooks instead? Try <a href="https://github.com/icd2k3/use-react-router-breadcrumbs">use-react-router-breadcrumbs</a>.
+  </code>
+</p>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
