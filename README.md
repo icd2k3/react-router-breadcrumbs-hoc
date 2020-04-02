@@ -6,9 +6,13 @@
   A small (~1.6kb gzip), flexible, <a href="https://reactjs.org/docs/higher-order-components.html">higher order component</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 4 & 5
 </p>
 
-<p align="center">
-  site.com/user/id → Home / User / John Doe
-</p>
+<hr/>
+  <h4 align="center">
+    <code>
+      example.com/user/123 → Home / User / John Doe
+    </code>
+  </h4>
+<hr/>
 
 <p align="center">
   <a href="https://github.com/icd2k3/react-router-breadcrumbs-hoc/actions" target="_blank"><img src="https://github.com/icd2k3/react-router-breadcrumbs-hoc/workflows/Node.js%20CI/badge.svg?branch=master" /></a>
@@ -16,9 +20,9 @@
   <a href="https://coveralls.io/github/icd2k3/react-router-breadcrumbs-hoc?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/icd2k3/react-router-breadcrumbs-hoc/badge.svg?branch=master" /></a>
 </p>
 
---- 
-> Do you prefer hooks 🎣? Are you using `react-router v5.1+`? Try [use-react-router-breadcrumbs](https://github.com/icd2k3/use-react-router-breadcrumbs).
----
+<blockquote>
+Want to use hooks instead? Try <a href="https://github.com/icd2k3/use-react-router-breadcrumbs">use-react-router-breadcrumbs</a>.
+</blockquote>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
