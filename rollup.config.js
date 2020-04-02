@@ -28,8 +28,7 @@ const exports = [
 
 const globals = {
   react: 'React',
-  'react-router': 'ReactRouter',
-  'react-router-dom': 'reactRouterDom',
+  'react-router': 'ReactRouter'
 };
 
 export default exports.map((item) => ({
