@@ -3,6 +3,12 @@
 </h3>
 
 <p align="center">
+  <a href="https://github.com/icd2k3/react-router-breadcrumbs-hoc/actions" target="_blank"><img src="https://github.com/icd2k3/react-router-breadcrumbs-hoc/workflows/Node.js%20CI/badge.svg?branch=master" /></a>
+  <a href="https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc" title="dependencies status"><img src="https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc/status.svg"/></a>
+  <a href="https://coveralls.io/github/icd2k3/react-router-breadcrumbs-hoc?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/icd2k3/react-router-breadcrumbs-hoc/badge.svg?branch=master" /></a>
+</p>
+
+<p align="center">
   A small (~1.6kb gzip), flexible, <a href="https://reactjs.org/docs/higher-order-components.html">higher order component</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 4 & 5
 </p>
 
@@ -13,12 +19,6 @@
     </code>
   </h4>
 <hr/>
-
-<p align="center">
-  <a href="https://github.com/icd2k3/react-router-breadcrumbs-hoc/actions" target="_blank"><img src="https://github.com/icd2k3/react-router-breadcrumbs-hoc/workflows/Node.js%20CI/badge.svg?branch=master" /></a>
-  <a href="https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc" title="dependencies status"><img src="https://david-dm.org/icd2k3/react-router-breadcrumbs-hoc/status.svg"/></a>
-  <a href="https://coveralls.io/github/icd2k3/react-router-breadcrumbs-hoc?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/icd2k3/react-router-breadcrumbs-hoc/badge.svg?branch=master" /></a>
-</p>
 
 <p align="center">
   <code>
