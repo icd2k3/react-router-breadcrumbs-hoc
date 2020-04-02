@@ -20,7 +20,7 @@ const plugins = [
   }),
 ];
 
-const exports = [
+const formats = [
   { format: 'cjs', file: pkg.main, plugins: plugins.concat([commonjs(), uglify()]) },
   { format: 'umd', file: pkg.umd, plugins: plugins.concat([commonjs(), uglify()]) },
   { format: 'es', file: pkg.module, plugins },
@@ -28,10 +28,10 @@ const exports = [
 
 const globals = {
   react: 'React',
-  'react-router': 'ReactRouter'
+  'react-router': 'ReactRouter',
 };
 
-export default exports.map((item) => ({
+export default formats.map((item) => ({
   input: 'src/index.tsx',
   plugins: item.plugins,
   external,
