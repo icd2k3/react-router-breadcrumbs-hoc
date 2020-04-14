@@ -199,16 +199,19 @@ export const getBreadcrumbs = (
 
   pathname
     .split('?')[0]
-    // Remove trailing slash "/" from pathname.
-    .replace(/\/$/, '')
     // Split pathname into sections.
     .split('/')
     // Reduce over the sections and call `getBreadcrumbMatch()` for each section.
-    .reduce((previousSection: string, currentSection: string) => {
+    .reduce((previousSection: string, currentSection: string, index: number) => {
       // Combine the last route section with the currentSection.
       // For example, `pathname = /1/2/3` results in match checks for
       // `/1`, `/1/2`, `/1/2/3`.
       const pathSection = !currentSection ? '/' : `${previousSection}/${currentSection}`;
+
+      // Ignore trailing slash or double slashes in the URL
+      if (pathSection === '/' && index !== 0) {
+        return '';
+      }
 
       const breadcrumb = getBreadcrumbMatch({
         currentSection,

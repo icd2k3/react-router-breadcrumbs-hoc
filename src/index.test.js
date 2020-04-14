@@ -377,4 +377,11 @@ describe('react-router-breadcrumbs-hoc', () => {
       expect(forwardedProps).toEqual('prop forwarding works');
     });
   });
+
+  describe('Edge cases', () => {
+    it('Should handle 2 slashes in a URL (site.com/sandwiches//tuna)', () => {
+      const { breadcrumbs } = render({ pathname: '/sandwiches//tuna' });
+      expect(breadcrumbs).toBe('Home / Sandwiches / Tuna');
+    });
+  });
 });
