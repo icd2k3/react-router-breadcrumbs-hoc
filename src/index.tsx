@@ -21,6 +21,7 @@
 import React, { createElement } from 'react';
 import {
   matchPath as oldMatchPath,
+  // @ts-ignore
   matchRoutes,
   withRouter,
   useLocation,
@@ -52,6 +53,24 @@ export interface BreadcrumbsRoute {
   matchOptions?: MatchOptions;
   routes?: BreadcrumbsRoute[];
 }
+
+const matchPath = (pathA: string, { path: pathB }: { path: string }) => {
+  /* istanbul ignore if */
+  if (oldMatchPath) {
+    return oldMatchPath(pathA, { path: pathB });
+  }
+
+  const match = (matchRoutes([{ path: pathB }], pathA) || [])[0];
+
+  if (!match) { return null; }
+
+  return {
+    ...match,
+    url: match.pathname,
+    isExact: false,
+    path: match.pathname,
+  };
+};
 
 /**
  * This method was "borrowed" from https://stackoverflow.com/a/28339742
@@ -140,8 +159,6 @@ const getBreadcrumbMatch = ({
   // current path should not include a breadcrumb.
   const getIsPathExcluded = (path: string) => matchPath(pathSection, {
     path,
-    exact: true,
-    strict: false,
   });
   if (excludePaths && excludePaths.some(getIsPathExcluded)) {
     return NO_BREADCRUMB;
