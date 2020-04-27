@@ -200,21 +200,6 @@ describe('react-router-breadcrumbs-hoc', () => {
     });
   });
 
-  describe('Custom match options', () => {
-    it('Should allow `strict` rule', () => {
-      const routes = [
-        {
-          path: '/one/',
-          breadcrumb: '1',
-          // not recommended, but supported
-          matchOptions: { exact: false, strict: true },
-        },
-      ];
-      const { breadcrumbs } = render({ pathname: '/one', routes });
-      expect(breadcrumbs).toBe('');
-    });
-  });
-
   describe('When extending react-router config', () => {
     it('Should render expected breadcrumbs with sensible defaults', () => {
       const routes = [

@@ -19,7 +19,12 @@
  */
 
 import React, { createElement } from 'react';
-import { useLocation, matchPath, withRouter } from 'react-router';
+import {
+  matchPath as oldMatchPath,
+  matchRoutes,
+  withRouter,
+  useLocation,
+} from 'react-router';
 
 const DEFAULT_MATCH_OPTIONS = { exact: true };
 const NO_BREADCRUMB = 'NO_BREADCRUMB';
