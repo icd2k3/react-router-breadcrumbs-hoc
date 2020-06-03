@@ -1,20 +1,18 @@
 {
   "name": "react-router-breadcrumbs-hoc",
-  "version": "3.2.10",
+  "version": "3.3.0",
   "description": "small, flexible, higher order component for rendering breadcrumbs with react-router 4.x",
   "repository": "icd2k3/react-router-breadcrumbs-hoc",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
   "umd": "dist/umd/index.js",
-  "types": "types/react-router-breadcrumbs-hoc/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "rollup -c",
     "test": "jest",
     "test-build": "sh ./scripts/test-build.sh",
-    "types": "yarn type-src && yarn type-descriptions",
-    "type-src": "tsc -p tsconfig.json",
-    "type-descriptions": "tsc -p types/react-router-breadcrumbs-hoc",
+    "types": "tsc -p tsconfig.json",
     "lint": "eslint ./src/**"
   },
   "husky": {
@@ -66,6 +64,7 @@
     "react-router": "^5.1.2",
     "rollup": "^2.1.0",
     "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-typescript2": "^0.27.1",
     "rollup-plugin-uglify": "^6.0.2",
     "typescript": "^3.8.3"
   },

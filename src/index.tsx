@@ -21,11 +21,32 @@
 import React, { createElement } from 'react';
 import { useLocation, matchPath, withRouter } from 'react-router';
 
-// eslint-disable-next-line import/extensions, import/no-unresolved, no-unused-vars
-import * as types from '../types/react-router-breadcrumbs-hoc/index';
-
 const DEFAULT_MATCH_OPTIONS = { exact: true };
 const NO_BREADCRUMB = 'NO_BREADCRUMB';
+
+export interface Options {
+  currentSection?: string;
+  disableDefaults?: boolean;
+  excludePaths?: string[];
+  pathSection?: string;
+}
+
+export interface Location {
+  pathname: string
+}
+
+export interface MatchOptions {
+  exact?: boolean;
+  strict?: boolean;
+  sensitive?: boolean;
+}
+
+export interface BreadcrumbsRoute {
+  path: string;
+  breadcrumb?: React.ComponentType | React.ElementType | string;
+  matchOptions?: MatchOptions;
+  routes?: BreadcrumbsRoute[];
+}
 
 /**
  * This method was "borrowed" from https://stackoverflow.com/a/28339742
@@ -49,10 +70,10 @@ const render = ({
 }: {
   breadcrumb: React.ComponentType | string,
   match: { url: string },
-  location: types.Location
+  location: Location
 }): {
   match: { url: string },
-  location: types.Location,
+  location: Location,
   key: string,
   breadcrumb: React.ReactNode
 } => {
@@ -75,7 +96,7 @@ const getDefaultBreadcrumb = ({
   pathSection,
 }: {
   currentSection: string,
-  location: types.Location,
+  location: Location,
   pathSection: string,
 }) => {
   const match = matchPath(pathSection, { ...DEFAULT_MATCH_OPTIONS, path: pathSection })
@@ -106,7 +127,7 @@ const getBreadcrumbMatch = ({
   excludePaths?: string[],
   location: { pathname: string },
   pathSection: string,
-  routes: types.BreadcrumbsRoute[]
+  routes: BreadcrumbsRoute[]
 }) => {
   let breadcrumb;
 
@@ -189,9 +210,9 @@ export const getBreadcrumbs = (
     location,
     options = {},
   }: {
-    routes: types.BreadcrumbsRoute[],
-    location: types.Location,
-    options?: types.Options
+    routes: BreadcrumbsRoute[],
+    location: Location,
+    options?: Options
   },
 ): Array<React.ReactNode | string> => {
   const matches:Array<React.ReactNode | string> = [];
@@ -238,21 +259,21 @@ export const getBreadcrumbs = (
  * Takes a route array and recursively flattens it IF there are
  * nested routes in the config.
 */
-const flattenRoutes = (routes: types.BreadcrumbsRoute[]) => (routes)
-  .reduce((arr, route: types.BreadcrumbsRoute): types.BreadcrumbsRoute[] => {
+const flattenRoutes = (routes: BreadcrumbsRoute[]) => (routes)
+  .reduce((arr, route: BreadcrumbsRoute): BreadcrumbsRoute[] => {
     if (route.routes) {
       return arr.concat([route, ...flattenRoutes(route.routes)]);
     }
     return arr.concat(route);
-  }, [] as types.BreadcrumbsRoute[]);
+  }, [] as BreadcrumbsRoute[]);
 
 /**
  * This is the main default HOC wrapper component. There is some
  * logic in here for legacy react-router v4 support
  */
 export default (
-  routes?: types.BreadcrumbsRoute[],
-  options?: types.Options,
+  routes?: BreadcrumbsRoute[],
+  options?: Options,
 ) => (
   Component: React.ComponentType<{
     breadcrumbs: Array<React.ReactNode | string>
@@ -278,7 +299,7 @@ export default (
   // fallback to withRouter for older react-router versions (4.x)
   /* istanbul ignore next */
   return withRouter(
-    (props: { location: types.Location }) => {
+    (props: { location: Location }) => {
       // eslint-disable-next-line no-console
       console.warn('[react-router-breadcrumbs-hoc]: react-router v4 support will be deprecated in the next major release. Please consider upgrading react-router and react-router-dom to >= 5.1.0');
 
