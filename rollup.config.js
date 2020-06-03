@@ -1,6 +1,8 @@
 import babel from 'rollup-plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import typescript from 'rollup-plugin-typescript2';
+import ts from 'typescript';
 import { uglify } from 'rollup-plugin-uglify';
 
 const pkg = require('./package.json');
@@ -10,6 +12,15 @@ const external = Object.keys(pkg.peerDependencies);
 const extensions = ['.js', '.tsx'];
 
 const plugins = [
+  typescript({
+    useTsconfigDeclarationDir: true,
+    tsconfigOverride: {
+      typescript: ts,
+      compilerOptions: {
+        module: 'es2015',
+      },
+    },
+  }),
   babel({
     exclude: 'node_modules/**',
     extensions,
