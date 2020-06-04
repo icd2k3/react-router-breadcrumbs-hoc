@@ -67,8 +67,7 @@
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "rollup-plugin-uglify": "^6.0.2",
-    "typescript": "^3.8.3",
-    "yarn": "^1.22.4"
+    "typescript": "^3.8.3"
   },
   "resolutions": {
     "@types/react": "^16.9.23"
