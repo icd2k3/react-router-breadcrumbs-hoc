@@ -26,7 +26,7 @@
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16.8",
-    "react-router": ">=4"
+    "react-router": ">=5"
   },
   "dependencies": {},
   "devDependencies": {
@@ -41,6 +41,7 @@
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
+    "@types/react-router": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "add": "^2.0.6",
@@ -61,7 +62,7 @@
     "prop-types": "^15.7.2",
     "react": "16.13.0",
     "react-dom": "16.13.0",
-    "react-router": "^6.0.0-alpha.5",
+    "react-router": "^5.2.0",
     "rollup": "^2.1.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-typescript2": "^0.27.1",
@@ -78,6 +79,7 @@
     "breadcrumbs",
     "react-router",
     "react-router 4",
-    "react-router 5"
+    "react-router 5",
+    "react-router 6"
   ]
 }

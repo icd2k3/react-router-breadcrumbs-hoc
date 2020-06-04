@@ -31,7 +31,7 @@ const components = {
     </h1>
   ),
   BreadcrumbMatchTest: ({ match }) => <span>{match.params.number}</span>,
-  BreadcrumbNavLinkTest: ({ match }) => <a to={match.url}>Link</a>,
+  BreadcrumbNavLinkTest: ({ match }) => <a to={match.pathname}>Link</a>,
   BreadcrumbLocationTest: ({ location: { state: { isLocationTest } } }) => (
     <span>
       {isLocationTest ? 'pass' : 'fail'}
@@ -96,7 +96,7 @@ const render = ({
 };
 
 const matchShape = {
-  isExact: PropTypes.bool.isRequired,
+  isExact: PropTypes.bool,
   params: PropTypes.shape().isRequired,
   path: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,

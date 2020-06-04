@@ -8,9 +8,27 @@
 
 set -e
 
-printf "\n====\nTesting CJS dist build\n====\n" && \
-TEST_BUILD=cjs yarn test --coverage=0 && \
-printf "\n====\nTesting UMD dist build\n====\n" && \
-TEST_BUILD=umd yarn test --coverage=0 && \
-printf "\n====\nTesting ES dist build\n====\n" && \
-TEST_BUILD=es yarn test --coverage=0
+DIVIDER="\n================================\n"
+
+function test {
+  printf "\nTest CJS dist build (v$1)$DIVIDER" && \
+  TEST_BUILD=cjs yarn test --coverage=0 --silent && \
+  printf "\nTest UMD dist build (v$1)$DIVIDER" && \
+  TEST_BUILD=umd yarn test --coverage=0 --silent && \
+  printf "\nTest ES dist build (v$1)$DIVIDER" && \
+  TEST_BUILD=es yarn test --coverage=0 --silent
+}
+
+# Uncomment this block below to test next (alpha) react-router
+
+# printf "\nInstalling react-router@next\n============\n" && \
+# yarn add react-router@next --dev && \
+# test && \
+
+printf "\nInstalling react-router@5.0.0$DIVIDER" && \
+yarn add react-router@^5.0.0 --dev && \
+test "5.0.0" && \
+
+printf "\nInstalling react-router@current$DIVIDER" && \
+yarn add react-router --dev && \
+test "Current"

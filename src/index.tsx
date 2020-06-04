@@ -60,19 +60,31 @@ const standardizedMatchPath = (path: string, { path: pathPattern }: { path: stri
   try {
     // v4 and 5
     // @ts-ignore
-    match = matchPath(pathPattern, { path });
+    match = matchPath(path, { ...DEFAULT_MATCH_OPTIONS, path: pathPattern });
   } catch (err) {
     // v6+
     match = matchPath(pathPattern, path);
   }
   if (!match) { return null; }
 
-  return {
-    ...match,
-    url: match.pathname,
-    isExact: false,
-    path: match.pathname,
-  };
+  // @ts-ignore
+  if (!match.url) {
+    return {
+      ...match,
+      // @ts-ignore
+      url: match.pathname,
+    };
+  }
+
+  // @ts-ignore
+  if (!match.pathname && match.url) {
+    return {
+      ...match,
+      pathname: match.url,
+    };
+  }
+
+  return match;
 };
 
 /**
