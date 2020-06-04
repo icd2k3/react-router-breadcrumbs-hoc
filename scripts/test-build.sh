@@ -25,9 +25,13 @@ function test {
 # yarn add react-router@next --dev && \
 # test && \
 
+printf "\nInstalling react-router@^4.0.0$DIVIDER" && \
+yarn add react-router@^4.0.0 --dev && \
+test "^4.0.0"
+
 printf "\nInstalling react-router@5.0.0$DIVIDER" && \
 yarn add react-router@^5.0.0 --dev && \
-test "5.0.0" && \
+test "^5.0.0" && \
 
 printf "\nInstalling react-router@current$DIVIDER" && \
 yarn add react-router --dev && \
