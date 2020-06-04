@@ -20,9 +20,8 @@
 
 import React, { createElement } from 'react';
 import {
-  matchPath as oldMatchPath,
+  matchPath,
   // @ts-ignore
-  matchRoutes,
   withRouter,
   useLocation,
 } from 'react-router';
@@ -30,15 +29,13 @@ import {
 const DEFAULT_MATCH_OPTIONS = { exact: true };
 const NO_BREADCRUMB = 'NO_BREADCRUMB';
 
+type Location = ReturnType<typeof useLocation>;
+
 export interface Options {
   currentSection?: string;
   disableDefaults?: boolean;
   excludePaths?: string[];
   pathSection?: string;
-}
-
-export interface Location {
-  pathname: string
 }
 
 export interface MatchOptions {
@@ -54,14 +51,20 @@ export interface BreadcrumbsRoute {
   routes?: BreadcrumbsRoute[];
 }
 
-const matchPath = (pathA: string, { path: pathB }: { path: string }) => {
-  /* istanbul ignore if */
-  if (oldMatchPath) {
-    return oldMatchPath(pathA, { path: pathB });
+/**
+ * This method is responsible for finding route matches across different react-router versions.
+ * The API for matchPatch has changed significantly between versions 4-6.
+ */
+const standardizedMatchPath = (path: string, { path: pathPattern }: { path: string }) => {
+  let match;
+  try {
+    // v4 and 5
+    // @ts-ignore
+    match = matchPath(pathPattern, { path });
+  } catch (err) {
+    // v6+
+    match = matchPath(pathPattern, path);
   }
-
-  const match = (matchRoutes([{ path: pathB }], pathA) || [])[0];
-
   if (!match) { return null; }
 
   return {
@@ -123,7 +126,7 @@ const getDefaultBreadcrumb = ({
   location: Location,
   pathSection: string,
 }) => {
-  const match = matchPath(pathSection, { ...DEFAULT_MATCH_OPTIONS, path: pathSection })
+  const match = standardizedMatchPath(pathSection, { ...DEFAULT_MATCH_OPTIONS, path: pathSection })
     /* istanbul ignore next: this is hard to mock in jest :( */
     || { url: 'not-found' };
 
@@ -149,7 +152,7 @@ const getBreadcrumbMatch = ({
   currentSection: string,
   disableDefaults?: boolean,
   excludePaths?: string[],
-  location: { pathname: string },
+  location: Location,
   pathSection: string,
   routes: BreadcrumbsRoute[]
 }) => {
@@ -157,7 +160,7 @@ const getBreadcrumbMatch = ({
 
   // Check the optional `excludePaths` option in `options` to see if the
   // current path should not include a breadcrumb.
-  const getIsPathExcluded = (path: string) => matchPath(pathSection, {
+  const getIsPathExcluded = (path: string) => standardizedMatchPath(pathSection, {
     path,
   });
   if (excludePaths && excludePaths.some(getIsPathExcluded)) {
@@ -170,7 +173,10 @@ const getBreadcrumbMatch = ({
       throw new Error('withBreadcrumbs: `path` must be provided in every route object');
     }
 
-    const match = matchPath(pathSection, { ...(matchOptions || DEFAULT_MATCH_OPTIONS), path });
+    const match = standardizedMatchPath(pathSection, {
+      ...(matchOptions || DEFAULT_MATCH_OPTIONS),
+      path,
+    });
 
     // If user passed breadcrumb: null OR custom match options to suppress a breadcrumb
     // we need to know NOT to add it to the matches array
