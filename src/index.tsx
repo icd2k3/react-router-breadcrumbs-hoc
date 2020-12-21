@@ -46,6 +46,7 @@ export interface BreadcrumbsRoute {
   breadcrumb?: React.ComponentType | React.ElementType | string;
   matchOptions?: MatchOptions;
   routes?: BreadcrumbsRoute[];
+  [x: string]: any;
 }
 
 /**
