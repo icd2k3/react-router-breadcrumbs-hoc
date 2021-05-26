@@ -2,12 +2,16 @@
 .git/
 .github/
 .gitignore
+.gitignore
+.husky/
 .npmignore
 .nvmrc
-/yarn-error.log
+.yarn/
+.yarnrc.yml
+CONTRIBUTING.md
+MIGRATIONS.md
 babel.config.js
 commitlint.config.js
-coverage/
 coverage/
 hooks/
 jest.config.js
@@ -15,3 +19,6 @@ jest.setup.js
 rollup.config.js
 scripts/
 src/
+tsconfig.json
+yarn-error.log
+yarn.lock
