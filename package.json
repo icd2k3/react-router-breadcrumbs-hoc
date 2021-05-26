@@ -14,7 +14,8 @@
     "test-build": "sh ./scripts/test-build.sh",
     "types": "tsc -p tsconfig.json",
     "lint": "eslint ./src/**",
-    "postpublish": "pinst --enable"
+    "postpublish": "pinst --enable",
+    "prepare": "husky install"
   },
   "author": "Justin Schrader (me@justin.beer)",
   "license": "MIT",
