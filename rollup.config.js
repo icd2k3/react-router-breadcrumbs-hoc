@@ -20,7 +20,7 @@ const sharedPlugins = [
 ];
 
 const formats = [
-  { format: 'umd', file: pkg.umd, plugins: sharedPlugins.concat([terser()]) },
+  { format: 'umd', file: pkg.umd, plugins: sharedPlugins.concat([terser({ format: { comments: false } })]) },
   { format: 'cjs', file: pkg.main, plugins: sharedPlugins },
   { format: 'es', file: pkg.module, plugins: sharedPlugins },
 ];

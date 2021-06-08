@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  A small (~1.8kb compressed & gzipped), flexible, <a href="https://reactjs.org/docs/higher-order-components.html">higher order component</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 5
+  A small (~1.3kb compressed & gzipped), flexible, <a href="https://reactjs.org/docs/higher-order-components.html">higher order component</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 5
 </p>
 
 <hr/>
