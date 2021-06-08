@@ -1,40 +1,28 @@
-import babel from 'rollup-plugin-babel';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
-import typescript from 'rollup-plugin-typescript2';
-import ts from 'typescript';
+import babel from '@rollup/plugin-babel';
+import typescript from '@rollup/plugin-typescript';
+import size from 'rollup-plugin-size';
 import { terser } from 'rollup-plugin-terser';
 
 const pkg = require('./package.json');
 
-const external = Object.keys(pkg.peerDependencies);
+const external = Object.keys(pkg.peerDependencies).concat(/@babel\/runtime/);
 
 const extensions = ['.js', '.tsx'];
 
-const plugins = [
-  typescript({
-    useTsconfigDeclarationDir: true,
-    tsconfigOverride: {
-      typescript: ts,
-      compilerOptions: {
-        module: 'es2015',
-      },
-    },
-  }),
+const sharedPlugins = [
+  typescript(),
   babel({
+    babelHelpers: 'runtime',
     exclude: 'node_modules/**',
     extensions,
   }),
-  resolve({
-    mainFields: ['module', 'main', 'umd'],
-    extensions,
-  }),
+  size(),
 ];
 
 const formats = [
-  { format: 'cjs', file: pkg.main, plugins: plugins.concat([commonjs(), terser()]) },
-  { format: 'umd', file: pkg.umd, plugins: plugins.concat([commonjs(), terser()]) },
-  { format: 'es', file: pkg.module, plugins },
+  { format: 'umd', file: pkg.umd, plugins: sharedPlugins.concat([terser({ format: { comments: false } })]) },
+  { format: 'cjs', file: pkg.main, plugins: sharedPlugins },
+  { format: 'es', file: pkg.module, plugins: sharedPlugins },
 ];
 
 const globals = {
@@ -42,16 +30,22 @@ const globals = {
   'react-router': 'ReactRouter',
 };
 
-export default formats.map((item) => ({
+export default formats.map(({ plugins, file, format }) => ({
   input: 'src/index.tsx',
-  plugins: item.plugins,
+  plugins,
   external,
   output: {
     exports: 'named',
-    file: item.file,
-    format: item.format,
+    file,
+    format,
     name: 'react-router-breadcrumbs-hoc',
-    globals,
-    sourcemap: true,
+    globals: format !== 'umd'
+      ? globals
+      : {
+        ...globals,
+        '@babel/runtime/helpers/toConsumableArray': '_toConsumableArray',
+        '@babel/runtime/helpers/defineProperty': '_defineProperty',
+        '@babel/runtime/helpers/objectWithoutProperties': '_objectWithoutProperties',
+      },
   },
 }));

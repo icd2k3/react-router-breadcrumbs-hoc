@@ -19,7 +19,7 @@
  */
 
 import React, { createElement } from 'react';
-import { useLocation, matchPath, withRouter } from 'react-router';
+import { useLocation, matchPath } from 'react-router';
 
 const DEFAULT_MATCH_OPTIONS = { exact: true };
 const NO_BREADCRUMB = 'NO_BREADCRUMB';
@@ -269,48 +269,30 @@ const flattenRoutes = (routes: BreadcrumbsRoute[]) => (routes)
   }, [] as BreadcrumbsRoute[]);
 
 /**
- * This is the main default HOC wrapper component. There is some
- * logic in here for legacy react-router v4 support
+ * Accepts optional routes array and options and returns an array of
+ * breadcrumbs.
+ *
+ * @example
+ * import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
+ * const Breadcrumbs = ({ breadcrumbs }) => (
+ *  <>{breadcrumbs.map(({ breadcrumb }) => breadcrumb)}</>
+ * )
+ * export default withBreadcrumbs()(Breadcrumbs);
  */
-export default (
+const withBreadcrumbs = (
   routes?: BreadcrumbsRoute[],
   options?: Options,
 ) => (
   Component: React.ComponentType<{
     breadcrumbs: Array<React.ReactNode | string>
   }>,
-) => {
-  const sharedBreadcrumbProps = {
+) => (props: any) => React.createElement(Component, {
+  ...props,
+  breadcrumbs: getBreadcrumbs({
     options,
     routes: flattenRoutes(routes || []),
-  };
+    location: useLocation(),
+  }),
+});
 
-  // use the location hook if available (5.x)
-  /* istanbul ignore else */
-  if (useLocation) {
-    return (props: any) => React.createElement(Component, {
-      ...props,
-      breadcrumbs: getBreadcrumbs({
-        ...sharedBreadcrumbProps,
-        location: useLocation(),
-      }),
-    });
-  }
-
-  // fallback to withRouter for older react-router versions (4.x)
-  /* istanbul ignore next */
-  return withRouter(
-    (props: { location: Location }) => {
-      // eslint-disable-next-line no-console
-      console.warn('[react-router-breadcrumbs-hoc]: react-router v4 support will be deprecated in the next major release. Please consider upgrading react-router and react-router-dom to >= 5.1.0');
-
-      return createElement(Component, {
-        ...props,
-        breadcrumbs: getBreadcrumbs({
-          ...sharedBreadcrumbProps,
-          location: props.location,
-        }),
-      });
-    },
-  );
-};
+export default withBreadcrumbs;
