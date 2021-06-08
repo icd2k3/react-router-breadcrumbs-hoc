@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  A small (~1.6kb gzip), flexible, <a href="https://reactjs.org/docs/higher-order-components.html">higher order component</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 4 & 5
+  A small (~1.8kb compressed & gzipped), flexible, <a href="https://reactjs.org/docs/higher-order-components.html">higher order component</a> for rendering breadcrumbs with <a href="https://github.com/ReactTraining/react-router">react-router</a> 5
 </p>
 
 <hr/>
@@ -75,9 +75,9 @@ Start seeing generated breadcrumbs right away with this simple example ([codesan
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
 
 const Breadcrumbs = ({ breadcrumbs }) => (
-  <React.Fragment>
+  <>
     {breadcrumbs.map(({ breadcrumb }) => breadcrumb)}
-  </React.Fragment>
+  </>
 )
 
 export default withBreadcrumbs()(Breadcrumbs);
