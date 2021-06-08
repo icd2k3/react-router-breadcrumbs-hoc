@@ -4143,15 +4143,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-hooks@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "eslint-plugin-react-hooks@npm:4.2.0"
-  peerDependencies:
-    eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
-  checksum: 5378d16b5a56431a7a77b56d61464dbbfa343e8607da87b851a6caee44b96e08847147321f5f38de30d20668418691d859f69d9c5262dfb5308856382252096c
-  languageName: node
-  linkType: hard
-
 "eslint-plugin-react@npm:^7.24.0":
   version: 7.24.0
   resolution: "eslint-plugin-react@npm:7.24.0"
@@ -7836,7 +7827,6 @@ __metadata:
     "@typescript-eslint/parser": ^4.26.1
     "@wojtekmaj/enzyme-adapter-react-17": ^0.6.1
     babel-eslint: ^10.1.0
-    babel-jest: ^27.0.2
     coveralls: ^3.1.0
     enzyme: ^3.11.0
     eslint: ^7.28.0
@@ -7844,7 +7834,6 @@ __metadata:
     eslint-plugin-import: ^2.23.4
     eslint-plugin-jsx-a11y: ^6.4.1
     eslint-plugin-react: ^7.24.0
-    eslint-plugin-react-hooks: ^4.2.0
     husky: ^6.0.0
     jest: ^27.0.4
     jsdom: ^16.6.0
