@@ -10,7 +10,7 @@ const external = Object.keys(pkg.peerDependencies).concat(/@babel\/runtime/);
 const extensions = ['.js', '.tsx'];
 
 const sharedPlugins = [
-  typescript(),
+  typescript({ tsconfig: './tsconfig.json' }),
   babel({
     babelHelpers: 'runtime',
     exclude: 'node_modules/**',
