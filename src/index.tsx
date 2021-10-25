@@ -19,7 +19,7 @@
  */
 
 import React, { createElement } from 'react';
-import { useLocation, matchPath } from 'react-router';
+import { useLocation, matchPath } from 'react-router-dom';
 
 const DEFAULT_MATCH_OPTIONS = { exact: true };
 const NO_BREADCRUMB = 'NO_BREADCRUMB';

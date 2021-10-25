@@ -1364,6 +1364,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.12.13":
+  version: 7.15.4
+  resolution: "@babel/runtime@npm:7.15.4"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 64b6c250fd02a664f40835b7bfc3ec0b473d251bf4881b06b689b60662bf2ae17adc6fa32fb0e0de308de5d4bc383738c6030ad93d823066fb9fd7c18f552b56
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.14.5, @babel/template@npm:^7.3.3":
   version: 7.14.5
   resolution: "@babel/template@npm:7.14.5"
@@ -2097,13 +2106,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-router@npm:^5.1.15":
-  version: 5.1.15
-  resolution: "@types/react-router@npm:5.1.15"
+"@types/react-router-dom@npm:^5.3.0":
+  version: 5.3.1
+  resolution: "@types/react-router-dom@npm:5.3.1"
   dependencies:
     "@types/history": "*"
     "@types/react": "*"
-  checksum: 6761d711ed42c4c3bc75c84aa486119d440bdab8025ef8602f189ad309d48f57a28dabfad3d2791133279fd8d65e962ad09a752eb54ff946a569e89ffc942fb6
+    "@types/react-router": "*"
+  checksum: ce430ff0e2e595d8af4ce672e364a3e366de711e3556223738950bb28332ea1cf3efa8176d8f37a5c2f8e49b1abbb2b03ee607b7ec49171d249cbfec346a4808
+  languageName: node
+  linkType: hard
+
+"@types/react-router@npm:*":
+  version: 5.1.17
+  resolution: "@types/react-router@npm:5.1.17"
+  dependencies:
+    "@types/history": "*"
+    "@types/react": "*"
+  checksum: 1194b2bc49ea663232c211e7d912c9092f78b69ee14a2602569070b7749cc77e50947bf8399fc55256bb6db252536d9d733ef307b18569cee670d48dfae0b7a2
   languageName: node
   linkType: hard
 
@@ -7796,7 +7816,7 @@ __metadata:
     "@rollup/plugin-typescript": ^8.2.1
     "@types/react": ^17.0.11
     "@types/react-dom": ^17.0.7
-    "@types/react-router": ^5.1.15
+    "@types/react-router-dom": ^5.3.0
     "@typescript-eslint/eslint-plugin": ^4.26.1
     "@typescript-eslint/parser": ^4.26.1
     "@wojtekmaj/enzyme-adapter-react-17": ^0.6.1
@@ -7816,22 +7836,39 @@ __metadata:
     prop-types: ^15.7.2
     react: 17.0.2
     react-dom: 17.0.2
-    react-router: ^5.2.0
+    react-router-dom: ^5.3.0
     rollup: ^2.51.1
     rollup-plugin-size: ^0.2.2
     rollup-plugin-terser: ^7.0.2
     typescript: 4.3.2
   peerDependencies:
     react: ">=16.8"
-    react-router: ">=5"
+    react-router-dom: ">=5"
   languageName: unknown
   linkType: soft
 
-"react-router@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "react-router@npm:5.2.0"
+"react-router-dom@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "react-router-dom@npm:5.3.0"
   dependencies:
-    "@babel/runtime": ^7.1.2
+    "@babel/runtime": ^7.12.13
+    history: ^4.9.0
+    loose-envify: ^1.3.1
+    prop-types: ^15.6.2
+    react-router: 5.2.1
+    tiny-invariant: ^1.0.2
+    tiny-warning: ^1.0.0
+  peerDependencies:
+    react: ">=15"
+  checksum: 921c7f08354c6d7a64682d6015b46aec4d7cd89d5d3b0b9e478330630cf1c5de4adc8e5a28b871246bb91c86dc679790c76cccfefad4d4bfd3860655b0778fb3
+  languageName: node
+  linkType: hard
+
+"react-router@npm:5.2.1":
+  version: 5.2.1
+  resolution: "react-router@npm:5.2.1"
+  dependencies:
+    "@babel/runtime": ^7.12.13
     history: ^4.9.0
     hoist-non-react-statics: ^3.1.0
     loose-envify: ^1.3.1
@@ -7843,7 +7880,7 @@ __metadata:
     tiny-warning: ^1.0.0
   peerDependencies:
     react: ">=15"
-  checksum: 4437eaa9bab02d46a7d6ea4915731c1f31642d6c3e3f7b9f951f5c6a9a73f35d4deb43a2d6b4be85f27816a20de96c3b9a9239f4b7e9136742106794ad20e95c
+  checksum: fd2fb21a46caabd4cc8ebaeb54c1e74733658e90eee50fd585c52e37110576ac479072d919b8a422586c361f7939c2d43dbf6d072700f6c8342808839948088a
   languageName: node
   linkType: hard
 
