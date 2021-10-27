@@ -27,7 +27,7 @@ const formats = [
 
 const globals = {
   react: 'React',
-  'react-router': 'ReactRouter',
+  'react-router-dom': 'ReactRouterDom',
 };
 
 export default formats.map(({ plugins, file, format }) => ({
