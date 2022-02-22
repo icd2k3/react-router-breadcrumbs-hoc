@@ -1,3 +1,13 @@
+<h1 align="center">
+  LEGACY
+</h1>
+<p align="center">
+This repository is for legacy support of react-router v5.<br/><br/>
+Please use <a href="https://github.com/icd2k3/use-react-router-breadcrumbs">use-react-router-breadcrumbs</a> and react-router v6 instead.
+</p>
+
+<hr/>
+
 <h3 align="center">
   React Router Breadcrumbs HOC
 </h3>
@@ -19,12 +29,6 @@
     </code>
   </h4>
 <hr/>
-
-<p align="center">
-  <code>
-    Want to use hooks instead? Try <a href="https://github.com/icd2k3/use-react-router-breadcrumbs">use-react-router-breadcrumbs</a>.
-  </code>
-</p>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
