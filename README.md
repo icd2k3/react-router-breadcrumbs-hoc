@@ -37,12 +37,12 @@ Please use <a href="https://github.com/icd2k3/use-react-router-breadcrumbs">use-
 - [Install](#install)
 - [Usage](#usage)
 - [Examples](#examples)
-  - [Simple](#simple)
-  - [Advanced](#advanced)
+    - [Simple](#simple)
+    - [Advanced](#advanced)
 - [Route config compatibility](#route-config-compatibility)
 - [Dynamic breadcrumbs](#dynamic-breadcrumbs)
 - [Options](#options)
-  - [Disabling default generated breadcrumbs](#disabling-default-generated-breadcrumbs)
+    - [Disabling default generated breadcrumbs](#disabling-default-generated-breadcrumbs)
 - [Order matters!](#order-matters)
 - [API](#api)
 
@@ -55,7 +55,7 @@ Render breadcrumbs for `react-router` however you want!
 #### Features
 - Easy to get started with automatically generated breadcrumbs.
 - Render, map, and wrap breadcrumbs any way you want.
-- Compatible with existing [route configs](https://reacttraining.com/react-router/web/example/route-config).
+- Compatible with existing [route configs](https://v5.reactrouter.com/web/example/route-config).
 
 ## Install
 
@@ -131,9 +131,9 @@ Pathname | Result
 /users/1 | Home / Users / John
 /example | Home / Custom Example
 
-## [Route config](https://reacttraining.com/react-router/web/example/route-config) compatibility
+## [Route config](https://v5.reactrouter.com/web/example/route-config) compatibility
 
-Add breadcrumbs to your existing [route config](https://reacttraining.com/react-router/web/example/route-config). This is a great way to keep all routing config paths in a single place! If a path ever changes, you'll only have to change it in your main route config rather than maintaining a _separate_ config for `react-router-breadcrumbs-hoc`.
+Add breadcrumbs to your existing [route config](https://v5.reactrouter.com/web/example/route-config). This is a great way to keep all routing config paths in a single place! If a path ever changes, you'll only have to change it in your main route config rather than maintaining a _separate_ config for `react-router-breadcrumbs-hoc`.
 
 For example...
 
