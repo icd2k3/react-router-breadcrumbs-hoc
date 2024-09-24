@@ -4717,6 +4717,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fsevents@patch:fsevents@~2.3.2#builtin<compat/fsevents>":
+  version: 2.3.3
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.3#builtin<compat/fsevents>::version=2.3.3&hash=11e9ea"
+  dependencies:
+    node-gyp: latest
+  checksum: b4a5cd7915a22722983f0b08607c681a651a788d1109670f899f3421e42e9540c31e293e3e8019cc4571f370598d7a8baa02ce60ccabee830bcfa6b1189ba92c
+  languageName: node
+  linkType: hard
+
+fsevents@~2.3.2:
+  version: 2.3.3
+  resolution: "fsevents@npm:2.3.3"
+  dependencies:
+    node-gyp: latest
+  checksum: f22d0a854bca5dc894a7ee1aae8966933fa88ea4520603f266b9ea8dd0a1211578d418a20bdd7c016601b473276982d0926b24f68eb1f75790356336c6b74d1a
+  languageName: node
+  linkType: hard
+
 "function-bind@npm:^1.1.1":
   version: 1.1.1
   resolution: "function-bind@npm:1.1.1"
@@ -7837,7 +7855,7 @@ __metadata:
     react: 17.0.2
     react-dom: 17.0.2
     react-router-dom: ^5.3.0
-    rollup: ^2.51.1
+    rollup: ^3.29.5
     rollup-plugin-size: ^0.2.2
     rollup-plugin-terser: ^7.0.2
     typescript: 4.3.2
@@ -8315,17 +8333,17 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.51.1":
-  version: 2.51.1
-  resolution: "rollup@npm:2.51.1"
+"rollup@npm:^3.29.5":
+  version: 3.29.5
+  resolution: "rollup@npm:3.29.5"
   dependencies:
-    fsevents: ~2.3.1
+    fsevents: ~2.3.2
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 84aaa1bdc63d45613ddf8ddf9ca1bff2262f26bc014e7a0d69696a3ede88af45b2fba16e079421a8683c88f842a852a68fde13ada2e4d765831d19759f3265e0
+  checksum: 1c4bb3780c0290e1df57dfe72a16793e374da2fa25a6d8f789f7101a20c408c82786be29a8a858dd179f26452b1dd29f7a0abb597e2312cbfae1434b78959225
   languageName: node
   linkType: hard
 
